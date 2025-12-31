@@ -45,3 +45,14 @@
 build/
 
 *.dsYM
+
+# Python virtual environment
+.venv/
+venv/
+
+# Bytecode / caches
+__pycache__/
+*.py[cod]
+
+# pre-commit
+.pre-commit/            # internal pre-commit cache
