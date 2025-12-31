@@ -17,3 +17,18 @@ The user is responsible for consuming the `datalint` library to
 - specify how to extract the application name and version from the input file
 - create a layout file (patch) that defines their expected layout
 - create a rules file (patch) that defines their expected rules
+
+## Todo
+1. Define a file parser interface
+1. Define a concrete CSV file parser
+1. Define unit tests for CSV file parser
+1. Define an application name and version provider interface
+1. Define a concrete application name and version provider, where the application name comes from key "Application name" and version comes from key "Version"
+1. Define unit tests for the concrete application name and version provider
+1. Define interface for layout patches
+1. Define concrete example application layout patch
+1. Define interface for rules patches
+1. Define concrete example application rules patch
+1. Test functionality in `datalinttool`
+1. Create project pipelines with Github Actions
+1. Migrate example project `datalinttool` to another repo
