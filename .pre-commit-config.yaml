@@ -3,4 +3,4 @@ repos:
     rev: v1.2.0
     hooks:
       - id: clang-format
-        args: [--style=Google]
+        args: [--style=file]

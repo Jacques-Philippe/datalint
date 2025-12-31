@@ -10,7 +10,6 @@ int main(int argc, char** argv) {
   // pairs
   // 2. Parse the input file, gathering
   // - name
-
   // - version number
   // - dictionary of key value pairs
   // 3. Given name and version number, build layout expectation
