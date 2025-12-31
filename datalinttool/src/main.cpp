@@ -19,6 +19,6 @@ int main(int argc, char** argv) {
   // 6. Given validation rules and dictionary of key value pairs, observe that
   // expected keys have valid values
   // 7. Report results of observations to user
-  std::cout << "datalinttool executed successfully.\n";
+  std::cout << "datalinttool executed successfully!\n";
   return 0;
 }
