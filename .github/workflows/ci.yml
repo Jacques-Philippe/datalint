@@ -23,10 +23,8 @@ jobs:
       - name: Run clang-format check
         run: |
           clang-format --version
-          find . \
-            -type f \( -name "*.cpp" -o -name "*.h" \) \
-            ! -path "./build/*" \
-            | xargs clang-format --dry-run --Werror
+          find . -path ./build -prune -o -type f \( -name "*.cpp" -o -name "*.h" \) -print0 \
+            | xargs -0 clang-format --dry-run --Werror
 
   build-and-test:
     name: Build and test - ${{ matrix.build_type }}
