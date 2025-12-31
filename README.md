@@ -18,6 +18,20 @@ The user is responsible for consuming the `datalint` library to
 - create a layout file (patch) that defines their expected layout
 - create a rules file (patch) that defines their expected rules
 
+## Developer Get Started
+1. Clone the repo
+1. Install the requirements for the python virtual environment
+   ```
+   python -m venv .venv
+   . .venv/Scripts/Activate # Windows
+   source .venv/bin/activate # MacOSX
+   pip install -r requirements.txt
+   ```
+1. Activate pre-commit hooks
+    ```
+    python -m pre_commit install
+    ```
+
 ## Todo
 1. Define a file parser interface
 1. Define a concrete CSV file parser
