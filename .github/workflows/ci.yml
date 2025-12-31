@@ -17,8 +17,8 @@ jobs:
 
       - name: Install clang-format
         run: |
-          sudo apt-get update
-          sudo apt-get install -y clang-format
+          brew update
+          brew install clang-format
 
       - name: Run clang-format check
         run: |
@@ -30,7 +30,7 @@ jobs:
 
   build-and-test:
     name: Build and test - ${{ matrix.build_type }}
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     needs: format
 
