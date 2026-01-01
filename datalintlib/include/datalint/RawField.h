@@ -1,5 +1,7 @@
 #pragma once
 
+#include <datalint/SourceLocation.h>
+
 #include <string>
 
 namespace datalint {
@@ -10,5 +12,7 @@ struct RawField {
   std::string Key;
   /// @brief The value of the field.
   std::string Value;
+  /// @brief The source location of the field in the input file.
+  SourceLocation Location;
 };
 }  // namespace datalint
