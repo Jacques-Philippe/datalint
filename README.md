@@ -6,7 +6,7 @@ The purpose of this project is to allow for an open-source solution that allows 
 
 The input of this tool is some file that can be parsed for values (for instance a CSV or a JSON file), and the output is a JSON report containing the list of all errors found in the file.
 
-We define three concepts.
+We define two main concepts.
 
 1. Layout; the fields (keys) we expect to have present in the file, their occurrence, and their order
 1. Rules; the acceptable values which should be associated to given keys
