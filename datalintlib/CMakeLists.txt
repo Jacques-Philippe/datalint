@@ -7,8 +7,6 @@ add_library(datalintlib
 
     src/CsvFileParser.cpp
     src/RawData.cpp
-    src/reader.cpp
-    src/row.cpp
 )
 
 target_include_directories(datalintlib

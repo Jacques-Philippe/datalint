@@ -6,7 +6,7 @@
 
 namespace datalint {
 // Forward declaration
-struct RawData;
+class RawData;
 }  // namespace datalint
 
 namespace datalint::input {
