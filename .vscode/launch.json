@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug datalinttool",
+            "name": "Run datalinttool (Debug)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/datalinttool/datalinttool",
@@ -14,6 +14,30 @@
             ],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb"
+        },
+        {
+            "name": "Run datalintlib_tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "lldb",
+            "stopAtEntry": false,
+            "externalConsole": false
+        },
+        {
+            "name": "Run datalintlib_tests (filter)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
+            "args": [
+                "--gtest_filter=CsvReader.*"
+            ],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "lldb",
+            "stopAtEntry": false,
+            "externalConsole": false
         }
     ]
 }
