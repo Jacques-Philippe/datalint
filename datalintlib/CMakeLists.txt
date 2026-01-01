@@ -1,4 +1,9 @@
 add_library(datalintlib
+    include/datalint/IFileParser.h
+    include/datalint/RawData.h
+    include/datalint/RawField.h
+
+    src/RawData.cpp
     src/reader.cpp
     src/row.cpp
 )
