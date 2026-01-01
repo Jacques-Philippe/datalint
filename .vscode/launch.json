@@ -32,7 +32,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
             "args": [
-                "--gtest_filter=CsvReader.*"
+                "--gtest_filter=RawDataTest.*"
             ],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb",

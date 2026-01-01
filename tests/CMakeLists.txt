@@ -12,6 +12,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(datalintlib_tests
     src/reader_tests.cpp
+    src/RawDataTests.cpp
 )
 
 target_link_libraries(datalintlib_tests
