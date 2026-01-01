@@ -25,7 +25,7 @@ Provide the minimal steps needed to reproduce the issue.
 1. Command run:
 
    ```bash
-   csvtool ...
+   datalinttool ...
    ```
 2. Input file (if relevant):
 
