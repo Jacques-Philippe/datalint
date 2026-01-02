@@ -1,4 +1,3 @@
-// #include <ExampleApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/FileParser/CsvFileParser.h>
