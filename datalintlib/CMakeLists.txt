@@ -1,11 +1,18 @@
 add_library(datalintlib
-    src/reader.cpp
-    src/row.cpp
+    include/datalint/IFileParser.h
+    include/datalint/CsvFileParser.h
+    include/datalint/RawData.h
+    include/datalint/RawField.h
+    include/datalint/SourceLocation.h
+
+    src/CsvFileParser.cpp
+    src/RawData.cpp
 )
 
 target_include_directories(datalintlib
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/external/csv2/include>
         $<INSTALL_INTERFACE:include>
 )
 

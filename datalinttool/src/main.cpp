@@ -1,8 +1,23 @@
+#include <datalint/CsvFileParser.h>
+#include <datalint/RawData.h>
+#include <datalint/RawField.h>
+
 #include <fstream>
 #include <iostream>
-// #include <csv/reader.h>
 
 int main(int argc, char** argv) {
+  // 1. Parse the command line arguments for the input file path
+  if (argc < 2) {
+    std::cerr << "Usage: datalinttool <input_file_path>\n";
+    return 1;
+  }
+  const std::string inputFilePath = argv[1];
+  const std::filesystem::path inputPath(inputFilePath);
+  // it's assumed that in the consuming project, we know the file type
+  // and can select the appropriate parser
+  auto parser = std::make_unique<datalint::input::CsvFileParser>();
+  const auto rawData = parser->Parse(inputPath);
+
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from
   // the input file

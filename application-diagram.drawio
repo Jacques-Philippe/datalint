@@ -1,0 +1,154 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6" pages="2">
+  <diagram name="Application diagram" id="fVqcU88fL75PQfqD5YJ6">
+    <mxGraphModel dx="1796" dy="1704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="y47gIg8ZywgoK4clVWxM-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-1" target="y47gIg8ZywgoK4clVWxM-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-28" value="create raw data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y47gIg8ZywgoK4clVWxM-8">
+          <mxGeometry x="-0.0875" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-1" value="File Parser" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-2" target="y47gIg8ZywgoK4clVWxM-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-2" value="Input file (.csv, json, etc)" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-180" y="110" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-4" target="KQYK5OaU5loUIy0SMbsb-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-4" value="Name and Version Extractor" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-5" target="y47gIg8ZywgoK4clVWxM-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-11" value="if layout validation fails,&lt;div&gt;stop&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y47gIg8ZywgoK4clVWxM-12">
+          <mxGeometry x="-0.2111" y="2" relative="1" as="geometry">
+            <mxPoint x="16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-5" target="y47gIg8ZywgoK4clVWxM-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-16" value="report any errors" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y47gIg8ZywgoK4clVWxM-15">
+          <mxGeometry x="-0.3385" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-5" value="Layout Validator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-6" value="Here we figure out &quot;which application and version number are we dealing with?&quot;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="190" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-7" value="Here we read the input file and break it down into raw data" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="125" y="190" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-10" value="We validate our layout expectations with the raw data we&#39;ve collected" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="945" y="190" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="KQYK5OaU5loUIy0SMbsb-9" target="y47gIg8ZywgoK4clVWxM-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-18" value="report any errors" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y47gIg8ZywgoK4clVWxM-17">
+          <mxGeometry x="-0.3538" relative="1" as="geometry">
+            <mxPoint x="15" y="80" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-11" target="KQYK5OaU5loUIy0SMbsb-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-11" value="Rules Specification" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-13" value="We build our rules expectations, applying patches given application version" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="190" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y47gIg8ZywgoK4clVWxM-14" target="y47gIg8ZywgoK4clVWxM-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-21" value="&lt;div&gt;Send the errors to output&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y47gIg8ZywgoK4clVWxM-20">
+          <mxGeometry x="-0.0182" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-14" value="Error Collector" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="-60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y47gIg8ZywgoK4clVWxM-19" value="Error Outputter" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="-230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-1" value="IFileParser&lt;div&gt;Responsible for reading the incoming file and producing raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="490" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-3" value="+ RawData ParseFile(std::filepath)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-1">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="KQYK5OaU5loUIy0SMbsb-5" target="y47gIg8ZywgoK4clVWxM-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-5" value="Layout Specification" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-8" value="We build our layout expectations, applying patches given application version" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="665" y="190" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-9" value="Rules Validator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-12" value="We validate our rule expectations with the raw data we&#39;ve collected" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1515" y="190" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-13" value="&lt;div&gt;struct RawField {&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::string key;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; std::string value;&lt;/div&gt;&lt;div&gt;};&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="240" y="400" width="270" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-14" value="RawData&lt;div&gt;Responsible for containing the data parsed from the input file&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="610" width="300" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-15" value="- std::vector&amp;lt;RawField&amp;gt; rawFields" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-14">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-17" value="&lt;div&gt;+ const std::vector&amp;lt;RawField&amp;gt;&amp;amp; Fields() const noexcept;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-14">
+          <mxGeometry y="90" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-25" value="+&amp;nbsp;std::vector&amp;lt;const RawField*&amp;gt; GetFieldsByKey(const std::string&amp;amp; key) const;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-14">
+          <mxGeometry y="140" width="300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-19" value="&lt;div&gt;+ bool HasKey(const std::string&amp;amp; key) const;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-14">
+          <mxGeometry y="190" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-18" value="+ RawData(const std::vector&amp;lt;RawField&amp;gt; fields)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-14">
+          <mxGeometry y="230" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-26" value="CsvFileParser : IFileParser&lt;div&gt;Responsible for reading the incoming file and producing raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="610" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-27" value="+ RawData ParseFile(std::filepath)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-26">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-29" value="JsonFileParser : IFileParser&lt;div&gt;Responsible for reading the incoming file and producing raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=60;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="730" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-30" value="+ RawData ParseFile(std::filepath)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-29">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="E-idG5YhKOsb-hLgFzcZ" name="Page-2">
+    <mxGraphModel dx="946" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

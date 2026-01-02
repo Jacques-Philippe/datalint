@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/datalinttool/datalinttool",
             "args": [
-                "example.csv"
+                "${workspaceFolder}/resources/csv-file.csv"
             ],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb"
@@ -32,7 +32,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
             "args": [
-                "--gtest_filter=CsvReader.*"
+                "--gtest_filter=CsvFileParserTest.*"
             ],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb",

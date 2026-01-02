@@ -11,7 +11,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE) # Important for MSVC
 FetchContent_MakeAvailable(googletest)
 
 add_executable(datalintlib_tests
-    src/reader_tests.cpp
+    src/RawDataTests.cpp
+    src/CsvFileParserTests.cpp
 )
 
 target_link_libraries(datalintlib_tests
