@@ -39,8 +39,8 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
     if (pos == std::string::npos) return s;  // no comma found
     return s.substr(0, pos);
   };
-
-  result.Descriptor.Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
-  result.Descriptor.Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
+  result.Descriptor.emplace();
+  result.Descriptor->Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
+  result.Descriptor->Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
   return result;
 }
