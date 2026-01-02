@@ -1,5 +1,5 @@
-#include <ExampleApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
+#include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
@@ -9,8 +9,8 @@ const std::string kApplicationNameKey = "ApplicationName";
 const std::string kApplicationVersionKey = "ApplicationVersion";
 }  // namespace
 
-datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
-    const datalint::RawData& rawData) {
+namespace datalint {
+ResolveResult DefaultCsvApplicationDescriptorResolver::Resolve(const datalint::RawData& rawData) {
   datalint::ResolveResult result;
   if (!rawData.HasKey(kApplicationNameKey)) {
     result.Errors.push_back("Missing required field: " + kApplicationNameKey);
@@ -44,3 +44,4 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
   result.Descriptor->Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
   return result;
 }
+}  // namespace datalint

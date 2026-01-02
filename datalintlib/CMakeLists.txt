@@ -5,12 +5,14 @@ add_library(datalintlib
     include/datalint/ApplicationDescriptor/ApplicationDescriptor.h
     include/datalint/ApplicationDescriptor/IApplicationDescriptorResolver.h
     include/datalint/ApplicationDescriptor/ResolveResult.h
+    include/datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h
     include/datalint/datalint_namespace.h
 
     src/FileParser/CsvFileParser.cpp
+    src/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.cpp
     src/RawData.cpp
 )
 

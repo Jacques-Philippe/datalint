@@ -1,8 +1,4 @@
 add_executable(datalinttool
-    include/ExampleApplicationDescriptorResolver.h
-
-    src/ExampleApplicationDescriptorResolver.cpp
-
     src/main.cpp
 )
 

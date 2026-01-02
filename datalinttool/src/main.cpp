@@ -1,4 +1,5 @@
-#include <ExampleApplicationDescriptorResolver.h>
+// #include <ExampleApplicationDescriptorResolver.h>
+#include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
@@ -20,7 +21,7 @@ int main(int argc, char** argv) {
   auto parser = std::make_unique<datalint::input::CsvFileParser>();
   const auto rawData = parser->Parse(inputPath);
 
-  ExampleApplicationDescriptorResolver resolver;
+  datalint::DefaultCsvApplicationDescriptorResolver resolver;
   const auto result = resolver.Resolve(rawData);
 
   if (!result.Success()) {
