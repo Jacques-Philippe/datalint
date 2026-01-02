@@ -32,6 +32,17 @@ The user is responsible for consuming the `datalint` library to
     python -m pre_commit install
     ```
 
+## CSV Parser
+A note on the CSV parser. Input files are parsed according to the rules of their format. Validation operates on parsed field values, not raw textual representation. So in other words, the following CSV row
+```
+key2 , value2 , Leading and trailing spaces (unquoted)
+```
+will be converted to
+```
+key2,value2,Leading and trailing spaces (unquoted)
+```
+when it's converted to RawData
+
 ## Todo
 1. Define a file parser interface
 1. Define a concrete CSV file parser
