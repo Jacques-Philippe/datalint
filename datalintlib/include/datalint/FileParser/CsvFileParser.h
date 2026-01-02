@@ -1,6 +1,6 @@
 #pragma once
 
-#include <datalint/IFileParser.h>
+#include <datalint/FileParser/IFileParser.h>
 
 #include <filesystem>
 

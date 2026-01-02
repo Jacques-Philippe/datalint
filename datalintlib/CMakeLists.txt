@@ -1,11 +1,11 @@
 add_library(datalintlib
-    include/datalint/IFileParser.h
-    include/datalint/CsvFileParser.h
+    include/datalint/FileParser/IFileParser.h
+    include/datalint/FileParser/CsvFileParser.h
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h
 
-    src/CsvFileParser.cpp
+    src/FileParser/CsvFileParser.cpp
     src/RawData.cpp
 )
 
