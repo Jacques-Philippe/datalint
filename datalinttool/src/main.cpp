@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
   if (!result.Success()) {
     std::cerr << "Failed to resolve application descriptor:\n";
     for (const auto& error : result.Errors) {
-      std::cerr << " - " << error << "\n";
+      std::cerr << " - " << error.ToString() << "\n";
     }
     return 1;
   }

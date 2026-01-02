@@ -1,4 +1,5 @@
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
+#include <datalint/ApplicationDescriptor/ResolveError.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
@@ -26,7 +27,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationNam
 
   ASSERT_FALSE(result.Success());
   ASSERT_EQ(result.Errors.size(), 1);
-  EXPECT_EQ(result.Errors[0], "Missing required field: ApplicationName");
+  EXPECT_EQ(result.Errors[0].Code, datalint::ResolveErrorCode::MissingRequiredField);
+  EXPECT_EQ(result.Errors[0].Field, "ApplicationName");
 
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
@@ -50,7 +52,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationVer
 
   ASSERT_FALSE(result.Success());
   ASSERT_EQ(result.Errors.size(), 1);
-  EXPECT_EQ(result.Errors[0], "Missing required field: ApplicationVersion");
+  EXPECT_EQ(result.Errors[0].Code, datalint::ResolveErrorCode::MissingRequiredField);
+  EXPECT_EQ(result.Errors[0].Field, "ApplicationVersion");
 
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
@@ -74,8 +77,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
 
   ASSERT_FALSE(result.Success());
   ASSERT_EQ(result.Errors.size(), 1);
-  EXPECT_EQ(result.Errors[0],
-            "Found more than one match for: ApplicationName\nThis should be unique");
+  EXPECT_EQ(result.Errors[0].Code, datalint::ResolveErrorCode::DuplicateField);
+  EXPECT_EQ(result.Errors[0].Field, "ApplicationName");
 
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
@@ -97,9 +100,12 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
   const auto result = resolver.Resolve(rawData);
 
   ASSERT_FALSE(result.Success());
+  //   ASSERT_EQ(result.Errors.size(), 1);
+  //   EXPECT_EQ(result.Errors[0],
+  //             "Found more than one match for: ApplicationVersion\nThis should be unique");
   ASSERT_EQ(result.Errors.size(), 1);
-  EXPECT_EQ(result.Errors[0],
-            "Found more than one match for: ApplicationVersion\nThis should be unique");
+  EXPECT_EQ(result.Errors[0].Code, datalint::ResolveErrorCode::DuplicateField);
+  EXPECT_EQ(result.Errors[0].Field, "ApplicationVersion");
 
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
