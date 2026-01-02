@@ -23,9 +23,9 @@ int main(int argc, char** argv) {
   ExampleApplicationDescriptorResolver resolver;
   const auto result = resolver.Resolve(rawData);
 
-  if (!result.success) {
+  if (!result.Success) {
     std::cerr << "Failed to resolve application descriptor:\n";
-    for (const auto& error : result.errors) {
+    for (const auto& error : result.Errors) {
       std::cerr << " - " << error << "\n";
     }
     return 1;

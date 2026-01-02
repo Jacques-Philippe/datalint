@@ -14,27 +14,27 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
     const datalint::RawData& rawData) {
   datalint::ResolveResult result;
   if (!rawData.HasKey(kApplicationNameKey)) {
-    result.errors.push_back("Missing required field: " + kApplicationNameKey);
-    result.success = false;
+    result.Errors.push_back("Missing required field: " + kApplicationNameKey);
+    result.Success = false;
     return result;
   }
   if (!rawData.HasKey(kApplicationVersionKey)) {
-    result.errors.push_back("Missing required field: " + kApplicationVersionKey);
-    result.success = false;
+    result.Errors.push_back("Missing required field: " + kApplicationVersionKey);
+    result.Success = false;
     return result;
   }
   const auto nameFields = rawData.GetFieldsByKey(kApplicationNameKey);
   const auto versionFields = rawData.GetFieldsByKey(kApplicationVersionKey);
   if (nameFields.size() > 1) {
-    result.errors.push_back("Found more than one match for: " + kApplicationNameKey +
+    result.Errors.push_back("Found more than one match for: " + kApplicationNameKey +
                             "\nThis should be unique");
-    result.success = false;
+    result.Success = false;
     return result;
   }
   if (versionFields.size() > 1) {
-    result.errors.push_back("Found more than one match for: " + kApplicationVersionKey +
+    result.Errors.push_back("Found more than one match for: " + kApplicationVersionKey +
                             "\nThis should be unique");
-    result.success = false;
+    result.Success = false;
     return result;
   }
   // in our example application, we know what our input file looks like
@@ -45,8 +45,8 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
     return s.substr(0, pos);
   };
 
-  result.descriptor.Name = getFirstCsvField(nameFields.front()->Value);
-  result.descriptor.Version = getFirstCsvField(versionFields.front()->Value);
-  result.success = true;
+  result.Descriptor.Name = getFirstCsvField(nameFields.front()->Value);
+  result.Descriptor.Version = getFirstCsvField(versionFields.front()->Value);
+  result.Success = true;
   return result;
 }

@@ -13,11 +13,11 @@ class RawData;
 /// @brief Result of resolving an application descriptor.
 struct ResolveResult {
   /// @brief Whether the resolution was successful.
-  bool success;
+  bool Success;
   /// @brief The resolved application descriptor.
-  ApplicationDescriptor descriptor;
+  ApplicationDescriptor Descriptor;
   /// @brief Any errors encountered during resolution.
-  std::vector<std::string> errors;
+  std::vector<std::string> Errors;
 };
 
 /// @brief Interface for resolving application descriptors from raw data.
