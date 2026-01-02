@@ -1,4 +1,6 @@
-#include <datalint/CsvFileParser.h>
+#include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
+#include <datalint/ApplicationDescriptor/ResolveResult.h>
+#include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
@@ -17,6 +19,17 @@ int main(int argc, char** argv) {
   // and can select the appropriate parser
   auto parser = std::make_unique<datalint::input::CsvFileParser>();
   const auto rawData = parser->Parse(inputPath);
+
+  datalint::DefaultCsvApplicationDescriptorResolver resolver;
+  const auto result = resolver.Resolve(rawData);
+
+  if (!result.Success()) {
+    std::cerr << "Failed to resolve application descriptor:\n";
+    for (const auto& error : result.Errors) {
+      std::cerr << " - " << error.ToString() << "\n";
+    }
+    return 1;
+  }
 
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from

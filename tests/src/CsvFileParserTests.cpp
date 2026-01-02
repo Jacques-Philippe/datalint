@@ -1,4 +1,5 @@
-#include <datalint/CsvFileParser.h>
+#include <TestUtils.h>
+#include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 #include <gtest/gtest.h>
@@ -9,7 +10,7 @@
 /// @brief Tests that the csv file parser can parse a simple CSV file.
 TEST(CsvFileParserTest, CanInitializeWithFields) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("CanInitializeWithFields");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "key1,value1,Simple two-column row\n";

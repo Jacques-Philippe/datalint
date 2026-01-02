@@ -2,6 +2,8 @@
 key,value,notes
 key1,value1,Simple two-column row
 key2 , value2 , Leading and trailing spaces (unquoted)
+ApplicationName,Example Application,The name of the application
+ApplicationVersion,1.0.0,The version number of the application
 "k,ey3","val,ue3","Embedded commas inside quoted fields"
 "key""4","value""4","Embedded double quotes (escaped by doubling)"
 "key5","multi-line

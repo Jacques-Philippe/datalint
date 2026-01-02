@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6" pages="2">
   <diagram name="Application diagram" id="fVqcU88fL75PQfqD5YJ6">
-    <mxGraphModel dx="1796" dy="1704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1901" dy="1771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -139,6 +139,39 @@
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-30" value="+ RawData ParseFile(std::filepath)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-29">
           <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-33" value="IApplicationDescriptorResolver&lt;div&gt;An interface responsible for telling us how we&#39;re meant to find the application name and version from our raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="730" width="350" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-34" value="+ const ResolveResult Resolve(const RawData data)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-33">
+          <mxGeometry y="70" width="350" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-39" value="ApplicationDescriptor&lt;div&gt;A struct responsible for containing the output application name and version&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="550" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-40" value="+ std::string Name" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-39">
+          <mxGeometry y="70" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-45" value="+ std::string Version" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-39">
+          <mxGeometry y="100" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-46" value="ExampleApplicationDescriptorResolver : IApplicationDescriptorResolver&lt;div&gt;An interface responsible for telling us how we&#39;re meant to find the application name and version from our raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="880" width="440" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-47" value="+ const ResolveResult Resolve(const RawData data)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-46">
+          <mxGeometry y="70" width="440" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-48" value="ResolveResult&lt;div&gt;A struct responsible for containing the result of trying to resolve the application descriptor&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="360" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-49" value="+ ApplicationDescriptor Descriptor" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-48">
+          <mxGeometry y="70" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-50" value="+ std::vector&amp;lt;std::string&amp;gt; Errors" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-48">
+          <mxGeometry y="100" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-51" value="+ bool Success" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-48">
+          <mxGeometry y="130" width="300" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
