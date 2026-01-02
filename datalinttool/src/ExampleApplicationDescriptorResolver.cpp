@@ -3,8 +3,6 @@
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
-#include <sstream>
-
 namespace {
 const std::string kApplicationNameKey = "ApplicationName";
 const std::string kApplicationVersionKey = "ApplicationVersion";
@@ -39,14 +37,14 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
   }
   // in our example application, we know what our input file looks like
   // we just take the first occurrence of each field
-  auto getFirstCsvField = [](const std::string& s) -> std::string {
+  auto getFirstCommaSeparatedValue = [](const std::string& s) -> std::string {
     auto pos = s.find(',');
     if (pos == std::string::npos) return s;  // no comma found
     return s.substr(0, pos);
   };
 
-  result.Descriptor.Name = getFirstCsvField(nameFields.front()->Value);
-  result.Descriptor.Version = getFirstCsvField(versionFields.front()->Value);
+  result.Descriptor.Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
+  result.Descriptor.Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
   result.Success = true;
   return result;
 }

@@ -13,7 +13,7 @@ class RawData;
 /// @brief Result of resolving an application descriptor.
 struct ResolveResult {
   /// @brief Whether the resolution was successful.
-  bool Success;
+  bool Success = false;
   /// @brief The resolved application descriptor.
   ApplicationDescriptor Descriptor;
   /// @brief Any errors encountered during resolution.

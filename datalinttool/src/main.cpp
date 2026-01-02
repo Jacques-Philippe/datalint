@@ -1,5 +1,4 @@
 #include <ExampleApplicationDescriptorResolver.h>
-#include <datalint/ApplicationDescriptor/IApplicationDescriptorResolver.h>
 #include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
