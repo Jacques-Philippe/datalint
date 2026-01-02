@@ -14,12 +14,20 @@ add_executable(datalintlib_tests
     src/RawDataTests.cpp
     src/CsvFileParserTests.cpp
     src/DefaultCsvApplicationDescriptorResolverTests.cpp
+
+    include/TestUtils.h
+    include/datalint_test_namespace.h
 )
 
 target_link_libraries(datalintlib_tests
     PRIVATE
         datalintlib
         GTest::gtest_main
+)
+
+target_include_directories(datalintlib_tests
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 include(GoogleTest)

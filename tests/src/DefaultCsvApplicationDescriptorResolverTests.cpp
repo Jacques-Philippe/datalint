@@ -1,3 +1,4 @@
+#include <TestUtils.h>
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveError.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
@@ -12,7 +13,8 @@
 /// @brief Tests that an error is received for the application name missing from the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationNameMissing) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("ReturnsErrorWhenApplicationNameMissing");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "key1,value1,Simple two-column row\n";
@@ -37,7 +39,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationNam
 /// @brief Tests that an error is received for the application version missing from the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationVersionMissing) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("ReturnsErrorWhenApplicationVersionMissing");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "key1,value1,Simple two-column row\n";
@@ -62,7 +65,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationVer
 /// @brief Tests that an error is received for duplicate application name fields in the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateApplicationName) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("ReturnsErrorWhenDuplicateApplicationName");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "ApplicationName,Example Application,The name of the application\n";
@@ -86,7 +90,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
 /// @brief Tests that an error is received for duplicate application version fields in the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateApplicationVersion) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("ReturnsErrorWhenDuplicateApplicationVersion");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "ApplicationName,Example Application,The name of the application\n";
@@ -112,7 +117,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
 /// present and unique.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsValidDescriptorWhenDataIsValid) {
   // Create a temporary CSV file for testing
-  const std::string tempCsvFile = "temp_test.csv";
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("ReturnsValidDescriptorWhenDataIsValid");
   {
     std::ofstream outFile(tempCsvFile);
     outFile << "ApplicationName,Example Application,The name of the application\n";
