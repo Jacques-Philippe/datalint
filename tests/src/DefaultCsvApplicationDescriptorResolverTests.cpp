@@ -34,7 +34,7 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationNam
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
 }
 
-/// @brief Tests that an error is received for the application name missing from the raw data.
+/// @brief Tests that an error is received for the application version missing from the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenApplicationVersionMissing) {
   // Create a temporary CSV file for testing
   const std::string tempCsvFile = "temp_test.csv";
@@ -100,9 +100,6 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
   const auto result = resolver.Resolve(rawData);
 
   ASSERT_FALSE(result.Success());
-  //   ASSERT_EQ(result.Errors.size(), 1);
-  //   EXPECT_EQ(result.Errors[0],
-  //             "Found more than one match for: ApplicationVersion\nThis should be unique");
   ASSERT_EQ(result.Errors.size(), 1);
   EXPECT_EQ(result.Errors[0].Code, datalint::ResolveErrorCode::DuplicateField);
   EXPECT_EQ(result.Errors[0].Field, "ApplicationVersion");
