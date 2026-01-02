@@ -44,12 +44,11 @@ key2,value2,Leading and trailing spaces (unquoted)
 when it's converted to RawData
 
 ## Todo
-1. Define a file parser interface
-1. Define a concrete CSV file parser
-1. Define unit tests for CSV file parser
-1. Define an application name and version provider interface
-1. Define a concrete application name and version provider, where the application name comes from key "Application name" and version comes from key "Version"
-1. Define unit tests for the concrete application name and version provider
+1. ~~Define a file parser interface~~
+1. ~~Define a concrete CSV file parser~~
+1. ~~Define unit tests for CSV file parser~~
+1. ~~Define an application name and version provider interface~~
+1. ~~Define a concrete application name and version provider, where the application name comes from key "Application name" and version comes from key "Version"~~
 1. Define interface for layout patches
 1. Define concrete example application layout patch
 1. Define interface for rules patches
