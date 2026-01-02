@@ -1,0 +1,50 @@
+#include <ExampleApplicationDescriptorResolver.h>
+#include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
+#include <datalint/RawData.h>
+#include <datalint/RawField.h>
+
+#include <sstream>
+
+namespace {
+const std::string kApplicationNameKey = "ApplicationName";
+const std::string kApplicationVersionKey = "ApplicationVersion";
+}  // namespace
+
+datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
+    const datalint::RawData& rawData) {
+  datalint::ResolveResult result;
+  if (!rawData.HasKey(kApplicationNameKey)) {
+    result.errors.push_back("Missing required field: " + kApplicationNameKey);
+    result.success = false;
+    return result;
+  }
+  if (!rawData.HasKey(kApplicationVersionKey)) {
+    result.errors.push_back("Missing required field: " + kApplicationVersionKey);
+    result.success = false;
+    return result;
+  }
+  const auto nameFields = rawData.GetFieldsByKey(kApplicationNameKey);
+  const auto versionFields = rawData.GetFieldsByKey(kApplicationVersionKey);
+  if (nameFields.empty()) {
+    result.errors.push_back("No fields found for key: " + kApplicationNameKey);
+    result.success = false;
+    return result;
+  }
+  if (versionFields.empty()) {
+    result.errors.push_back("No fields found for key: " + kApplicationVersionKey);
+    result.success = false;
+    return result;
+  }
+  // in our example application, we know what our input file looks like
+  // we just take the first occurrence of each field
+  auto getFirstCsvField = [](const std::string& s) -> std::string {
+    auto pos = s.find(',');
+    if (pos == std::string::npos) return s;  // no comma found
+    return s.substr(0, pos);
+  };
+
+  result.descriptor.Name = getFirstCsvField(nameFields.front()->Value);
+  result.descriptor.Version = getFirstCsvField(versionFields.front()->Value);
+  result.success = true;
+  return result;
+}
