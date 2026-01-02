@@ -3,41 +3,64 @@
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
+#include <csv2/reader.hpp>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 namespace datalint::input {
 
 datalint::RawData CsvFileParser::Parse(const std::filesystem::path& file) {
   std::vector<RawField> fields;
 
-  std::ifstream input(file);
-  if (!input.is_open()) {
-    throw std::runtime_error("Cannot open CSV file: " + file.string());
+  csv2::Reader<csv2::delimiter<','>, csv2::quote_character<'"'>, csv2::first_row_is_header<false> >
+      reader;
+
+  if (!reader.mmap(file.string())) {
+    throw std::runtime_error("Failed to open CSV file: " + file.string());
   }
 
-  std::string line;
-  int lineNumber = 0;
+  std::size_t lineNumber = 0;
 
-  while (std::getline(input, line)) {
+  for (const auto& row : reader) {
     ++lineNumber;
-    std::stringstream ss(line);
-    std::string key, value;
 
-    if (!std::getline(ss, key, ',')) continue;
-    if (!std::getline(ss, value, ',')) continue;
+    auto it = row.begin();
+    if (!(it != row.end())) {
+      continue;  // empty row
+    }
+
+    // First column → key
+    std::string key;
+    (*it).read_value(key);
+    ++it;
+
+    // Remaining columns → single value string
+    std::string value;
+    bool first = true;
+
+    for (; it != row.end(); ++it) {
+      std::string cell;
+      (*it).read_value(cell);
+
+      if (!first) {
+        value += ",";
+      }
+      value += cell;
+      first = false;
+    }
 
     RawField field;
-    field.Key = key;
-    field.Value = value;
+    field.Key = std::move(key);
+    field.Value = std::move(value);
     field.Location.Filename = file.string();
-    field.Location.Line = lineNumber;
+    field.Location.Line = static_cast<int>(lineNumber);
 
     fields.push_back(std::move(field));
   }
 
-  // Construct RawData in one shot
   return RawData(std::move(fields));
 }
 }  // namespace datalint::input
