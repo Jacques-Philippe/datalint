@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/Debug/datalinttool/datalinttool",
             "args": [
-                "example.csv"
+                "${workspaceFolder}/resources/csv-file.csv"
             ],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb"

@@ -1,0 +1,22 @@
+
+key,value,notes
+key1,value1,Simple two-column row
+key2 , value2 , Leading and trailing spaces (unquoted)
+"k,ey3","val,ue3","Embedded commas inside quoted fields"
+"key""4","value""4","Embedded double quotes (escaped by doubling)"
+"key5","multi-line
+value with an embedded newline","Quoted field containing a newline (RFC 4180)
+spans multiple physical lines"
+key6,,Missing value (empty second field)
+,value7,Missing key (empty first field)
+,,Both fields empty
+keyµ,valueñ,Unicode characters in both fields
+keylong,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.,Long field with commas and spaces
+key8,12345,Unquoted numeric value
+"9","0123","Quoted numeric with leading zero preserved"
+key_extra,val,extra,Row with extra columns (third column should be ignored by simple parsers)
+" spaced key "," spaced value ",Quoted fields with surrounding spaces preserved
+"","empty quoted key","Empty quoted key with explicit quotes"
+"complex ""key"", with comma","value","Complex key with embedded quotes and comma"
+"key-with-newlines","line1\nline2","Explicit escaped newline sequence (literal backslash+n)"
+trailing_comma,value_with_comma,This field contains,a,comma but not quoted
