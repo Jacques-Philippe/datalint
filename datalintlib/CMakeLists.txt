@@ -12,7 +12,7 @@ add_library(datalintlib
 target_include_directories(datalintlib
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../external/csv2/include>
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/external/csv2/include>
         $<INSTALL_INTERFACE:include>
 )
 

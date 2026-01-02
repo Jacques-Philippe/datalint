@@ -18,6 +18,11 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
 
+      - name: Debug submodules
+        run: |
+          git submodule status
+          ls -R external || true
+
       - name: Install clang-format
         run: |
           brew update
