@@ -26,13 +26,13 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
   const auto nameFields = rawData.GetFieldsByKey(kApplicationNameKey);
   const auto versionFields = rawData.GetFieldsByKey(kApplicationVersionKey);
   if (nameFields.size() > 1) {
-    result.errors.push_back("Found more than once match for: " + kApplicationNameKey +
+    result.errors.push_back("Found more than one match for: " + kApplicationNameKey +
                             "\nThis should be unique");
     result.success = false;
     return result;
   }
   if (versionFields.size() > 1) {
-    result.errors.push_back("Found more than once match for: " + kApplicationVersionKey +
+    result.errors.push_back("Found more than one match for: " + kApplicationVersionKey +
                             "\nThis should be unique");
     result.success = false;
     return result;
