@@ -15,7 +15,7 @@ enum class ResolveErrorCode {
 struct ResolveError {
   /// @brief The error code.
   ResolveErrorCode Code;
-  /// @brief A descriptive message about the error.
+  /// @brief The field associated with the error.
   std::string Field;
   /// @brief The error message as a string.
   /// @return the stringified error message.
