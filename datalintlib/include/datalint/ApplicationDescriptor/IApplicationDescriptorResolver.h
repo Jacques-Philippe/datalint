@@ -20,6 +20,7 @@ struct ResolveResult {
   std::vector<std::string> errors;
 };
 
+/// @brief Interface for resolving application descriptors from raw data.
 class IApplicationDescriptorResolver {
  public:
   /// @brief Virtual destructor.
