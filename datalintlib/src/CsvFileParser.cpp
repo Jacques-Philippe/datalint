@@ -1,4 +1,3 @@
-
 #include <datalint/CsvFileParser.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
@@ -12,6 +11,18 @@
 
 namespace datalint::input {
 
+/**
+ * Parse a CSV file into a RawData collection of RawField entries.
+ *
+ * Each non-empty row produces one RawField: the first column becomes the field Key,
+ * the remaining columns are concatenated with commas into the field Value, and
+ * Location.Filename is set to the provided file path while Location.Line is set
+ * to the row number (1-based). Empty rows are skipped.
+ *
+ * @param file Path to the CSV file to parse.
+ * @return RawData A RawData containing one RawField per non-empty CSV row as described above.
+ * @throws std::runtime_error If the CSV file cannot be opened (mmap failure).
+ */
 datalint::RawData CsvFileParser::Parse(const std::filesystem::path& file) {
   std::vector<RawField> fields;
 

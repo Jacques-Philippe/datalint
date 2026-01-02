@@ -5,6 +5,15 @@
 #include <fstream>
 #include <iostream>
 
+/**
+ * @brief Program entry point that validates arguments, parses the specified CSV input, and exits with a status code.
+ *
+ * Validates that an input file path is provided, parses that file into raw data using the application's CSV parser, and prints a success message before exiting.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line argument strings; argv[1] is expected to be the input file path.
+ * @return int `0` on successful execution, `1` if an input file path is not provided.
+ */
 int main(int argc, char** argv) {
   // 1. Parse the command line arguments for the input file path
   if (argc < 2) {

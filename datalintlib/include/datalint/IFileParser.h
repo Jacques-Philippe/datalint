@@ -9,7 +9,22 @@ class RawData;
 
 namespace datalint::input {
 
-/// @brief Interface for file parsers that convert input files into RawData.
+/**
+ * @brief Interface for parsers that convert input files into RawData.
+ *
+ * Implementers convert the contents of a filesystem path into a datalint::RawData
+ * instance.
+ */
+
+/**
+ * @brief Default virtual destructor to allow proper cleanup in derived classes.
+ */
+ 
+/**
+ * @brief Parse the file at the given path and produce a RawData representation.
+ * @param file Path to the input file to parse.
+ * @return RawData containing the parsed contents of the provided file.
+ */
 class IFileParser {
  public:
   /// @brief Virtual destructor.
