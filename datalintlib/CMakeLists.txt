@@ -4,6 +4,7 @@ add_library(datalintlib
     include/datalint/FileParser/datalint_input_namespace.h
     include/datalint/ApplicationDescriptor/ApplicationDescriptor.h
     include/datalint/ApplicationDescriptor/IApplicationDescriptorResolver.h
+    include/datalint/ApplicationDescriptor/ResolveResult.h
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h

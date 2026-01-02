@@ -1,5 +1,6 @@
 #include <ExampleApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
+#include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
@@ -13,12 +14,10 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
   datalint::ResolveResult result;
   if (!rawData.HasKey(kApplicationNameKey)) {
     result.Errors.push_back("Missing required field: " + kApplicationNameKey);
-    result.Success = false;
     return result;
   }
   if (!rawData.HasKey(kApplicationVersionKey)) {
     result.Errors.push_back("Missing required field: " + kApplicationVersionKey);
-    result.Success = false;
     return result;
   }
   const auto nameFields = rawData.GetFieldsByKey(kApplicationNameKey);
@@ -26,13 +25,11 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
   if (nameFields.size() > 1) {
     result.Errors.push_back("Found more than one match for: " + kApplicationNameKey +
                             "\nThis should be unique");
-    result.Success = false;
     return result;
   }
   if (versionFields.size() > 1) {
     result.Errors.push_back("Found more than one match for: " + kApplicationVersionKey +
                             "\nThis should be unique");
-    result.Success = false;
     return result;
   }
   // in our example application, we know what our input file looks like
@@ -45,6 +42,5 @@ datalint::ResolveResult ExampleApplicationDescriptorResolver::Resolve(
 
   result.Descriptor.Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
   result.Descriptor.Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
-  result.Success = true;
   return result;
 }

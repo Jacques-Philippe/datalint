@@ -1,4 +1,5 @@
 #include <ExampleApplicationDescriptorResolver.h>
+#include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
@@ -22,7 +23,7 @@ int main(int argc, char** argv) {
   ExampleApplicationDescriptorResolver resolver;
   const auto result = resolver.Resolve(rawData);
 
-  if (!result.Success) {
+  if (!result.Success()) {
     std::cerr << "Failed to resolve application descriptor:\n";
     for (const auto& error : result.Errors) {
       std::cerr << " - " << error << "\n";

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
-
 #include <string>
 #include <vector>
 
@@ -9,16 +7,7 @@ namespace datalint {
 
 // Forward declaration
 class RawData;
-
-/// @brief Result of resolving an application descriptor.
-struct ResolveResult {
-  /// @brief Whether the resolution was successful.
-  bool Success = false;
-  /// @brief The resolved application descriptor.
-  ApplicationDescriptor Descriptor;
-  /// @brief Any errors encountered during resolution.
-  std::vector<std::string> Errors;
-};
+struct ResolveResult;
 
 /// @brief Interface for resolving application descriptors from raw data.
 class IApplicationDescriptorResolver {
