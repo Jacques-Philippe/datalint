@@ -15,6 +15,8 @@ add_executable(datalintlib_tests
     src/CsvFileParserTests.cpp
     src/DefaultCsvApplicationDescriptorResolverTests.cpp
 
+    src/LayoutSpecification/LayoutSpecificationTests.cpp
+
     include/TestUtils.h
     include/datalint_test_namespace.h
 )
