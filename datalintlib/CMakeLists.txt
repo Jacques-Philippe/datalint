@@ -9,6 +9,11 @@ add_library(datalintlib
     include/datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h
     include/datalint/LayoutSpecification/ExpectedField.h
     include/datalint/LayoutSpecification/LayoutSpecification.h
+    include/datalint/LayoutSpecification/LayoutSpecificationBuilder.h
+    include/datalint/LayoutSpecification/LayoutPatch.h
+    include/datalint/LayoutSpecification/LayoutPatchOperations.h
+    include/datalint/Version/Version.h
+    include/datalint/Version/VersionRange.h
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h
