@@ -1,6 +1,9 @@
+#include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/FileParser/CsvFileParser.h>
+#include <datalint/LayoutSpecification/LayoutPatch.h>
+#include <datalint/LayoutSpecification/LayoutSpecificationBuilder.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
@@ -17,10 +20,13 @@ int main(int argc, char** argv) {
   const std::filesystem::path inputPath(inputFilePath);
   // it's assumed that in the consuming project, we know the file type
   // and can select the appropriate parser
+
+  // 1. Parse the input file to raw data
   auto parser = std::make_unique<datalint::input::CsvFileParser>();
   const auto rawData = parser->Parse(inputPath);
 
   datalint::DefaultCsvApplicationDescriptorResolver resolver;
+  // 2. Resolve the application descriptor from the raw data
   const auto result = resolver.Resolve(rawData);
 
   if (!result.Success()) {
@@ -30,6 +36,23 @@ int main(int argc, char** argv) {
     }
     return 1;
   }
+
+  using namespace datalint::layout;
+
+  // 3. Build expected layout patches
+  const LayoutPatch patch{
+      .Name = "patch1",
+      .AppliesTo = datalint::VersionRange::All(),
+      .Operations = {
+          AddField{.Key = "key1", .Field = ExpectedField{1, std::nullopt}},
+          AddField{.Key = "key2", .Field = ExpectedField{1, std::nullopt}},
+          AddField{.Key = "ApplicationName", .Field = ExpectedField{1, std::nullopt}},
+          AddField{.Key = "ApplicationVersion", .Field = ExpectedField{1, std::nullopt}},
+      }};
+  std::vector<LayoutPatch> patches = {patch};
+  LayoutSpecificationBuilder builder;
+  // 4. Build layout specification for the resolved application descriptor version
+  const LayoutSpecification layoutSpec = builder.Build(result.Descriptor->Version, patches);
 
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from

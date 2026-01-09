@@ -42,7 +42,9 @@ ResolveResult DefaultCsvApplicationDescriptorResolver::Resolve(const datalint::R
   };
   result.Descriptor.emplace();
   result.Descriptor->Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
-  result.Descriptor->Version = getFirstCommaSeparatedValue(versionFields.front()->Value);
+  const auto versionStr = getFirstCommaSeparatedValue(versionFields.front()->Value);
+
+  result.Descriptor->Version = Version::Parse(versionStr);
   return result;
 }
 }  // namespace datalint

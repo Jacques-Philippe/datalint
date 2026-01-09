@@ -1,5 +1,7 @@
 #pragma once
 
+#include <datalint/Version/Version.h>
+
 #include <string>
 
 namespace datalint {
@@ -9,6 +11,6 @@ struct ApplicationDescriptor {
   /// @brief The name of the application.
   std::string Name;
   /// @brief The version of the application.
-  std::string Version;
+  Version Version;
 };
 }  // namespace datalint

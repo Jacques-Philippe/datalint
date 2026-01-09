@@ -89,3 +89,10 @@ TEST(VersionTest, VersionsSortCorrectly) {
   EXPECT_EQ(versions[3], (datalint::Version{1, 10, 0}));
   EXPECT_EQ(versions[4], (datalint::Version{2, 0, 0}));
 }
+
+/// @brief Test that parse works properly
+TEST(VersionTest, ParseWorksCorrectly) {
+  datalint::Version v = datalint::Version::Parse("1.2.3");
+
+  EXPECT_EQ(v, (datalint::Version{1, 2, 3}));
+}
