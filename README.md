@@ -51,7 +51,7 @@ when it's converted to RawData
 1. ~~Define a concrete application name and version provider, where the application name comes from key "Application name" and version comes from key "Version"~~
 1. ~~Define an example DefaultCsvApplicationDescriptorResolver with unit tests~~
 1. Define interface for layout patches
-    1. Define version and version range types
+    ~~1. Define version and version range types~~
     1. Define layout patch
 1. Define concrete example application layout patch
 1. Define interface for rules patches
