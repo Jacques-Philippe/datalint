@@ -82,5 +82,32 @@ TEST(LayoutSpecificationBuilderTest, CanAddAndModifyFieldUsingPatches) {
   ASSERT_EQ(fieldOpt->Key, "Field2Key");  // the modified key
 }
 
-/// @brief Tests that the layout specification builder can build a layout specification with
-/// multiple patch operations
+/// @brief Tests that the layout specification builder applies patches only within the version range
+TEST(LayoutSpecificationBuilderTest, AppliesPatchesOnlyWithinVersionRange) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch{
+      .Name = "patch1",
+      .AppliesTo =
+          datalint::VersionRange::Between(datalint::Version{2, 0, 0}, datalint::Version{3, 0, 0}),
+      .Operations = {datalint::layout::AddField{
+          .Key = "Field1", .Field = datalint::layout::ExpectedField{"Field1Key"}}}};
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  // Build for a version outside the range
+  datalint::layout::LayoutSpecification spec1 =
+      builder.Build(datalint::Version{1, 5, 0}, std::span(&patch, 1));
+
+  ASSERT_EQ(spec1.Fields().size(), 0);
+  ASSERT_FALSE(spec1.HasField("Field1"));
+
+  // Build for a version inside the range
+  datalint::layout::LayoutSpecification spec2 =
+      builder.Build(datalint::Version{2, 5, 0}, std::span(&patch, 1));
+
+  ASSERT_EQ(spec2.Fields().size(), 1);
+  ASSERT_TRUE(spec2.HasField("Field1"));
+  const auto fieldOpt = spec2.GetField("Field1");
+  ASSERT_TRUE(fieldOpt.has_value());
+  ASSERT_EQ(fieldOpt->Key, "Field1Key");
+}
