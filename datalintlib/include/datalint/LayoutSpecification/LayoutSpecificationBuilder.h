@@ -13,6 +13,7 @@ namespace datalint::layout {
 
 /// @brief Class to contain the definition for a layout specification in which we specify the data
 class LayoutSpecificationBuilder {
+ public:
   /// @brief Function to build a layout specification for the given version applying the given
   /// patches
   /// @param version the application version

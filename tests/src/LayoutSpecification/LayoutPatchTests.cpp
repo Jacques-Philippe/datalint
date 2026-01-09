@@ -1,4 +1,3 @@
-// #include <datalint/LayoutSpecification/ExpectedField.h>
 #include <datalint/LayoutSpecification/LayoutPatch.h>
 #include <gtest/gtest.h>
 
