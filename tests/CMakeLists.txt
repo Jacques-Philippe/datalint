@@ -18,6 +18,7 @@ add_executable(datalintlib_tests
     src/LayoutSpecification/LayoutSpecificationTests.cpp
 
     src/Version/VersionTests.cpp
+    src/Version/VersionRangeTests.cpp
 
     include/TestUtils.h
     include/datalint_test_namespace.h

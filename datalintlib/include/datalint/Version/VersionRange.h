@@ -19,23 +19,22 @@ struct VersionRange {
   /// instance
   bool Contains(const Version& v) const {
     if (Min && v < *Min) return false;
-    if (Max && v >= *Max) return false;
+    if (Max && v > *Max) return false;
     return true;
   }
 
   /// @brief An identifier for a range encompassing all versions
   /// @return an empty version range
   static VersionRange All() { return {}; }
-
   /// @brief An identifier for a range starting at the incoming version
   /// @param min the start point
   /// @return a range with min set to incoming version and max set to nullopt
   static VersionRange From(Version min) { return {min, std::nullopt}; }
   /// @brief An identifier for a range ending at the incoming version
-  /// @param min the end point
+  /// @param max the end point
   /// @return a range with min set to nullopt and max set to incoming version
   static VersionRange Until(Version max) { return {std::nullopt, max}; }
-  /// @brief An identifier for a range starting at min and ending at max
+  /// @brief An identifier for a range starting at min and ending at max, inclusive
   /// @param min the start point
   /// @param max the end point
   /// @return a range with min set to min and max set to max
