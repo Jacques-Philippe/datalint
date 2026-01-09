@@ -22,6 +22,7 @@ add_library(datalintlib
     src/FileParser/CsvFileParser.cpp
     src/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.cpp
     src/LayoutSpecification/LayoutSpecification.cpp
+    src/LayoutSpecification/LayoutSpecificationBuilder.cpp
     src/RawData.cpp
 )
 
