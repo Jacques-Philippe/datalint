@@ -9,8 +9,8 @@
 TEST(LayoutSpecificationTest, CanInitializeWithValidFields) {
   // Create some expected fields
   const std::map<std::string, datalint::layout::ExpectedField> expectedFields = {
-      {"Field1", datalint::layout::ExpectedField{"Key1"}},
-      {"Field2", datalint::layout::ExpectedField{"Key2"}}};
+      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
+      {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
   datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
 
@@ -21,8 +21,8 @@ TEST(LayoutSpecificationTest, CanInitializeWithValidFields) {
 TEST(LayoutSpecificationTest, CanGetFields) {
   // Create some expected fields
   const std::map<std::string, datalint::layout::ExpectedField> expectedFields = {
-      {"Field1", datalint::layout::ExpectedField{"Key1"}},
-      {"Field2", datalint::layout::ExpectedField{"Key2"}}};
+      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
+      {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
   datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
 
