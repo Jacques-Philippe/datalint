@@ -8,6 +8,7 @@
 #include <datalint/Version/Version.h>
 #include <gtest/gtest.h>
 
+#include <cstdio>
 #include <fstream>
 #include <vector>
 
