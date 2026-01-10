@@ -12,7 +12,7 @@ LayoutSpecification::LayoutSpecification(std::map<std::string, ExpectedField> ex
 const std::optional<ExpectedField> LayoutSpecification::GetField(const std::string& key) const {
   auto it = expectedFields.find(key);
   if (it != expectedFields.end()) {
-    return std::cref(it->second);
+    return it->second;
   }
   return std::nullopt;
 }
