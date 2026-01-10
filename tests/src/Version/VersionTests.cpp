@@ -95,3 +95,26 @@ TEST(VersionTest, ParseWorksCorrectly) {
 
   EXPECT_EQ(v, (datalint::Version{1, 2, 3}));
 }
+
+/// @brief Tests that parsing a version with two components throws an exception
+TEST(VersionTest, ParseThrowsForTwoComponentVersion) {
+  EXPECT_THROW(datalint::Version::Parse("1.2"), std::invalid_argument);
+}
+
+/// @brief Tests that parsing an invalid version format throws an exception
+TEST(VersionTest, ParseThrowsForInvalidFormat) {
+  EXPECT_THROW(datalint::Version::Parse("1.2.3.4"), std::invalid_argument);
+  EXPECT_THROW(datalint::Version::Parse("abc"), std::invalid_argument);
+  EXPECT_THROW(datalint::Version::Parse(""), std::invalid_argument);
+}
+
+/// @brief Tests that parsing leading zeros works correctly
+TEST(VersionTest, ParseHandlesLeadingZerosCorrectly) {
+  datalint::Version v = datalint::Version::Parse("01.02.03");
+  EXPECT_EQ(v, (datalint::Version{1, 2, 3}));
+}
+
+/// @brief Tests that parsing whitespace throws an exception
+TEST(VersionTest, ParseThrowsForWhitespace) {
+  EXPECT_THROW(datalint::Version::Parse(" 1.2.3 "), std::invalid_argument);
+}
