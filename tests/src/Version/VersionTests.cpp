@@ -8,9 +8,9 @@
 TEST(VersionTest, CanInitializeWithValidFields) {
   const datalint::Version v{1, 2, 3};
 
-  EXPECT_EQ(v.Major, 1);
-  EXPECT_EQ(v.Minor, 2);
-  EXPECT_EQ(v.Patch, 3);
+  EXPECT_EQ(v.Major(), 1);
+  EXPECT_EQ(v.Minor(), 2);
+  EXPECT_EQ(v.Patch(), 3);
 }
 
 /// @brief Tests that versions with the same components are equal

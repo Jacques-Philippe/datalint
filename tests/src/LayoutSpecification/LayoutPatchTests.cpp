@@ -15,13 +15,13 @@ TEST(LayoutPatchTest, CanInitializeWithValidFields) {
 
   ASSERT_EQ(layoutPatch.Name(), "TestPatch");
   ASSERT_TRUE(layoutPatch.AppliesTo().Min.has_value());
-  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Major == 1);
-  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Minor == 0);
-  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Patch == 0);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Major() == 1);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Minor() == 0);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Min->Patch() == 0);
   ASSERT_TRUE(layoutPatch.AppliesTo().Max.has_value());
-  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Major == 2);
-  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Minor == 0);
-  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Patch == 0);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Major() == 2);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Minor() == 0);
+  ASSERT_TRUE(layoutPatch.AppliesTo().Max->Patch() == 0);
   ASSERT_EQ(layoutPatch.Operations().size(), 1);
   const auto& addFieldOp = std::get<datalint::layout::AddField>(layoutPatch.Operations()[0]);
   ASSERT_EQ(addFieldOp.Key, "Field1");

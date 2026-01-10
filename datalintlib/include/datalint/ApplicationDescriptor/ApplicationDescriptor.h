@@ -12,5 +12,7 @@ struct ApplicationDescriptor {
   std::string Name;
   /// @brief The version of the application.
   Version Version;
+
+  ApplicationDescriptor() : Name(""), Version(0, 0, 0) {}  // default version 0.0.0
 };
 }  // namespace datalint

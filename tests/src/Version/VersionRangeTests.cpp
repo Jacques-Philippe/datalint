@@ -14,12 +14,12 @@ TEST(VersionRangeTest, CanInitializeWithValidFields) {
 
   EXPECT_TRUE(range.Min.has_value());
   EXPECT_TRUE(range.Max.has_value());
-  EXPECT_EQ(range.Min->Major, 1);
-  EXPECT_EQ(range.Min->Minor, 0);
-  EXPECT_EQ(range.Min->Patch, 0);
-  EXPECT_EQ(range.Max->Major, 2);
-  EXPECT_EQ(range.Max->Minor, 0);
-  EXPECT_EQ(range.Max->Patch, 0);
+  EXPECT_EQ(range.Min->Major(), 1);
+  EXPECT_EQ(range.Min->Minor(), 0);
+  EXPECT_EQ(range.Min->Patch(), 0);
+  EXPECT_EQ(range.Max->Major(), 2);
+  EXPECT_EQ(range.Max->Minor(), 0);
+  EXPECT_EQ(range.Max->Patch(), 0);
 }
 
 /// @brief Tests that the static All method works as expected
