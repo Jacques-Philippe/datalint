@@ -50,8 +50,9 @@ int main(int argc, char** argv) {
 
   std::vector<LayoutPatch> patches = {patch};
   LayoutSpecificationBuilder builder;
+  const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
-  const LayoutSpecification layoutSpec = builder.Build(result.Descriptor->Version, patches);
+  const LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
 
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from

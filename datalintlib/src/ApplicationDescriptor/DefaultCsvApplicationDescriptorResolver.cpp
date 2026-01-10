@@ -40,11 +40,12 @@ ResolveResult DefaultCsvApplicationDescriptorResolver::Resolve(const datalint::R
     if (pos == std::string::npos) return s;  // no comma found
     return s.substr(0, pos);
   };
-  result.Descriptor.emplace();
-  result.Descriptor->Name = getFirstCommaSeparatedValue(nameFields.front()->Value);
+  const auto name = getFirstCommaSeparatedValue(nameFields.front()->Value);
   const auto versionStr = getFirstCommaSeparatedValue(versionFields.front()->Value);
+  const auto version = Version::Parse(versionStr);
+  ApplicationDescriptor descriptor(name, version);
+  result.Descriptor = descriptor;
 
-  result.Descriptor->Version = Version::Parse(versionStr);
   return result;
 }
 }  // namespace datalint

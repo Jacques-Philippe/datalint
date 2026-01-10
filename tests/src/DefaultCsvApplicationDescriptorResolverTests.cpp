@@ -136,8 +136,8 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsValidDescriptorWhenData
   const auto expectedVersion = datalint::Version::Parse("1.0.0");
   ASSERT_TRUE(result.Success());
   ASSERT_TRUE(result.Descriptor.has_value());
-  EXPECT_EQ(result.Descriptor->Name, "Example Application");
-  EXPECT_EQ(result.Descriptor->Version, expectedVersion);
+  EXPECT_EQ(result.Descriptor->Name(), "Example Application");
+  EXPECT_EQ(result.Descriptor->Version(), expectedVersion);
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
 }
