@@ -15,7 +15,6 @@ class VersionRange {
   /// @throws std::invalid_argument if min > max
   VersionRange(std::optional<Version> min, std::optional<Version> max)
       : Min_(std::move(min)), Max_(std::move(max)) {
-    // Optional: validate that Min <= Max if both are set
     if (Min_ && Max_ && *Min_ > *Max_) {
       throw std::invalid_argument("VersionRange: Min cannot be greater than Max");
     }
