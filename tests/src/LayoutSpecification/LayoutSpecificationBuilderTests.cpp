@@ -26,8 +26,8 @@ TEST(LayoutSpecificationBuilderTest, CanInitializeWithValidFields) {
   ASSERT_TRUE(spec.HasField("Field1"));
   const auto fieldOpt = spec.GetField("Field1");
   ASSERT_TRUE(fieldOpt.has_value());
-  ASSERT_EQ(fieldOpt->MinCount, 1);
-  ASSERT_FALSE(fieldOpt->MaxCount.has_value());
+  ASSERT_EQ(fieldOpt->MinCount(), 1);
+  ASSERT_FALSE(fieldOpt->MaxCount().has_value());
 }
 
 /// @brief Tests that the layout specification builder can add and remove a field using patches
@@ -68,7 +68,7 @@ TEST(LayoutSpecificationBuilderTest, CanAddAndModifyFieldUsingPatches) {
       .AppliesTo = datalint::VersionRange::All(),
       .Operations = {datalint::layout::ModifyField{
           .Key = "Field1",
-          .Mutator = [](datalint::layout::ExpectedField& field) { field.MinCount = 2; }}}};
+          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}}};
 
   const std::array<datalint::layout::LayoutPatch, 2> patches{patch1, patch2};
 
@@ -80,7 +80,7 @@ TEST(LayoutSpecificationBuilderTest, CanAddAndModifyFieldUsingPatches) {
   ASSERT_TRUE(spec.HasField("Field1"));
   const auto fieldOpt = spec.GetField("Field1");
   ASSERT_TRUE(fieldOpt.has_value());
-  ASSERT_EQ(fieldOpt->MinCount, 2);  // the modified min count
+  ASSERT_EQ(fieldOpt->MinCount(), 2);  // the modified min count
 }
 
 /// @brief Tests that the layout specification builder applies patches only within the version range
@@ -110,8 +110,8 @@ TEST(LayoutSpecificationBuilderTest, AppliesPatchesOnlyWithinVersionRange) {
   ASSERT_TRUE(spec2.HasField("Field1"));
   const auto fieldOpt = spec2.GetField("Field1");
   ASSERT_TRUE(fieldOpt.has_value());
-  ASSERT_EQ(fieldOpt->MinCount, 1);
-  ASSERT_FALSE(fieldOpt->MaxCount.has_value());
+  ASSERT_EQ(fieldOpt->MinCount(), 1);
+  ASSERT_FALSE(fieldOpt->MaxCount().has_value());
 }
 
 /// @brief Tests that the layout specification builder throws when adding to a field that exists
@@ -155,7 +155,7 @@ TEST(LayoutSpecificationBuilderTest, ThrowsWhenModifyingNonExistentField) {
       .AppliesTo = datalint::VersionRange::All(),
       .Operations = {datalint::layout::ModifyField{
           .Key = "Field1",
-          .Mutator = [](datalint::layout::ExpectedField& field) { field.MinCount = 2; }}}};
+          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}}};
 
   datalint::layout::LayoutSpecificationBuilder builder;
 

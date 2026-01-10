@@ -34,8 +34,8 @@ TEST(LayoutSpecificationTest, CanGetFields) {
   // We should be able to get the field
   const auto field1 = layoutSpecification.GetField("Field1");
   EXPECT_TRUE(field1.has_value());
-  EXPECT_EQ(field1->MinCount, 1);
-  EXPECT_EQ(field1->MaxCount, std::nullopt);
+  EXPECT_EQ(field1->MinCount(), 1);
+  EXPECT_EQ(field1->MaxCount(), std::nullopt);
 
   const auto field3 = layoutSpecification.GetField("Field3");
   EXPECT_FALSE(field3.has_value());

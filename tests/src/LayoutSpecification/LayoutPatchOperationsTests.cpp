@@ -11,8 +11,8 @@ TEST(LayoutPatchOperationsTest, CanConstructAddFieldOperation) {
   addFieldOp.Key = "NewField";
   addFieldOp.Field = datalint::layout::ExpectedField{1, std::nullopt};
 
-  ASSERT_EQ(addFieldOp.Field.MinCount, 1);
-  ASSERT_FALSE(addFieldOp.Field.MaxCount.has_value());
+  ASSERT_EQ(addFieldOp.Field.MinCount(), 1);
+  ASSERT_FALSE(addFieldOp.Field.MaxCount().has_value());
 }
 
 /// @brief Tests that the RemoveField patch operation can initialize with valid fields
