@@ -26,20 +26,27 @@ void LayoutSpecificationBuilder::ApplyPatch(std::map<std::string, ExpectedField>
 
 void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
                                                 const RemoveField& op) const {
-  fields.erase(op.Key);
+  if (fields.erase(op.Key) == 0) {
+    throw std::logic_error("RemoveField failed: field does not exist: " + op.Key);
+  }
 }
 
 void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
                                                 const ModifyField& op) const {
   auto it = fields.find(op.Key);
-  if (it != fields.end()) {
-    op.Mutator(it->second);
+  if (it == fields.end()) {
+    throw std::logic_error("ModifyField failed: field does not exist: " + op.Key);
   }
+
+  op.Mutator(it->second);
 }
 
 void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
                                                 const AddField& op) const {
-  fields[op.Key] = op.Field;
+  auto [it, inserted] = fields.emplace(op.Key, op.Field);
+  if (!inserted) {
+    throw std::logic_error("AddField failed: field already exists: " + op.Key);
+  }
 }
 
 }  // namespace datalint::layout

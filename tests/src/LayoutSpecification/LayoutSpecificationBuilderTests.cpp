@@ -113,3 +113,52 @@ TEST(LayoutSpecificationBuilderTest, AppliesPatchesOnlyWithinVersionRange) {
   ASSERT_EQ(fieldOpt->MinCount, 1);
   ASSERT_FALSE(fieldOpt->MaxCount.has_value());
 }
+
+/// @brief Tests that the layout specification builder throws when adding to a field that exists
+/// already
+TEST(LayoutSpecificationBuilderTest, ThrowsWhenAddingExistingField) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch{
+      .Name = "patch1",
+      .AppliesTo = datalint::VersionRange::All(),
+      .Operations = {
+          datalint::layout::AddField{.Key = "Field1",
+                                     .Field = datalint::layout::ExpectedField{1, std::nullopt}},
+          datalint::layout::AddField{.Key = "Field1",
+                                     .Field = datalint::layout::ExpectedField{2, std::nullopt}}}};
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  EXPECT_THROW(
+      { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
+}
+
+/// @brief Tests that the layout specification builder throws when removing a non-existent field
+TEST(LayoutSpecificationBuilderTest, ThrowsWhenRemovingNonExistentField) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch{
+      .Name = "patch1",
+      .AppliesTo = datalint::VersionRange::All(),
+      .Operations = {datalint::layout::RemoveField{.Key = "Field1"}}};
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  EXPECT_THROW(
+      { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
+}
+
+/// @brief Tests that the layout specification builder throws when modifying a non-existent field
+TEST(LayoutSpecificationBuilderTest, ThrowsWhenModifyingNonExistentField) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch{
+      .Name = "patch1",
+      .AppliesTo = datalint::VersionRange::All(),
+      .Operations = {datalint::layout::ModifyField{
+          .Key = "Field1",
+          .Mutator = [](datalint::layout::ExpectedField& field) { field.MinCount = 2; }}}};
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  EXPECT_THROW(
+      { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
+}
