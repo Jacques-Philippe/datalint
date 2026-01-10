@@ -28,7 +28,7 @@ class LayoutSpecification {
 
   /// @brief Return the fields making up the layout specification
   /// @return the fields
-  std::map<std::string, ExpectedField> Fields() const;
+  const std::map<std::string, ExpectedField>& Fields() const;
 
  private:
   /// @brief the map of all expected fields that make up the layout specification

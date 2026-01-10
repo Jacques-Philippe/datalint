@@ -21,7 +21,7 @@ bool LayoutSpecification::HasField(const std::string& key) const {
   return expectedFields.contains(key);
 }
 
-std::map<std::string, ExpectedField> LayoutSpecification::Fields() const {
+const std::map<std::string, ExpectedField>& LayoutSpecification::Fields() const {
   return expectedFields;
 }
 }  // namespace datalint::layout
