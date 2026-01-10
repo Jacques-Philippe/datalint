@@ -3,6 +3,7 @@
 #include <datalint/Version/Version.h>
 
 #include <optional>
+#include <stdexcept>
 
 namespace datalint {
 /// @brief Class to contain a range of versions
