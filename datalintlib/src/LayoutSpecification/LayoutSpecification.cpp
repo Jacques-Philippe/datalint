@@ -7,7 +7,7 @@
 namespace datalint::layout {
 
 LayoutSpecification::LayoutSpecification(std::map<std::string, ExpectedField> expectedFields)
-    : expectedFields(expectedFields) {}
+    : expectedFields(std::move(expectedFields)) {}
 
 const std::optional<ExpectedField> LayoutSpecification::GetField(const std::string& key) const {
   auto it = expectedFields.find(key);
@@ -18,8 +18,7 @@ const std::optional<ExpectedField> LayoutSpecification::GetField(const std::stri
 }
 
 bool LayoutSpecification::HasField(const std::string& key) const {
-  auto it = expectedFields.find(key);
-  return it != expectedFields.end();
+  return expectedFields.contains(key);
 }
 
 std::map<std::string, ExpectedField> LayoutSpecification::Fields() const {
