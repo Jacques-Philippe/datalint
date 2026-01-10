@@ -118,3 +118,17 @@ TEST(VersionTest, ParseHandlesLeadingZerosCorrectly) {
 TEST(VersionTest, ParseThrowsForWhitespace) {
   EXPECT_THROW(datalint::Version::Parse(" 1.2.3 "), std::invalid_argument);
 }
+
+/// @brief Tests that parsing negative version components throws an exception
+TEST(VersionTest, ConstructorThrowsForNegativeComponents) {
+  EXPECT_THROW(datalint::Version(-1, 2, 3), std::invalid_argument);
+  EXPECT_THROW(datalint::Version(1, -2, 3), std::invalid_argument);
+  EXPECT_THROW(datalint::Version(1, 2, -3), std::invalid_argument);
+}
+
+/// @brief Tests that parsing negative version components throws an exception
+TEST(VersionTest, ParseThrowsForNegativeComponents) {
+  EXPECT_THROW(datalint::Version::Parse("-1.2.3"), std::invalid_argument);
+  EXPECT_THROW(datalint::Version::Parse("1.-2.3"), std::invalid_argument);
+  EXPECT_THROW(datalint::Version::Parse("1.2.-3"), std::invalid_argument);
+}
