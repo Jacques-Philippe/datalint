@@ -3,6 +3,7 @@
 #include <datalint/LayoutSpecification/ExpectedField.h>
 #include <datalint/LayoutSpecification/LayoutPatch.h>
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
+#include <datalint/Version/Version.h>
 
 #include <map>
 #include <optional>
