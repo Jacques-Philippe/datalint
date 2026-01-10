@@ -12,11 +12,10 @@
 /// @brief Tests that the layout specification builder can build a layout specification
 TEST(LayoutSpecificationBuilderTest, CanInitializeWithValidFields) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch layoutPatch{
-      .Name = "TestPatch",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::AddField{
-          .Key = "Field1", .Field = datalint::layout::ExpectedField{1, std::nullopt}}}};
+  const datalint::layout::LayoutPatch layoutPatch(
+      "TestPatch", datalint::VersionRange::All(),
+      {datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{1, std::nullopt}}});
 
   datalint::layout::LayoutSpecificationBuilder builder;
   datalint::layout::LayoutSpecification spec =
@@ -33,16 +32,13 @@ TEST(LayoutSpecificationBuilderTest, CanInitializeWithValidFields) {
 /// @brief Tests that the layout specification builder can add and remove a field using patches
 TEST(LayoutSpecificationBuilderTest, CanAddAndRemoveFieldUsingPatches) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch1{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::AddField{
-          .Key = "Field1", .Field = datalint::layout::ExpectedField{1, std::nullopt}}}};
+  const datalint::layout::LayoutPatch patch1(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{1, std::nullopt}}});
 
-  const datalint::layout::LayoutPatch patch2{
-      .Name = "patch2",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::RemoveField{.Key = "Field1"}}};
+  const datalint::layout::LayoutPatch patch2("patch2", datalint::VersionRange::All(),
+                                             {datalint::layout::RemoveField{.Key = "Field1"}});
 
   const std::array<datalint::layout::LayoutPatch, 2> patches{patch1, patch2};
 
@@ -57,18 +53,16 @@ TEST(LayoutSpecificationBuilderTest, CanAddAndRemoveFieldUsingPatches) {
 /// @brief Tests that the layout specification builder can add and modify a field using patches
 TEST(LayoutSpecificationBuilderTest, CanAddAndModifyFieldUsingPatches) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch1{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::AddField{
-          .Key = "Field1", .Field = datalint::layout::ExpectedField{1, std::nullopt}}}};
+  const datalint::layout::LayoutPatch patch1(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{1, std::nullopt}}});
 
-  const datalint::layout::LayoutPatch patch2{
-      .Name = "patch2",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::ModifyField{
+  const datalint::layout::LayoutPatch patch2(
+      "patch2", datalint::VersionRange::All(),
+      {datalint::layout::ModifyField{
           .Key = "Field1",
-          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}}};
+          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}});
 
   const std::array<datalint::layout::LayoutPatch, 2> patches{patch1, patch2};
 
@@ -86,12 +80,11 @@ TEST(LayoutSpecificationBuilderTest, CanAddAndModifyFieldUsingPatches) {
 /// @brief Tests that the layout specification builder applies patches only within the version range
 TEST(LayoutSpecificationBuilderTest, AppliesPatchesOnlyWithinVersionRange) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch{
-      .Name = "patch1",
-      .AppliesTo =
-          datalint::VersionRange::Between(datalint::Version{2, 0, 0}, datalint::Version{3, 0, 0}),
-      .Operations = {datalint::layout::AddField{
-          .Key = "Field1", .Field = datalint::layout::ExpectedField{1, std::nullopt}}}};
+  const datalint::layout::LayoutPatch patch(
+      "patch1",
+      datalint::VersionRange::Between(datalint::Version{2, 0, 0}, datalint::Version{3, 0, 0}),
+      {datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{1, std::nullopt}}});
 
   datalint::layout::LayoutSpecificationBuilder builder;
 
@@ -118,14 +111,12 @@ TEST(LayoutSpecificationBuilderTest, AppliesPatchesOnlyWithinVersionRange) {
 /// already
 TEST(LayoutSpecificationBuilderTest, ThrowsWhenAddingExistingField) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {
-          datalint::layout::AddField{.Key = "Field1",
-                                     .Field = datalint::layout::ExpectedField{1, std::nullopt}},
-          datalint::layout::AddField{.Key = "Field1",
-                                     .Field = datalint::layout::ExpectedField{2, std::nullopt}}}};
+  const datalint::layout::LayoutPatch patch(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{1, std::nullopt}},
+       datalint::layout::AddField{.Key = "Field1",
+                                  .Field = datalint::layout::ExpectedField{2, std::nullopt}}});
 
   datalint::layout::LayoutSpecificationBuilder builder;
 
@@ -136,10 +127,8 @@ TEST(LayoutSpecificationBuilderTest, ThrowsWhenAddingExistingField) {
 /// @brief Tests that the layout specification builder throws when removing a non-existent field
 TEST(LayoutSpecificationBuilderTest, ThrowsWhenRemovingNonExistentField) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::RemoveField{.Key = "Field1"}}};
+  const datalint::layout::LayoutPatch patch("patch1", datalint::VersionRange::All(),
+                                            {datalint::layout::RemoveField{.Key = "Field1"}});
 
   datalint::layout::LayoutSpecificationBuilder builder;
 
@@ -150,12 +139,11 @@ TEST(LayoutSpecificationBuilderTest, ThrowsWhenRemovingNonExistentField) {
 /// @brief Tests that the layout specification builder throws when modifying a non-existent field
 TEST(LayoutSpecificationBuilderTest, ThrowsWhenModifyingNonExistentField) {
   // Initialize the layout patch
-  const datalint::layout::LayoutPatch patch{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {datalint::layout::ModifyField{
+  const datalint::layout::LayoutPatch patch(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::ModifyField{
           .Key = "Field1",
-          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}}};
+          .Mutator = [](datalint::layout::ExpectedField& field) { field.SetMinCount(2); }}});
 
   datalint::layout::LayoutSpecificationBuilder builder;
 

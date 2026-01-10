@@ -7,7 +7,7 @@ LayoutSpecification LayoutSpecificationBuilder::Build(Version version,
   std::map<std::string, ExpectedField> fields;
 
   for (const auto& patch : patches) {
-    if (!patch.AppliesTo.Contains(version)) {
+    if (!patch.AppliesTo().Contains(version)) {
       continue;
     }
 
@@ -19,7 +19,7 @@ LayoutSpecification LayoutSpecificationBuilder::Build(Version version,
 
 void LayoutSpecificationBuilder::ApplyPatch(std::map<std::string, ExpectedField>& fields,
                                             const LayoutPatch& patch) const {
-  for (const auto& op : patch.Operations) {
+  for (const auto& op : patch.Operations()) {
     std::visit([&](const auto& operation) { ApplyOperation(fields, operation); }, op);
   }
 }

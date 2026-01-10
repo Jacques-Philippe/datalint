@@ -40,15 +40,14 @@ int main(int argc, char** argv) {
   using namespace datalint::layout;
 
   // 3. Build expected layout patches
-  const LayoutPatch patch{
-      .Name = "patch1",
-      .AppliesTo = datalint::VersionRange::All(),
-      .Operations = {
-          AddField{.Key = "key1", .Field = ExpectedField{1, std::nullopt}},
-          AddField{.Key = "key2", .Field = ExpectedField{1, std::nullopt}},
-          AddField{.Key = "ApplicationName", .Field = ExpectedField{1, std::nullopt}},
-          AddField{.Key = "ApplicationVersion", .Field = ExpectedField{1, std::nullopt}},
-      }};
+  const LayoutPatch patch("patch1", datalint::VersionRange::All(),
+                          std::vector<LayoutPatchOperation>{
+                              AddField{"key1", ExpectedField{1, std::nullopt}},
+                              AddField{"key2", ExpectedField{1, std::nullopt}},
+                              AddField{"ApplicationName", ExpectedField{1, std::nullopt}},
+                              AddField{"ApplicationVersion", ExpectedField{1, std::nullopt}},
+                          });
+
   std::vector<LayoutPatch> patches = {patch};
   LayoutSpecificationBuilder builder;
   // 4. Build layout specification for the resolved application descriptor version
