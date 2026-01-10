@@ -14,3 +14,21 @@ TEST(ExpectedFieldTests, CanConstructExpectedField) {
 TEST(ExpectedFieldTests, ThrowsWhenMaxCountLessThanMinCount) {
   EXPECT_THROW((datalint::layout::ExpectedField{5, 3}), std::invalid_argument);
 }
+
+/// @brief Tests that IsValid returns true for valid ExpectedField
+TEST(ExpectedFieldTests, IsValidReturnsTrueForValidField) {
+  datalint::layout::ExpectedField field1{2, 5};
+  datalint::layout::ExpectedField field2{3, std::nullopt};
+  EXPECT_TRUE(field1.IsValid());
+  EXPECT_TRUE(field2.IsValid());
+
+  // edge case where minCount == maxCount
+  datalint::layout::ExpectedField field3{4, 4};
+  EXPECT_TRUE(field3.IsValid());
+
+  // expect false when minCount > maxCount
+  datalint::layout::ExpectedField field4;
+  field4.MinCount = 6;
+  field4.MaxCount = 4;
+  EXPECT_FALSE(field4.IsValid());
+}

@@ -24,5 +24,9 @@ struct ExpectedField {
       throw std::invalid_argument("MaxCount cannot be less than MinCount");
     }
   }
+
+  /// @brief Validates that MinCount <= MaxCount (if MaxCount is set)
+  /// @return true if valid, false otherwise
+  bool IsValid() const { return !MaxCount.has_value() || MinCount <= MaxCount.value(); }
 };
 }  // namespace datalint::layout
