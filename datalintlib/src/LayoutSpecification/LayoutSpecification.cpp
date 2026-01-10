@@ -2,7 +2,9 @@
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
 
 #include <map>
+#include <optional>
 #include <string>
+#include <utility>
 
 namespace datalint::layout {
 
