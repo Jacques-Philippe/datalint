@@ -12,21 +12,21 @@ TEST(VersionRangeTest, CanInitializeWithValidFields) {
   const datalint::Version v2{2, 0, 0};
   const datalint::VersionRange range{v1, v2};
 
-  EXPECT_TRUE(range.Min.has_value());
-  EXPECT_TRUE(range.Max.has_value());
-  EXPECT_EQ(range.Min->Major(), 1);
-  EXPECT_EQ(range.Min->Minor(), 0);
-  EXPECT_EQ(range.Min->Patch(), 0);
-  EXPECT_EQ(range.Max->Major(), 2);
-  EXPECT_EQ(range.Max->Minor(), 0);
-  EXPECT_EQ(range.Max->Patch(), 0);
+  EXPECT_TRUE(range.Min().has_value());
+  EXPECT_TRUE(range.Max().has_value());
+  EXPECT_EQ(range.Min()->Major(), 1);
+  EXPECT_EQ(range.Min()->Minor(), 0);
+  EXPECT_EQ(range.Min()->Patch(), 0);
+  EXPECT_EQ(range.Max()->Major(), 2);
+  EXPECT_EQ(range.Max()->Minor(), 0);
+  EXPECT_EQ(range.Max()->Patch(), 0);
 }
 
 /// @brief Tests that the static All method works as expected
 TEST(VersionRangeTest, AllWorksAsExpected) {
   // All should return a range with no min and no max
-  EXPECT_TRUE(datalint::VersionRange::All().Min == std::nullopt);
-  EXPECT_TRUE(datalint::VersionRange::All().Max == std::nullopt);
+  EXPECT_TRUE(datalint::VersionRange::All().Min() == std::nullopt);
+  EXPECT_TRUE(datalint::VersionRange::All().Max() == std::nullopt);
 
   // Any version should be contained within the range defined by All
   const datalint::Version v1{1, 0, 0};
@@ -38,8 +38,8 @@ TEST(VersionRangeTest, AllWorksAsExpected) {
 TEST(VersionRangeTest, FromWorksAsExpected) {
   // From should return a range with min set to the input and max set to nullopt
   const datalint::Version v1{2, 3, 4};
-  EXPECT_TRUE(datalint::VersionRange::From(v1).Min == v1);
-  EXPECT_TRUE(datalint::VersionRange::From(v1).Max == std::nullopt);
+  EXPECT_TRUE(datalint::VersionRange::From(v1).Min() == v1);
+  EXPECT_TRUE(datalint::VersionRange::From(v1).Max() == std::nullopt);
 
   // Any version after or equal to min should be contained within the range
   EXPECT_TRUE(datalint::VersionRange::From(v1).Contains(v1));
@@ -60,8 +60,8 @@ TEST(VersionRangeTest, FromWorksAsExpected) {
 TEST(VersionRangeTest, UntilWorksAsExpected) {
   // Until should return a range with min set to nullopt and max set to the input
   const datalint::Version v2{2, 3, 4};
-  EXPECT_TRUE(datalint::VersionRange::Until(v2).Min == std::nullopt);
-  EXPECT_TRUE(datalint::VersionRange::Until(v2).Max == v2);
+  EXPECT_TRUE(datalint::VersionRange::Until(v2).Min() == std::nullopt);
+  EXPECT_TRUE(datalint::VersionRange::Until(v2).Max() == v2);
 
   // Any version before or equal to max should be contained within the range
   EXPECT_TRUE(datalint::VersionRange::Until(v2).Contains(v2));
@@ -86,8 +86,8 @@ TEST(VersionRangeTest, BetweenWorksAsExpected) {
   // Between should return a range with min and max set to the inputs
   const datalint::Version v1{1, 2, 3};
   const datalint::Version v2{4, 5, 6};
-  EXPECT_TRUE(datalint::VersionRange::Between(v1, v2).Min == v1);
-  EXPECT_TRUE(datalint::VersionRange::Between(v1, v2).Max == v2);
+  EXPECT_TRUE(datalint::VersionRange::Between(v1, v2).Min() == v1);
+  EXPECT_TRUE(datalint::VersionRange::Between(v1, v2).Max() == v2);
 
   // Any version between min and max should be contained within the range, inclusive
   EXPECT_TRUE(datalint::VersionRange::Between(v1, v2).Contains(v1));
