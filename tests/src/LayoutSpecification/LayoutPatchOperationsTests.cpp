@@ -6,7 +6,7 @@
 #include <string>
 
 /// @brief Tests that the AddField patch operation can initialize with valid fields
-TEST(LayoutPatchTest, CanConstructAddFieldOperation) {
+TEST(LayoutPatchOperationsTest, CanConstructAddFieldOperation) {
   datalint::layout::AddField addFieldOp;
   addFieldOp.Key = "NewField";
   addFieldOp.Field = datalint::layout::ExpectedField{1, std::nullopt};
@@ -16,7 +16,7 @@ TEST(LayoutPatchTest, CanConstructAddFieldOperation) {
 }
 
 /// @brief Tests that the RemoveField patch operation can initialize with valid fields
-TEST(LayoutPatchTest, CanConstructRemoveFieldOperation) {
+TEST(LayoutPatchOperationsTest, CanConstructRemoveFieldOperation) {
   datalint::layout::RemoveField removeFieldOp;
   removeFieldOp.Key = "NewField";
 
@@ -24,7 +24,7 @@ TEST(LayoutPatchTest, CanConstructRemoveFieldOperation) {
 }
 
 /// @brief Tests that the ModifyField patch operation can initialize with valid fields
-TEST(LayoutPatchTest, CanConstructModifyFieldOperation) {
+TEST(LayoutPatchOperationsTest, CanConstructModifyFieldOperation) {
   datalint::layout::ModifyField modifyFieldOp;
   modifyFieldOp.Key = "NewField";
 
