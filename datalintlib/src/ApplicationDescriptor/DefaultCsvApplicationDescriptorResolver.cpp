@@ -4,6 +4,7 @@
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
+#include <datalint/Version/Version.h>
 
 namespace {
 const std::string kApplicationNameKey = "ApplicationName";
@@ -44,13 +45,15 @@ ResolveResult DefaultCsvApplicationDescriptorResolver::Resolve(const datalint::R
   const auto versionStr = getFirstCommaSeparatedValue(versionFields.front()->Value);
   try {
     const auto version = datalint::Version::Parse(versionStr);
-    ApplicationDescriptor descriptor(name, version);
-    result.Descriptor = descriptor;
-
+    result.Descriptor = ApplicationDescriptor{name, version};
     return result;
-  } catch (const std::invalid_argument&) {
-    result.Errors.push_back(ResolveError{ResolveErrorCode::ParsingError, kApplicationVersionKey});
+  } catch (const std::invalid_argument& e) {
+    result.Errors.push_back(
+        ResolveError{ResolveErrorCode::ParsingError, kApplicationVersionKey, e.what()});
+    return result;
+  } catch (const std::exception& e) {
+    result.Errors.push_back(
+        ResolveError{ResolveErrorCode::UnknownError, "ApplicationDescriptor", e.what()});
     return result;
   }
-}
 }  // namespace datalint
