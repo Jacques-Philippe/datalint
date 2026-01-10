@@ -11,14 +11,15 @@ namespace datalint::layout {
 /// specification
 class ExpectedField {
  public:
-  /// Default: exactly one occurrence
-  ExpectedField() : minCount(1), maxCount(1) {}
+  /// @brief Default Constructor: initializes minCount to 1 and maxCount to unlimited, i.e. "At
+  /// least once"
+  ExpectedField() : minCount(1), maxCount(std::nullopt) {}
 
-  /// Explicit constructor
+  /// @brief Explicit constructor
   /// @param minCount The minimum number of occurrences of this field
   /// @param maxCount The maximum number of occurrences of this field (or std::nullopt for
   /// unlimited)
-  ExpectedField(std::size_t minCount, std::optional<std::size_t> maxCount)
+  ExpectedField(std::size_t minCount, std::optional<std::size_t> maxCount = std::nullopt)
       : minCount(minCount), maxCount(maxCount) {
     if (maxCount && *maxCount < minCount) {
       throw std::invalid_argument("MaxCount < MinCount");
