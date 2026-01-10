@@ -19,16 +19,16 @@ class LayoutSpecification {
   /// @brief Return the given expected field, if any
   /// @param key the key associated to the field
   /// @return the match
-  const std::optional<ExpectedField> GetField(const std::string& key);
+  const std::optional<ExpectedField> GetField(const std::string& key) const;
 
   /// @brief Return true for the field exists in the layout specification
   /// @param key the key associated to the field
   /// @return true for field exists
-  bool HasField(const std::string& key);
+  bool HasField(const std::string& key) const;
 
   /// @brief Return the fields making up the layout specification
   /// @return the fields
-  std::map<std::string, ExpectedField> Fields();
+  std::map<std::string, ExpectedField> Fields() const;
 
  private:
   /// @brief the map of all expected fields that make up the layout specification
