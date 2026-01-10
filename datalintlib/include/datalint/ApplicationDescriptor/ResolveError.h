@@ -9,6 +9,8 @@ enum class ResolveErrorCode {
   MissingRequiredField,
   /// @brief Indicates a field that should be unique has duplicates.
   DuplicateField,
+  /// @brief Indicates a general parsing error.
+  ParsingError
 };
 
 /// @brief Represents an error encountered during the resolution of an application descriptor.
@@ -25,6 +27,8 @@ struct ResolveError {
         return "Missing required field: " + Field;
       case ResolveErrorCode::DuplicateField:
         return "Found more than one match for: " + Field + "\nThis should be unique";
+      case ResolveErrorCode::ParsingError:
+        return "Failed to parse: " + Field;
       default:
         return "Unknown error";
     }

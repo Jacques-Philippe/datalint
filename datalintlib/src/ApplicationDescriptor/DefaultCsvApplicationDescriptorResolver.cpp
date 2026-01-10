@@ -42,10 +42,15 @@ ResolveResult DefaultCsvApplicationDescriptorResolver::Resolve(const datalint::R
   };
   const auto name = getFirstCommaSeparatedValue(nameFields.front()->Value);
   const auto versionStr = getFirstCommaSeparatedValue(versionFields.front()->Value);
-  const auto version = Version::Parse(versionStr);
-  ApplicationDescriptor descriptor(name, version);
-  result.Descriptor = descriptor;
+  try {
+    const auto version = datalint::Version::Parse(versionStr);
+    ApplicationDescriptor descriptor(name, version);
+    result.Descriptor = descriptor;
 
-  return result;
+    return result;
+  } catch (const std::invalid_argument&) {
+    result.Errors.push_back(ResolveError{ResolveErrorCode::ParsingError, kApplicationVersionKey});
+    return result;
+  }
 }
 }  // namespace datalint
