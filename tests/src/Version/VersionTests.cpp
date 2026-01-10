@@ -1,7 +1,6 @@
 #include <datalint/Version/Version.h>
 #include <gtest/gtest.h>
 
-#include <map>
 #include <string>
 #include <vector>
 
