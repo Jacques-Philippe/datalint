@@ -198,9 +198,43 @@ TEST(LayoutSpecificationValidatorTest, DetectsOrderingViolations) {
   for (const auto& [key, field] : expectedFields) {
     layoutSpecification.AddExpectedField(key, field);
   }
-  // Add ordering constraint: Field1 must come before Field2
+  // Add ordering constraint: All occurrences of Field1 must come before any occurrence of Field2
   layoutSpecification.AddOrderingConstraint(
       datalint::layout::FieldOrderingConstraint{"Field1", "Field2"});
+  // Validate the layout specification against the raw data
+  const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
+  ASSERT_FALSE(isValid);
+  const auto errorLogs = errorCollector.GetErrorLogs();
+  ASSERT_EQ(errorLogs.size(), 1);
+  ASSERT_EQ(errorLogs[0].Subject(), "Field Ordering Violation");
+  ASSERT_NE(errorLogs[0].Body().find("Field1"), std::string::npos);
+  ASSERT_NE(errorLogs[0].Body().find("Field2"), std::string::npos);
+}
+
+/// @brief Tests that the layout specification validator detects ordering violations for multiple
+/// occurrences of fields
+TEST(LayoutSpecificationValidatorTest, DetectsMultipleOrderingViolations) {
+  datalint::error::ErrorCollector errorCollector;
+  datalint::layout::LayoutSpecificationValidator validator{
+      datalint::layout::UnexpectedFieldStrictness::Strict};
+  // Create some raw data with fields
+  const datalint::RawData rawData({
+      datalint::RawField{"Field2", "ValueA"},
+      datalint::RawField{"Field1", "Value1"},
+      datalint::RawField{"Field2", "ValueB"},
+  });
+  // Create some expected fields
+  const std::map<std::string, datalint::layout::ExpectedField> expectedFields = {
+      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
+      {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
+  // Add ordering constraint: All occurrences of Field2 must come before any occurrence of Field1
+  layoutSpecification.AddOrderingConstraint(
+      datalint::layout::FieldOrderingConstraint{"Field2", "Field1"});
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
   ASSERT_FALSE(isValid);
