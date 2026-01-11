@@ -12,7 +12,10 @@ TEST(LayoutSpecificationTest, CanInitializeWithValidFields) {
       {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   ASSERT_EQ(layoutSpecification.Fields().size(), 2);
 }
@@ -24,7 +27,10 @@ TEST(LayoutSpecificationTest, CanGetFields) {
       {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // We should be able to find the field
   EXPECT_TRUE(layoutSpecification.HasField("Field1"));

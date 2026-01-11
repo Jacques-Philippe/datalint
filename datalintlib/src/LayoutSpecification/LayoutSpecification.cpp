@@ -8,22 +8,29 @@
 
 namespace datalint::layout {
 
-LayoutSpecification::LayoutSpecification(std::map<std::string, ExpectedField> expectedFields)
-    : expectedFields(std::move(expectedFields)) {}
+LayoutSpecification::LayoutSpecification() : ExpectedFields_(), OrderingConstraints_() {}
 
 const std::optional<ExpectedField> LayoutSpecification::GetField(const std::string& key) const {
-  auto it = expectedFields.find(key);
-  if (it != expectedFields.end()) {
+  auto it = ExpectedFields_.find(key);
+  if (it != ExpectedFields_.end()) {
     return it->second;
   }
   return std::nullopt;
 }
 
 bool LayoutSpecification::HasField(const std::string& key) const {
-  return expectedFields.contains(key);
+  return ExpectedFields_.contains(key);
 }
 
 const std::map<std::string, ExpectedField>& LayoutSpecification::Fields() const {
-  return expectedFields;
+  return ExpectedFields_;
+}
+
+void LayoutSpecification::AddExpectedField(const std::string& key, const ExpectedField& field) {
+  ExpectedFields_.emplace(key, field);
+}
+
+void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constraint) {
+  OrderingConstraints_.push_back(constraint);
 }
 }  // namespace datalint::layout

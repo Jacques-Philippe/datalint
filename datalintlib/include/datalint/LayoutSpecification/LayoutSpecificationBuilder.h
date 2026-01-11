@@ -24,23 +24,33 @@ class LayoutSpecificationBuilder {
 
  private:
   /// @brief Helper function to apply a patch to the given fields map
-  /// @param fields the fields map to modify
+  /// @param specification the layout specification to modify
   /// @param patch the patch to apply
-  void ApplyPatch(std::map<std::string, ExpectedField>& fields, const LayoutPatch& patch) const;
+  void ApplyPatch(LayoutSpecification& specification, const LayoutPatch& patch) const;
 
   /// @brief Helper function to apply an AddField operation to the given fields map
-  /// @param fields the fields map to modify
+  /// @param specification the layout specification to modify
   /// @param op the add field operation to apply
-  void ApplyOperation(std::map<std::string, ExpectedField>& fields, const AddField& op) const;
+  void ApplyOperation(LayoutSpecification& specification, const AddField& op) const;
 
   /// @brief Helper function to apply a ModifyField operation to the given fields map
-  /// @param fields the fields map to modify
+  /// @param specification the layout specification to modify
   /// @param op the modify field operation to apply
-  void ApplyOperation(std::map<std::string, ExpectedField>& fields, const ModifyField& op) const;
+  void ApplyOperation(LayoutSpecification& specification, const ModifyField& op) const;
 
   /// @brief Helper function to apply a RemoveField operation to the given fields map
-  /// @param fields the fields map to modify
+  /// @param specification the layout specification to modify
   /// @param op the remove field operation to apply
-  void ApplyOperation(std::map<std::string, ExpectedField>& fields, const RemoveField& op) const;
+  void ApplyOperation(LayoutSpecification& specification, const RemoveField& op) const;
+
+  /// @brief Helper function to apply a AddFieldOrdering operation to the orderings vector
+  /// @param specification the layout specification to modify
+  /// @param op the add field ordering operation to apply
+  void ApplyOperation(LayoutSpecification& specification, const AddFieldOrdering& op) const;
+
+  /// @brief Helper function to apply a RemoveFieldOrdering operation to the orderings vector
+  /// @param specification the layout specification to modify
+  /// @param op the remove field ordering operation to apply
+  void ApplyOperation(LayoutSpecification& specification, const RemoveFieldOrdering& op) const;
 };
 }  // namespace datalint::layout

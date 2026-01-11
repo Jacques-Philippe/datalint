@@ -38,7 +38,10 @@ TEST(LayoutSpecificationValidatorTest, CanInitializeWithValidFields) {
       {"Field3", datalint::layout::ExpectedField{1, std::nullopt}}};
 
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
@@ -63,7 +66,10 @@ TEST(LayoutSpecificationValidatorTest, DetectsMissingRequiredFields) {
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
 
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
@@ -94,7 +100,10 @@ TEST(LayoutSpecificationValidatorTest, DetectsTooManyFieldOccurrences) {
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
 
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
@@ -125,7 +134,10 @@ TEST(LayoutSpecificationValidatorTest, DetectsUnexpectedFieldsInStrictMode) {
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
 
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
@@ -156,7 +168,10 @@ TEST(LayoutSpecificationValidatorTest, IgnoresUnexpectedFieldsInPermissiveMode) 
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
 
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // Validate the layout specification against the raw data
   const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);

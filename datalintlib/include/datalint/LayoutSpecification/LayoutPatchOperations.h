@@ -31,7 +31,21 @@ struct ModifyField {
   std::function<void(ExpectedField&)> Mutator;
 };
 
+/// @brief Operation to add a field ordering constraint to a layout specification
+struct AddFieldOrdering {
+  /// @brief All occurrences of AfterKey must appear after all occurrences of BeforeKey
+  std::string BeforeKey;
+  std::string AfterKey;
+};
+
+/// @brief Operation to remove a field ordering constraint from a layout specification
+struct RemoveFieldOrdering {
+  std::string BeforeKey;
+  std::string AfterKey;
+};
+
 /// @brief Variant to represent any layout patch operation
-using LayoutPatchOperation = std::variant<AddField, RemoveField, ModifyField>;
+using LayoutPatchOperation =
+    std::variant<AddField, RemoveField, ModifyField, AddFieldOrdering, RemoveFieldOrdering>;
 
 }  // namespace datalint::layout

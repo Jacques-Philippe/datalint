@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6" pages="2">
   <diagram name="Application diagram" id="fVqcU88fL75PQfqD5YJ6">
-    <mxGraphModel dx="1796" dy="1704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1638" dy="1603" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -180,22 +180,34 @@
           <mxGeometry y="130" width="300" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-52" value="LayoutSpecification&lt;div&gt;Responsible for containing the final expected specification of the layout&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1290" y="850" width="350" height="190" as="geometry" />
+          <mxGeometry x="1250" y="850" width="390" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="KQYK5OaU5loUIy0SMbsb-53" value="- std::map&amp;lt;std::string, ExpectedField&amp;gt; Fields" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-52" vertex="1">
-          <mxGeometry y="70" width="350" height="30" as="geometry" />
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-69" value="+ LayoutSpecification(&lt;div&gt;&amp;nbsp; &amp;nbsp;std::map&amp;lt;std::string, ExpectedField&amp;gt; expectedFields&lt;/div&gt;&lt;div&gt;)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-52">
+          <mxGeometry y="70" width="390" height="70" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-54" value="+ ExpectedField GetField(std::string) const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-52" vertex="1">
-          <mxGeometry y="100" width="350" height="30" as="geometry" />
+          <mxGeometry y="140" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-68" value="+ void AddOrderingConstraint(OrderingConstraint o)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-52">
+          <mxGeometry y="170" width="390" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-67" value="+ bool HasField(std::string) const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-52" vertex="1">
-          <mxGeometry y="130" width="350" height="30" as="geometry" />
+          <mxGeometry y="200" width="390" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-68" value="+ const std::map&amp;lt;std::string, ExpectedField&amp;gt;&amp;amp; Fields() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-52" vertex="1">
-          <mxGeometry y="160" width="350" height="30" as="geometry" />
+          <mxGeometry y="230" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-71" value="+ const std::map&amp;lt;OrderingConstraint&amp;gt;&amp;amp; OrderingConstraints() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-52">
+          <mxGeometry y="260" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-53" value="- std::map&amp;lt;std::string, ExpectedField&amp;gt; Fields_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-52" vertex="1">
+          <mxGeometry y="290" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-70" value="- std::vector&amp;lt;OrderingConstraint&amp;gt; OrderingConstraints_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="KQYK5OaU5loUIy0SMbsb-52">
+          <mxGeometry y="320" width="390" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-55" value="LayoutSpecificationBuilder&lt;div&gt;Responsible for building the LayoutSpecification from a vector of patches&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1280" y="1515" width="400" height="270" as="geometry" />
+          <mxGeometry x="1280" y="1655" width="400" height="270" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-56" value="+ const LayoutSpecification Build(&lt;div&gt;&amp;nbsp; &amp;nbsp;Version version,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;std::span&amp;lt;const LayoutPatch&amp;gt; patches&lt;/div&gt;&lt;div&gt;)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-55" vertex="1">
           <mxGeometry y="70" width="400" height="80" as="geometry" />
@@ -213,7 +225,7 @@
           <mxGeometry y="240" width="400" height="30" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-58" value="LayoutPatch&lt;div&gt;Responsible for defining a layout patch to be applied to the layout specification&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1300" y="1140" width="340" height="280" as="geometry" />
+          <mxGeometry x="1300" y="1280" width="340" height="280" as="geometry" />
         </mxCell>
         <mxCell id="KQYK5OaU5loUIy0SMbsb-59" value="+ std::string Name() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-58" vertex="1">
           <mxGeometry y="70" width="340" height="30" as="geometry" />
@@ -272,8 +284,8 @@
         <mxCell id="KQYK5OaU5loUIy0SMbsb-76" value="+ std::function&amp;lt;void(ExpectedField&amp;amp;)&amp;gt; Mutator;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KQYK5OaU5loUIy0SMbsb-74" vertex="1">
           <mxGeometry y="100" width="300" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="KQYK5OaU5loUIy0SMbsb-81" value="&lt;div&gt;using LayoutPatchOperation =&lt;/div&gt;&lt;div&gt;&amp;nbsp; std::variant&amp;lt;AddField, ModifyField, RemoveField&amp;gt;;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
-          <mxGeometry x="1730" y="1210" width="310" height="50" as="geometry" />
+        <mxCell id="KQYK5OaU5loUIy0SMbsb-81" value="&lt;div&gt;using LayoutPatchOperation =&lt;/div&gt;&lt;div&gt;&amp;nbsp; std::variant&amp;lt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;A&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ddField, ModifyField, RemoveField,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp; &amp;nbsp;AddOrderingConstraint, RemoveOrderingConstraint&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;gt;;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="1730" y="1510" width="310" height="100" as="geometry" />
         </mxCell>
         <mxCell id="OuuLgl1HKLP1BgKMLLlL-1" value="Version&lt;div&gt;Responsible for defining a version specifier&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2230" y="310" width="300" height="400" as="geometry" />
@@ -436,6 +448,24 @@
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-62" value="Permissive // don&#39;t report unexpected fields" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-60">
           <mxGeometry y="110" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-65" value="AddOrderingConstraint&lt;div&gt;Define an operation to add a constraint on the order of all occurrences of a field&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="1200" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-66" value="+ std::string BeforeKey" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-65">
+          <mxGeometry y="70" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-67" value="+ std::string AfterKey" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-65">
+          <mxGeometry y="100" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-72" value="RemoveOrderingConstraint&lt;div&gt;Define an operation to remove a constraint on the order of all occurrences of a field&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="1350" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-73" value="+ std::string BeforeKey" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-72">
+          <mxGeometry y="70" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-74" value="+ std::string AfterKey" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-72">
+          <mxGeometry y="100" width="300" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

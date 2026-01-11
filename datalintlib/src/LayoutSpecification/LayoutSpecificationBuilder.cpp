@@ -4,49 +4,69 @@ namespace datalint::layout {
 
 LayoutSpecification LayoutSpecificationBuilder::Build(Version version,
                                                       std::span<const LayoutPatch> patches) const {
-  std::map<std::string, ExpectedField> fields;
+  LayoutSpecification spec;
 
   for (const auto& patch : patches) {
     if (!patch.AppliesTo().Contains(version)) {
       continue;
     }
 
-    ApplyPatch(fields, patch);
+    ApplyPatch(spec, patch);
   }
 
-  return LayoutSpecification{std::move(fields)};
+  return spec;
 }
 
-void LayoutSpecificationBuilder::ApplyPatch(std::map<std::string, ExpectedField>& fields,
+void LayoutSpecificationBuilder::ApplyPatch(LayoutSpecification& specification,
                                             const LayoutPatch& patch) const {
   for (const auto& op : patch.Operations()) {
-    std::visit([&](const auto& operation) { ApplyOperation(fields, operation); }, op);
+    std::visit([&](const auto& operation) { ApplyOperation(specification, operation); }, op);
   }
 }
 
-void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
+void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
                                                 const RemoveField& op) const {
-  if (fields.erase(op.Key) == 0) {
+  if (specification.ExpectedFields_.erase(op.Key) == 0) {
     throw std::logic_error("RemoveField failed: field does not exist: " + op.Key);
   }
 }
 
-void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
+void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
                                                 const ModifyField& op) const {
-  auto it = fields.find(op.Key);
-  if (it == fields.end()) {
+  auto it = specification.ExpectedFields_.find(op.Key);
+  if (it == specification.ExpectedFields_.end()) {
     throw std::logic_error("ModifyField failed: field does not exist: " + op.Key);
   }
 
   op.Mutator(it->second);
 }
 
-void LayoutSpecificationBuilder::ApplyOperation(std::map<std::string, ExpectedField>& fields,
+void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
                                                 const AddField& op) const {
-  auto [it, inserted] = fields.emplace(op.Key, op.Field);
+  auto [it, inserted] = specification.ExpectedFields_.emplace(op.Key, op.Field);
   if (!inserted) {
     throw std::logic_error("AddField failed: field already exists: " + op.Key);
   }
 }
 
+void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
+                                                const AddFieldOrdering& op) const {
+  // todo make sure there doesn't already exist such constraint
+
+  specification.OrderingConstraints_.push_back(FieldOrderingConstraint{op.BeforeKey, op.AfterKey});
+}
+
+/// @brief Helper function to apply a RemoveFieldOrdering operation to the orderings vector
+/// @param constraints the ordering constraints vector to modify
+/// @param op the remove field ordering operation to apply
+void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
+                                                const RemoveFieldOrdering& op) const {
+  for (auto it = specification.OrderingConstraints_.begin();
+       it != specification.OrderingConstraints_.end(); ++it) {
+    if (it->Before == op.BeforeKey && it->After == op.AfterKey) {
+      specification.OrderingConstraints_.erase(it);
+      return;
+    }
+  }
+}
 }  // namespace datalint::layout
