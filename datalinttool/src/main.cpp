@@ -1,6 +1,8 @@
 #include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
+#include <datalint/Error/ErrorCollector.h>
+#include <datalint/Error/ErrorLog.h>
 #include <datalint/FileParser/CsvFileParser.h>
 #include <datalint/LayoutSpecification/LayoutPatch.h>
 #include <datalint/LayoutSpecification/LayoutSpecificationBuilder.h>
@@ -16,6 +18,7 @@ int main(int argc, char** argv) {
     std::cerr << "Usage: datalinttool <input_file_path>\n";
     return 1;
   }
+  datalint::error::ErrorCollector errorCollector;
   const std::string inputFilePath = argv[1];
   const std::filesystem::path inputPath(inputFilePath);
   // it's assumed that in the consuming project, we know the file type
@@ -32,7 +35,12 @@ int main(int argc, char** argv) {
   if (!result.Success()) {
     std::cerr << "Failed to resolve application descriptor:\n";
     for (const auto& error : result.Errors) {
-      std::cerr << " - " << error.ToString() << "\n";
+      errorCollector.AddErrorLog(
+          datalint::error::ErrorLog("Application Descriptor Resolution Error", error.ToString()));
+    }
+    // Print collected errors
+    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
+      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
     }
     return 1;
   }
@@ -53,6 +61,7 @@ int main(int argc, char** argv) {
   const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
   const LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  // 5. Validate the layout specification against the raw data
 
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from
