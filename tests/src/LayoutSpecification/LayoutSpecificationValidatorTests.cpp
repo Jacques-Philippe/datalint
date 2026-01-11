@@ -178,3 +178,35 @@ TEST(LayoutSpecificationValidatorTest, IgnoresUnexpectedFieldsInPermissiveMode) 
   ASSERT_TRUE(isValid);
   ASSERT_TRUE(errorCollector.GetErrorLogs().empty());
 }
+
+/// @brief Tests that the layout specification validator detects ordering violations
+TEST(LayoutSpecificationValidatorTest, DetectsOrderingViolations) {
+  datalint::error::ErrorCollector errorCollector;
+  datalint::layout::LayoutSpecificationValidator validator{
+      datalint::layout::UnexpectedFieldStrictness::Strict};
+  // Create some raw data with fields
+  const datalint::RawData rawData({
+      datalint::RawField{"Field2", "ValueA"},
+      datalint::RawField{"Field1", "Value1"},
+  });
+  // Create some expected fields
+  const std::map<std::string, datalint::layout::ExpectedField> expectedFields = {
+      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
+      {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
+  // Add ordering constraint: Field1 must come before Field2
+  layoutSpecification.AddOrderingConstraint(
+      datalint::layout::FieldOrderingConstraint{"Field1", "Field2"});
+  // Validate the layout specification against the raw data
+  const bool isValid = validator.Validate(layoutSpecification, rawData, errorCollector);
+  ASSERT_FALSE(isValid);
+  const auto errorLogs = errorCollector.GetErrorLogs();
+  ASSERT_EQ(errorLogs.size(), 1);
+  ASSERT_EQ(errorLogs[0].Subject(), "Field Ordering Violation");
+  ASSERT_NE(errorLogs[0].Body().find("Field1"), std::string::npos);
+  ASSERT_NE(errorLogs[0].Body().find("Field2"), std::string::npos);
+}

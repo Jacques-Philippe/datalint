@@ -37,15 +37,24 @@ class LayoutSpecification {
   /// @return the fields
   const std::map<std::string, ExpectedField>& Fields() const;
 
+  /// @brief Return the fields making up the ordering constraints of the layout specification
+  /// @return the ordering constraints
+  const std::vector<FieldOrderingConstraint>& OrderingConstraints() const;
+
+  /// @brief Adds an expected field to the layout specification
+  /// @param key the key associated to the field
+  /// @param field the field to add
   void AddExpectedField(const std::string& key, const ExpectedField& field);
 
+  /// @brief Adds an ordering constraint between two fields
+  /// @param constraint the ordering constraint to add
   void AddOrderingConstraint(FieldOrderingConstraint constraint);
 
  private:
   friend class LayoutSpecificationBuilder;
   /// @brief the map of all expected fields that make up the layout specification
   std::map<std::string, ExpectedField> ExpectedFields_;
-
+  /// @brief the list of ordering constraints between fields
   std::vector<FieldOrderingConstraint> OrderingConstraints_;
 };
 }  // namespace datalint::layout

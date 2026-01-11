@@ -50,6 +50,38 @@ bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpe
     }
   }
 
+  // 3. Validate ordering constraints
+  for (const auto& constraint : layoutSpec.OrderingConstraints()) {
+    const auto& beforeKey = constraint.Before;
+    const auto& afterKey = constraint.After;
+
+    std::optional<std::size_t> lastBeforeIndex;
+    std::optional<std::size_t> firstAfterIndex;
+
+    const auto& fields = rawData.Fields();
+
+    for (std::size_t i = 0; i < fields.size(); ++i) {
+      if (fields[i].Key == beforeKey) {
+        lastBeforeIndex = i;
+      }
+      if (fields[i].Key == afterKey && !firstAfterIndex) {
+        firstAfterIndex = i;
+      }
+    }
+
+    // If one or both fields don't exist, skip — presence rules handle that
+    if (!lastBeforeIndex || !firstAfterIndex) {
+      continue;
+    }
+
+    if (*lastBeforeIndex > *firstAfterIndex) {
+      errorCollector.AddErrorLog(datalint::error::ErrorLog(
+          "Field Ordering Violation", "All occurrences of field '" + beforeKey +
+                                          "' must precede any occurrence of field '" + afterKey +
+                                          "'"));
+    }
+  }
+
   return errorCollector.GetErrorLogs().empty();
 }
 

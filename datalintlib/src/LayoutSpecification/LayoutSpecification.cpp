@@ -26,6 +26,10 @@ const std::map<std::string, ExpectedField>& LayoutSpecification::Fields() const 
   return ExpectedFields_;
 }
 
+const std::vector<FieldOrderingConstraint>& LayoutSpecification::OrderingConstraints() const {
+  return OrderingConstraints_;
+}
+
 void LayoutSpecification::AddExpectedField(const std::string& key, const ExpectedField& field) {
   ExpectedFields_.emplace(key, field);
 }
