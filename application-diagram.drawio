@@ -368,11 +368,20 @@
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-27" value="&lt;div&gt;UnknownError&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-23">
           <mxGeometry y="150" width="300" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-29" value="LayoutValidator&lt;div&gt;Responsible for validating a LayoutSpecification against our raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="3140" y="420" width="410" height="150" as="geometry" />
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-29" value="LayoutSpecificationValidator&lt;div&gt;Responsible for validating a LayoutSpecification against our raw data&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3140" y="420" width="410" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-30" value="+ void Validate(const LayoutSpecification&amp;amp; spec,&lt;div&gt;&amp;nbsp; &amp;nbsp;const RawData&amp;amp; rawData,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;ErrorCollector&amp;amp; errorCollector)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-29">
-          <mxGeometry y="70" width="410" height="80" as="geometry" />
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-30" value="+ LayoutSpecificationValidator(UnexpectedFieldStrictness strictness)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-29">
+          <mxGeometry y="70" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-58" value="+ UnexpectedFieldStrictness Strictness() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-29">
+          <mxGeometry y="110" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-57" value="+ void Validate(const LayoutSpecification&amp;amp; spec,&lt;div&gt;&amp;nbsp; &amp;nbsp;const RawData&amp;amp; rawData,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;ErrorCollector&amp;amp; errorCollector)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-29">
+          <mxGeometry y="150" width="410" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-59" value="- UnexpectedFieldStrictness Strictness_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-29">
+          <mxGeometry y="230" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-40" value="ErrorCollector : IErrorProvider&lt;div&gt;Responsible for gathering and outputting errors throughout the application&#39;s flow&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="3800" y="410" width="410" height="230" as="geometry" />
@@ -418,6 +427,15 @@
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-56" value="+ void AddError(const ErrorLog&amp;amp; errorLog)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-55">
           <mxGeometry y="70" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-60" value="UnexpectedFieldStrictness&lt;div&gt;Responsible for defining the behaviour given we encounter unexpected fields&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3140" y="210" width="410" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-61" value="Strict // report unexpected fields" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-60">
+          <mxGeometry y="70" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-62" value="Permissive // don&#39;t report unexpected fields" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-60">
+          <mxGeometry y="110" width="410" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

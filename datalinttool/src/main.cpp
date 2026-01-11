@@ -61,6 +61,7 @@ int main(int argc, char** argv) {
   const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
   const LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+
   // 5. Validate the layout specification against the raw data
 
   // 1. The consuming application is responsible for providing

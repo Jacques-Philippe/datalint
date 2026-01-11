@@ -11,9 +11,11 @@ add_library(datalintlib
     include/datalint/Error/ErrorCollector.h
     include/datalint/Error/datalint_error_namespace.h
     include/datalint/LayoutSpecification/ExpectedField.h
+    include/datalint/LayoutSpecification/UnexpectedFieldStrictness.h
     include/datalint/LayoutSpecification/LayoutSpecification.h
     include/datalint/LayoutSpecification/LayoutSpecificationBuilder.h
     include/datalint/LayoutSpecification/LayoutPatch.h
+    include/datalint/LayoutSpecification/LayoutSpecificationValidator.h
     include/datalint/LayoutSpecification/LayoutPatchOperations.h
     include/datalint/Version/Version.h
     include/datalint/Version/VersionRange.h
@@ -26,6 +28,7 @@ add_library(datalintlib
     src/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.cpp
     src/LayoutSpecification/LayoutSpecification.cpp
     src/LayoutSpecification/LayoutSpecificationBuilder.cpp
+    src/LayoutSpecification/LayoutSpecificationValidator.cpp
     src/RawData.cpp
 )
 
