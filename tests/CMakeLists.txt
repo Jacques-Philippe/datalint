@@ -16,6 +16,7 @@ add_executable(datalintlib_tests
     src/DefaultCsvApplicationDescriptorResolverTests.cpp
 
     src/Error/ErrorLogTests.cpp
+    src/Error/ErrorCollectorTests.cpp
 
     src/LayoutSpecification/ExpectedFieldTests.cpp
     src/LayoutSpecification/LayoutSpecificationTests.cpp
