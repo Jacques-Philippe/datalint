@@ -7,6 +7,9 @@ add_library(datalintlib
     include/datalint/ApplicationDescriptor/ResolveResult.h
     include/datalint/ApplicationDescriptor/ResolveError.h
     include/datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h
+    include/datalint/Error/ErrorLog.h
+    include/datalint/Error/ErrorCollector.h
+    include/datalint/Error/datalint_error_namespace.h
     include/datalint/LayoutSpecification/ExpectedField.h
     include/datalint/LayoutSpecification/LayoutSpecification.h
     include/datalint/LayoutSpecification/LayoutSpecificationBuilder.h
