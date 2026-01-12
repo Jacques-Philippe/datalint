@@ -23,22 +23,22 @@ class LayoutSpecificationBuilder {
   LayoutSpecification Build(Version version, std::span<const LayoutPatch> patches) const;
 
  private:
-  /// @brief Helper function to apply a patch to the given fields map
+  /// @brief Helper function to apply a patch to the given layout specification
   /// @param specification the layout specification to modify
   /// @param patch the patch to apply
   void ApplyPatch(LayoutSpecification& specification, const LayoutPatch& patch) const;
 
-  /// @brief Helper function to apply an AddField operation to the given fields map
+  /// @brief Helper function to apply an AddField operation to the given layout specification
   /// @param specification the layout specification to modify
   /// @param op the add field operation to apply
   void ApplyOperation(LayoutSpecification& specification, const AddField& op) const;
 
-  /// @brief Helper function to apply a ModifyField operation to the given fields map
+  /// @brief Helper function to apply a ModifyField operation to the given layout specification
   /// @param specification the layout specification to modify
   /// @param op the modify field operation to apply
   void ApplyOperation(LayoutSpecification& specification, const ModifyField& op) const;
 
-  /// @brief Helper function to apply a RemoveField operation to the given fields map
+  /// @brief Helper function to apply a RemoveField operation to the given layout specification
   /// @param specification the layout specification to modify
   /// @param op the remove field operation to apply
   void ApplyOperation(LayoutSpecification& specification, const RemoveField& op) const;
