@@ -19,7 +19,7 @@ class ErrorCollector {
 
   /// @brief Method to retrieve all error logs
   /// @return A vector of pointers to ErrorLog instances
-  std::vector<ErrorLog> GetErrorLogs() const { return errorLogs_; }
+  const std::vector<ErrorLog>& GetErrorLogs() const { return errorLogs_; }
 
  private:
   /// @brief The collection of error logs
