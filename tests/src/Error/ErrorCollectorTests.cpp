@@ -2,9 +2,6 @@
 #include <datalint/Error/ErrorLog.h>
 #include <gtest/gtest.h>
 
-#include <fstream>
-#include <vector>
-
 /// @brief Tests that the error collector initializes with zero errors.
 TEST(ErrorCollectorTest, CanInitializeWithZeroErrors) {
   // Create an error collector
