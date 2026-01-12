@@ -1,9 +1,6 @@
 #include <datalint/Error/ErrorLog.h>
 #include <gtest/gtest.h>
 
-#include <fstream>
-#include <vector>
-
 /// @brief Tests that the error log can be initialized with subject and body.
 TEST(ErrorLogTest, CanInitializeWithFields) {
   // Create an error log
