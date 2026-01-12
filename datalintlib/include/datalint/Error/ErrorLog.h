@@ -1,15 +1,11 @@
 #pragma once
 
-#include <memory>
-#include <vector>
+#include <string>
 
 namespace datalint::error {
 /// @brief Class to represent an error log entry
 class ErrorLog {
  public:
-  /// @brief Virtual destructor
-  virtual ~ErrorLog() = default;
-
   /// @brief Constructor: must provide subject and body
   /// @param subject The subject of the error log
   /// @param body The body of the error log
