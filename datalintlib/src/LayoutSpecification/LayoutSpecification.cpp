@@ -36,6 +36,6 @@ void LayoutSpecification::AddExpectedField(const std::string& key, const Expecte
 }
 
 void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constraint) {
-  OrderingConstraints_.push_back(constraint);
+  OrderingConstraints_.push_back(std::move(constraint));
 }
 }  // namespace datalint::layout
