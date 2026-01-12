@@ -165,3 +165,17 @@ TEST(LayoutSpecificationBuilderTest, ThrowsWhenAddingExistingConstraint) {
   EXPECT_THROW(
       { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
 }
+
+/// @brief Tests that the layout specification builder throws when removing a constraint that
+/// doesn't exist
+TEST(LayoutSpecificationBuilderTest, ThrowsWhenRemovingNonExistingConstraint) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::RemoveFieldOrdering{.BeforeKey = "FieldA", .AfterKey = "FieldB"}});
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  EXPECT_THROW(
+      { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
+}

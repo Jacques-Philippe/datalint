@@ -67,12 +67,18 @@ void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specificati
 /// @param op the remove field ordering operation to apply
 void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
                                                 const RemoveFieldOrdering& op) const {
-  for (auto it = specification.OrderingConstraints_.begin();
-       it != specification.OrderingConstraints_.end(); ++it) {
-    if (it->Before == op.BeforeKey && it->After == op.AfterKey) {
-      specification.OrderingConstraints_.erase(it);
-      return;
-    }
+  auto& constraints = specification.OrderingConstraints_;
+
+  auto it =
+      std::find_if(constraints.begin(), constraints.end(), [&](const FieldOrderingConstraint& c) {
+        return c.Before == op.BeforeKey && c.After == op.AfterKey;
+      });
+
+  if (it == constraints.end()) {
+    throw std::logic_error("RemoveFieldOrdering failed: constraint does not exist: " +
+                           op.BeforeKey + " -> " + op.AfterKey);
   }
+
+  constraints.erase(it);
 }
 }  // namespace datalint::layout
