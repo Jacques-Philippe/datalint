@@ -71,6 +71,14 @@ int main(int argc, char** argv) {
   LayoutSpecificationValidator validator{UnexpectedFieldStrictness::Strict};
   const bool isValid = validator.Validate(layoutSpec, rawData, errorCollector);
 
+  if (!isValid) {
+    std::cerr << "Validation failed:\n";
+    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
+      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
+    }
+    return 1;
+  }
+
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from
   // the input file
