@@ -23,7 +23,7 @@ class ErrorCollector {
 
   /// @brief Method to retrieve whether any errors have been collected
   /// @return true if there are any collected errors, false otherwise
-  const bool HasErrors() const { return !errorLogs_.empty(); }
+  bool HasErrors() const { return !errorLogs_.empty(); }
 
  private:
   /// @brief The collection of error logs
