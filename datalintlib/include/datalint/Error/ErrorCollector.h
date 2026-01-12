@@ -21,6 +21,10 @@ class ErrorCollector {
   /// @return A vector of pointers to ErrorLog instances
   const std::vector<ErrorLog>& GetErrorLogs() const { return errorLogs_; }
 
+  /// @brief Method to retrieve whether any errors have been collected
+  /// @return true if there are any collected errors, false otherwise
+  const bool HasErrors() const { return !errorLogs_.empty(); }
+
  private:
   /// @brief The collection of error logs
   std::vector<ErrorLog> errorLogs_;

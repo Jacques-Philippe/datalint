@@ -83,7 +83,7 @@ bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpe
     }
   }
 
-  return errorCollector.GetErrorLogs().empty();
+  return !errorCollector.HasErrors();
 }
 
 }  // namespace datalint::layout
