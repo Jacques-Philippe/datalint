@@ -53,8 +53,8 @@ bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpe
 
   // 3. Validate ordering constraints
   for (const auto& constraint : layoutSpec.OrderingConstraints()) {
-    const auto& beforeKey = constraint.Before;
-    const auto& afterKey = constraint.After;
+    const auto& beforeKey = constraint.BeforeKey;
+    const auto& afterKey = constraint.AfterKey;
 
     std::optional<std::size_t> lastBeforeIndex;
     std::optional<std::size_t> firstAfterIndex;
