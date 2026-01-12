@@ -52,8 +52,13 @@ void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specificati
 
 void LayoutSpecificationBuilder::ApplyOperation(LayoutSpecification& specification,
                                                 const AddFieldOrdering& op) const {
-  // todo make sure there doesn't already exist such constraint
-
+  // if there already exists a constraint with the same before and after, we throw a logic error
+  for (const auto& constraint : specification.OrderingConstraints_) {
+    if (constraint.Before == op.BeforeKey && constraint.After == op.AfterKey) {
+      throw std::logic_error("AddFieldOrdering failed: constraint already exists: " + op.BeforeKey +
+                             " -> " + op.AfterKey);
+    }
+  }
   specification.OrderingConstraints_.push_back(FieldOrderingConstraint{op.BeforeKey, op.AfterKey});
 }
 

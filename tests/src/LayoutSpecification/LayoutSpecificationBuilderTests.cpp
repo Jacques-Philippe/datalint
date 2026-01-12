@@ -150,3 +150,18 @@ TEST(LayoutSpecificationBuilderTest, ThrowsWhenModifyingNonExistentField) {
   EXPECT_THROW(
       { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
 }
+
+/// @brief Tests that the layout specification builder throws when adding a constraint for an
+/// existing before and after pair
+TEST(LayoutSpecificationBuilderTest, ThrowsWhenAddingExistingConstraint) {
+  // Initialize the layout patch
+  const datalint::layout::LayoutPatch patch(
+      "patch1", datalint::VersionRange::All(),
+      {datalint::layout::AddFieldOrdering{.BeforeKey = "FieldA", .AfterKey = "FieldB"},
+       datalint::layout::AddFieldOrdering{.BeforeKey = "FieldA", .AfterKey = "FieldB"}});
+
+  datalint::layout::LayoutSpecificationBuilder builder;
+
+  EXPECT_THROW(
+      { builder.Build(datalint::Version{1, 0, 0}, std::span(&patch, 1)); }, std::logic_error);
+}
