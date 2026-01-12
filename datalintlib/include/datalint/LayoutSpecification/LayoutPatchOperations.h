@@ -33,14 +33,17 @@ struct ModifyField {
 
 /// @brief Operation to add a field ordering constraint to a layout specification
 struct AddFieldOrdering {
-  /// @brief All occurrences of AfterKey must appear after all occurrences of BeforeKey
+  /// @brief The key of the field that must come before
   std::string BeforeKey;
+  /// @brief The key of the field that must come after
   std::string AfterKey;
 };
 
 /// @brief Operation to remove a field ordering constraint from a layout specification
 struct RemoveFieldOrdering {
+  /// @brief The key of the field that must come before
   std::string BeforeKey;
+  /// @brief The key of the field that must come after
   std::string AfterKey;
 };
 

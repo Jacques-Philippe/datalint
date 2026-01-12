@@ -1,3 +1,4 @@
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutSpecificationBuilder.h>
 
 namespace datalint::layout {

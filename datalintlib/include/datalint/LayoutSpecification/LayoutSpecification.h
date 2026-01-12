@@ -1,6 +1,7 @@
 #pragma once
 
 #include <datalint/LayoutSpecification/ExpectedField.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 
 #include <map>
 #include <optional>
@@ -10,11 +11,6 @@
 namespace datalint::layout {
 
 class LayoutSpecificationBuilder;
-
-struct FieldOrderingConstraint {
-  std::string Before;
-  std::string After;
-};
 
 /// @brief Class to contain the definition for a layout specification in which we specify the data
 /// we expect to find in our input file raw data

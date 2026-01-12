@@ -7,8 +7,10 @@
 
 namespace datalint::error {
 
+/// @brief Class to collect error logs during processing
 class ErrorCollector {
  public:
+  /// @brief Default constructor
   ErrorCollector() : errorLogs_() {}
 
   /// @brief Method to add an error log
@@ -20,6 +22,7 @@ class ErrorCollector {
   std::vector<ErrorLog> GetErrorLogs() const { return errorLogs_; }
 
  private:
+  /// @brief The collection of error logs
   std::vector<ErrorLog> errorLogs_;
 };
 

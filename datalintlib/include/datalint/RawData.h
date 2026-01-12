@@ -11,6 +11,7 @@ struct RawField;
 /// @brief Represents raw data parsed from an input file.
 class RawData {
  private:
+  /// @brief The collection of raw fields.
   std::vector<RawField> fields;
 
  public:

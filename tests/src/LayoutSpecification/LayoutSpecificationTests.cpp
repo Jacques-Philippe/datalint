@@ -1,4 +1,5 @@
 #include <datalint/LayoutSpecification/ExpectedField.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
 #include <gtest/gtest.h>
 

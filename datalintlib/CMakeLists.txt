@@ -11,6 +11,7 @@ add_library(datalintlib
     include/datalint/Error/ErrorCollector.h
     include/datalint/Error/datalint_error_namespace.h
     include/datalint/LayoutSpecification/ExpectedField.h
+    include/datalint/LayoutSpecification/FieldOrderingConstraint.h
     include/datalint/LayoutSpecification/UnexpectedFieldStrictness.h
     include/datalint/LayoutSpecification/LayoutSpecification.h
     include/datalint/LayoutSpecification/LayoutSpecificationBuilder.h

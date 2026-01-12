@@ -46,10 +46,11 @@ class ExpectedField {
     maxCount = count;
   }
 
-  /// @brief Returns the minimum number of occurrences of this field
+  /// @brief Getter for the minimum number of occurrences of this field
   /// @return The minimum number of occurrences
   std::size_t MinCount() const { return minCount; }
-  /// @brief  Returns the maximum number of occurrences of this field
+
+  /// @brief Getter for the maximum number of occurrences of this field
   /// @return The maximum number of occurrences
   const std::optional<std::size_t>& MaxCount() const { return maxCount; }
 

@@ -1,5 +1,6 @@
 #include <datalint/Error/ErrorCollector.h>
 #include <datalint/LayoutSpecification/ExpectedField.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
 #include <datalint/LayoutSpecification/LayoutSpecificationValidator.h>
 #include <datalint/LayoutSpecification/UnexpectedFieldStrictness.h>

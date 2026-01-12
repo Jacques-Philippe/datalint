@@ -4,8 +4,10 @@
 #include <datalint/Error/ErrorCollector.h>
 #include <datalint/Error/ErrorLog.h>
 #include <datalint/FileParser/CsvFileParser.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutPatch.h>
 #include <datalint/LayoutSpecification/LayoutSpecificationBuilder.h>
+#include <datalint/LayoutSpecification/LayoutSpecificationValidator.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
@@ -60,9 +62,14 @@ int main(int argc, char** argv) {
   LayoutSpecificationBuilder builder;
   const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
-  const LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  layoutSpec.AddOrderingConstraint(FieldOrderingConstraint{
+      "ApplicationName",
+      "ApplicationVersion"});  // ApplicationName must come before ApplicationVersion
 
   // 5. Validate the layout specification against the raw data
+  LayoutSpecificationValidator validator{UnexpectedFieldStrictness::Strict};
+  const bool isValid = validator.Validate(layoutSpec, rawData, errorCollector);
 
   // 1. The consuming application is responsible for providing
   // - the manner in which we conclude which name and version number to use from
