@@ -43,6 +43,15 @@ key2,value2,Leading and trailing spaces (unquoted)
 ```
 when it's converted to RawData
 
+## How to specify a LayoutSpecification
+The LayoutSpecification should be made up of a series of patches that define all expected fields to be found. When we say "expected fields," we are speaking about occurrences of keys in our input file. In the case of a CSV file, these might be the keys of each line, or the left-most value of each line.
+
+The patches allow us to define which keys should be present.
+
+We can also specify expectations in terms of order. Because it's possible theoretically for an input file to contain more than a single key for any given field, we necessarily need to assume that when we query for a field from our layout specification, we always get back a list of values. Therefore, for any layout specification rules related to occurrence of a given key, we need to use the wording "for all occurrences of key X, it should be before any occurrence of key Y."
+
+Please find an example usage of this in main.cpp
+
 ## Todo
 1. ~~Define a file parser interface~~
 1. ~~Define a concrete CSV file parser~~
