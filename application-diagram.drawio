@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6" pages="2">
   <diagram name="Application diagram" id="fVqcU88fL75PQfqD5YJ6">
-    <mxGraphModel dx="2033" dy="1855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1607" dy="1583" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -399,7 +399,7 @@
           <mxGeometry y="230" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-40" value="ErrorCollector : IErrorProvider&lt;div&gt;Responsible for gathering and outputting errors throughout the application&#39;s flow&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="3800" y="410" width="410" height="230" as="geometry" />
+          <mxGeometry x="3800" y="410" width="410" height="310" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-41" value="+ ErrorCollector()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
           <mxGeometry y="70" width="410" height="40" as="geometry" />
@@ -407,11 +407,17 @@
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-42" value="+ void AddError(const ErrorLog&amp;amp; log)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
           <mxGeometry y="110" width="410" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-54" value="+ std::vector&amp;lt;ErrorLog&amp;gt; GetErrors() const override" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-54" value="+ std::vector&amp;lt;ErrorLog&amp;gt; GetErrors() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
           <mxGeometry y="150" width="410" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-46" value="- std::vector&amp;lt;ErrorLog&amp;gt; Logs_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-76" value="+ bool HasErrors() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
           <mxGeometry y="190" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-77" value="+ size_t ErrorCount() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
+          <mxGeometry y="230" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-46" value="- std::vector&amp;lt;ErrorLog&amp;gt; Logs_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-40">
+          <mxGeometry y="270" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-43" value="ErrorLog&lt;div&gt;Responsible for containing error messages to be output&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="3800" y="60" width="410" height="270" as="geometry" />
@@ -430,18 +436,6 @@
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-49" value="- std::string Body_" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-43">
           <mxGeometry y="230" width="410" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-50" value="IErrorProvider&lt;div&gt;Interface responsible for providing collected errors&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="4250" y="410" width="410" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-52" value="+ std::vector&amp;lt;ErrorLog&amp;gt; GetErrors() const" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-50">
-          <mxGeometry y="70" width="410" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-55" value="IErrorContainer&lt;div&gt;Interface responsible for containing collected errors&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="4690" y="410" width="410" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-56" value="+ void AddError(const ErrorLog&amp;amp; errorLog)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-55">
-          <mxGeometry y="70" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-60" value="UnexpectedFieldStrictness&lt;div&gt;Responsible for defining the behaviour given we encounter unexpected fields&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="3140" y="210" width="410" height="150" as="geometry" />
