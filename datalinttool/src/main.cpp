@@ -21,6 +21,12 @@ int main(int argc, char** argv) {
     return 1;
   }
   datalint::error::ErrorCollector errorCollector;
+  auto printErrors = [&errorCollector]() {
+    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
+      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
+    }
+  };
+
   const std::string inputFilePath = argv[1];
   const std::filesystem::path inputPath(inputFilePath);
   // it's assumed that in the consuming project, we know the file type
@@ -40,10 +46,7 @@ int main(int argc, char** argv) {
       errorCollector.AddErrorLog(
           datalint::error::ErrorLog("Application Descriptor Resolution Error", error.ToString()));
     }
-    // Print collected errors
-    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
-      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
-    }
+    printErrors();
     return 1;
   }
 
@@ -73,9 +76,7 @@ int main(int argc, char** argv) {
 
   if (!isValid) {
     std::cerr << "Validation failed:\n";
-    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
-      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
-    }
+    printErrors();
     return 1;
   }
 
