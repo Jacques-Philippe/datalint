@@ -10,8 +10,6 @@
 
 namespace datalint::layout {
 
-class LayoutSpecificationBuilder;
-
 /// @brief Class to contain the definition for a layout specification in which we specify the data
 /// we expect to find in our input file raw data
 class LayoutSpecification {
@@ -42,12 +40,25 @@ class LayoutSpecification {
   /// @param field the field to add
   void AddExpectedField(const std::string& key, const ExpectedField& field);
 
+  /// @brief Modifies an expected field in the layout specification
+  /// @param key the key associated to the field
+  /// @param mutator the mutator function to apply to the field
+  void ModifyExpectedField(const std::string& key, std::function<void(ExpectedField&)> mutator);
+
+  /// @brief Removes an expected field from the layout specification
+  /// @param key the key associated to the field
+  void RemoveExpectedField(const std::string& key);
+
   /// @brief Adds an ordering constraint between two fields
   /// @param constraint the ordering constraint to add
   void AddOrderingConstraint(FieldOrderingConstraint constraint);
 
+  /// @brief Removes an ordering constraint between two fields
+  /// @param beforeKey the key of the field that should come before
+  /// @param afterKey the key of the field that should come after
+  void RemoveOrderingConstraint(const std::string& beforeKey, const std::string& afterKey);
+
  private:
-  friend class LayoutSpecificationBuilder;
   /// @brief the map of all expected fields that make up the layout specification
   std::map<std::string, ExpectedField> ExpectedFields_;
   /// @brief the list of ordering constraints between fields

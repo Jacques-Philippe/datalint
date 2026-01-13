@@ -32,11 +32,26 @@ const std::vector<FieldOrderingConstraint>& LayoutSpecification::OrderingConstra
 }
 
 void LayoutSpecification::AddExpectedField(const std::string& key, const ExpectedField& field) {
-  // check if the field already exists
-  if (ExpectedFields_.contains(key)) {
+  auto [it, inserted] = ExpectedFields_.emplace(key, field);
+  if (!inserted) {
     throw std::logic_error("AddExpectedField failed: field already exists: " + key);
   }
-  ExpectedFields_.emplace(key, field);
+}
+
+void LayoutSpecification::ModifyExpectedField(const std::string& key,
+                                              std::function<void(ExpectedField&)> mutator) {
+  auto it = ExpectedFields_.find(key);
+  if (it == ExpectedFields_.end()) {
+    throw std::logic_error("ModifyExpectedField failed: field does not exist: " + key);
+  }
+
+  mutator(it->second);
+}
+
+void LayoutSpecification::RemoveExpectedField(const std::string& key) {
+  if (ExpectedFields_.erase(key) == 0) {
+    throw std::logic_error("RemoveExpectedField failed: field does not exist: " + key);
+  }
 }
 
 void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constraint) {
@@ -49,5 +64,22 @@ void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constrai
   }
 
   OrderingConstraints_.push_back(std::move(constraint));
+}
+
+void LayoutSpecification::RemoveOrderingConstraint(const std::string& beforeKey,
+                                                   const std::string& afterKey) {
+  auto& constraints = OrderingConstraints_;
+
+  auto it =
+      std::find_if(constraints.begin(), constraints.end(), [&](const FieldOrderingConstraint& c) {
+        return c.BeforeKey == beforeKey && c.AfterKey == afterKey;
+      });
+
+  if (it == constraints.end()) {
+    throw std::logic_error("RemoveFieldOrdering failed: constraint does not exist: " + beforeKey +
+                           " -> " + afterKey);
+  }
+
+  constraints.erase(it);
 }
 }  // namespace datalint::layout
