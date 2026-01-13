@@ -65,6 +65,27 @@ TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateExpectedFields)
                std::logic_error);
 }
 
+/// @brief Tests that the layout specification throws logic error when removing non-existent
+/// expected fields
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenRemovingNonExistentExpectedFields) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Removing the non-existent field should throw a logic error
+  EXPECT_THROW(layoutSpecification.RemoveExpectedField("Field1"), std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when modifying non-existent
+/// expected fields
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenModifyingNonExistentExpectedFields) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Modifying the non-existent field should throw a logic error
+  EXPECT_THROW(layoutSpecification.ModifyExpectedField("Field1", [](auto& field) {}),
+               std::logic_error);
+}
+
 /// @brief Tests that the layout specification throws logic error when adding duplicate ordering
 /// constraints
 TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateOrderingConstraints) {
@@ -78,4 +99,14 @@ TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateOrderingConstra
   layoutSpecification.AddOrderingConstraint(constraint1);
   // Adding the duplicate constraint should throw a logic error
   EXPECT_THROW(layoutSpecification.AddOrderingConstraint(constraint2), std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when removing non-existent
+/// ordering constraints
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenRemovingNonExistentOrderingConstraints) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Removing the non-existent constraint should throw a logic error
+  EXPECT_THROW(layoutSpecification.RemoveOrderingConstraint("FieldA", "FieldB"), std::logic_error);
 }
