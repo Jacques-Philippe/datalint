@@ -62,7 +62,7 @@ void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constrai
         return c.BeforeKey == constraint.BeforeKey && c.AfterKey == constraint.AfterKey;
       });
   if (exists) {
-    throw std::logic_error("AddFieldOrdering failed: constraint already exists: " +
+    throw std::logic_error("AddOrderingConstraint failed: constraint already exists: " +
                            constraint.BeforeKey + " -> " + constraint.AfterKey);
   }
 
@@ -79,8 +79,8 @@ void LayoutSpecification::RemoveOrderingConstraint(const std::string& beforeKey,
       });
 
   if (it == constraints.end()) {
-    throw std::logic_error("RemoveFieldOrdering failed: constraint does not exist: " + beforeKey +
-                           " -> " + afterKey);
+    throw std::logic_error("RemoveOrderingConstraint failed: constraint does not exist: " +
+                           beforeKey + " -> " + afterKey);
   }
 
   constraints.erase(it);

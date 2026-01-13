@@ -3,6 +3,7 @@
 #include <datalint/LayoutSpecification/ExpectedField.h>
 #include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 
+#include <functional>
 #include <map>
 #include <optional>
 #include <string>
