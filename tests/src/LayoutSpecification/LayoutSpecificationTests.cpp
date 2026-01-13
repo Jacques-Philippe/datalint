@@ -51,18 +51,14 @@ TEST(LayoutSpecificationTest, CanGetFields) {
 /// @brief Tests that the layout specification throws logic error when adding duplicate expected
 /// fields
 TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateExpectedFields) {
-  // Create some expected fields
-  const std::map<std::string, datalint::layout::ExpectedField> expectedFields = {
-      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
-      {"Field1", datalint::layout::ExpectedField{1, std::nullopt}}};
+  const datalint::layout::ExpectedField field{1, std::nullopt};
   // Initialize the layout specification
   datalint::layout::LayoutSpecification layoutSpecification;
 
   // Adding the first field should succeed
-  layoutSpecification.AddExpectedField("Field1", expectedFields.at("Field1"));
+  layoutSpecification.AddExpectedField("Field1", field);
   // Adding the duplicate field should throw a logic error
-  EXPECT_THROW(layoutSpecification.AddExpectedField("Field1", expectedFields.at("Field1")),
-               std::logic_error);
+  EXPECT_THROW(layoutSpecification.AddExpectedField("Field1", field), std::logic_error);
 }
 
 /// @brief Tests that the layout specification throws logic error when removing non-existent
