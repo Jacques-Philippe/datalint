@@ -43,7 +43,8 @@ class LayoutSpecification {
   /// @brief Modifies an expected field in the layout specification
   /// @param key the key associated to the field
   /// @param mutator the mutator function to apply to the field
-  void ModifyExpectedField(const std::string& key, std::function<void(ExpectedField&)> mutator);
+  void ModifyExpectedField(const std::string& key,
+                           const std::function<void(ExpectedField&)> mutator);
 
   /// @brief Removes an expected field from the layout specification
   /// @param key the key associated to the field

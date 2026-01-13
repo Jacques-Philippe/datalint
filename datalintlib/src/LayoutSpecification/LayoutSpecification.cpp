@@ -40,7 +40,7 @@ void LayoutSpecification::AddExpectedField(const std::string& key, const Expecte
 }
 
 void LayoutSpecification::ModifyExpectedField(const std::string& key,
-                                              std::function<void(ExpectedField&)> mutator) {
+                                              const std::function<void(ExpectedField&)> mutator) {
   auto it = ExpectedFields_.find(key);
   if (it == ExpectedFields_.end()) {
     throw std::logic_error("ModifyExpectedField failed: field does not exist: " + key);
