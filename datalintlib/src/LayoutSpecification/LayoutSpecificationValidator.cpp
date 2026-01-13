@@ -31,10 +31,9 @@ bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpe
       continue;
     }
 
-    if (matches.size() > expectedField.MaxCount().value_or(SIZE_MAX)) {
+    if (expectedField.MaxCount() && matches.size() > *expectedField.MaxCount()) {
       errorCollector.AddErrorLog(datalint::error::ErrorLog(
-          "Duplicate Field", "Expected at most " +
-                                 std::to_string(expectedField.MaxCount().value_or(SIZE_MAX)) +
+          "Duplicate Field", "Expected at most " + std::to_string(*expectedField.MaxCount()) +
                                  " occurrence(s) of field: " + key));
     }
   }
