@@ -1,4 +1,3 @@
-
 #include <datalint/Error/ErrorLog.h>
 #include <datalint/LayoutSpecification/ExpectedField.h>
 #include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
