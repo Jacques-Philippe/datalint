@@ -15,11 +15,15 @@ add_executable(datalintlib_tests
     src/CsvFileParserTests.cpp
     src/DefaultCsvApplicationDescriptorResolverTests.cpp
 
+    src/Error/ErrorLogTests.cpp
+    src/Error/ErrorCollectorTests.cpp
+
     src/LayoutSpecification/ExpectedFieldTests.cpp
     src/LayoutSpecification/LayoutSpecificationTests.cpp
     src/LayoutSpecification/LayoutSpecificationBuilderTests.cpp
     src/LayoutSpecification/LayoutPatchTests.cpp
     src/LayoutSpecification/LayoutPatchOperationsTests.cpp
+    src/LayoutSpecification/LayoutSpecificationValidatorTests.cpp
 
     src/Version/VersionTests.cpp
     src/Version/VersionRangeTests.cpp

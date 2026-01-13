@@ -1,4 +1,5 @@
 #include <datalint/LayoutSpecification/ExpectedField.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
 #include <gtest/gtest.h>
 
@@ -12,7 +13,10 @@ TEST(LayoutSpecificationTest, CanInitializeWithValidFields) {
       {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   ASSERT_EQ(layoutSpecification.Fields().size(), 2);
 }
@@ -24,7 +28,10 @@ TEST(LayoutSpecificationTest, CanGetFields) {
       {"Field1", datalint::layout::ExpectedField{1, std::nullopt}},
       {"Field2", datalint::layout::ExpectedField{1, std::nullopt}}};
   // Initialize the layout specification
-  datalint::layout::LayoutSpecification layoutSpecification(expectedFields);
+  datalint::layout::LayoutSpecification layoutSpecification;
+  for (const auto& [key, field] : expectedFields) {
+    layoutSpecification.AddExpectedField(key, field);
+  }
 
   // We should be able to find the field
   EXPECT_TRUE(layoutSpecification.HasField("Field1"));
@@ -39,4 +46,63 @@ TEST(LayoutSpecificationTest, CanGetFields) {
 
   const auto field3 = layoutSpecification.GetField("Field3");
   EXPECT_FALSE(field3.has_value());
+}
+
+/// @brief Tests that the layout specification throws logic error when adding duplicate expected
+/// fields
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateExpectedFields) {
+  const datalint::layout::ExpectedField field{1, std::nullopt};
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Adding the first field should succeed
+  layoutSpecification.AddExpectedField("Field1", field);
+  // Adding the duplicate field should throw a logic error
+  EXPECT_THROW(layoutSpecification.AddExpectedField("Field1", field), std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when removing non-existent
+/// expected fields
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenRemovingNonExistentExpectedFields) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Removing the non-existent field should throw a logic error
+  EXPECT_THROW(layoutSpecification.RemoveExpectedField("Field1"), std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when modifying non-existent
+/// expected fields
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenModifyingNonExistentExpectedFields) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Modifying the non-existent field should throw a logic error
+  EXPECT_THROW(layoutSpecification.ModifyExpectedField("Field1", [](auto& field) {}),
+               std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when adding duplicate ordering
+/// constraints
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenAddingDuplicateOrderingConstraints) {
+  // Create some expected fields
+  const datalint::layout::FieldOrderingConstraint constraint1{"FieldA", "FieldB"};
+  const datalint::layout::FieldOrderingConstraint constraint2{"FieldA", "FieldB"};
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Adding the first ordering constraint should succeed
+  layoutSpecification.AddOrderingConstraint(constraint1);
+  // Adding the duplicate constraint should throw a logic error
+  EXPECT_THROW(layoutSpecification.AddOrderingConstraint(constraint2), std::logic_error);
+}
+
+/// @brief Tests that the layout specification throws logic error when removing non-existent
+/// ordering constraints
+TEST(LayoutSpecificationTest, ThrowsLogicErrorWhenRemovingNonExistentOrderingConstraints) {
+  // Initialize the layout specification
+  datalint::layout::LayoutSpecification layoutSpecification;
+
+  // Removing the non-existent constraint should throw a logic error
+  EXPECT_THROW(layoutSpecification.RemoveOrderingConstraint("FieldA", "FieldB"), std::logic_error);
 }

@@ -13,6 +13,7 @@ namespace datalint {
 struct ResolveResult {
   /// @brief The resolved application descriptor.
   std::optional<ApplicationDescriptor> Descriptor;
+
   /// @brief Any errors encountered during resolution.
   std::vector<ResolveError> Errors;
 

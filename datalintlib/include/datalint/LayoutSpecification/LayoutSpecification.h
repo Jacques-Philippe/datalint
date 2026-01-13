@@ -1,10 +1,13 @@
 #pragma once
 
 #include <datalint/LayoutSpecification/ExpectedField.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 
+#include <functional>
 #include <map>
 #include <optional>
 #include <string>
+#include <vector>
 
 namespace datalint::layout {
 
@@ -12,9 +15,8 @@ namespace datalint::layout {
 /// we expect to find in our input file raw data
 class LayoutSpecification {
  public:
-  /// @brief Constructor for the layout specification
-  /// @param expectedFields the expected fields
-  LayoutSpecification(std::map<std::string, ExpectedField> expectedFields);
+  /// @brief Default constructor for the layout specification
+  LayoutSpecification();
 
   /// @brief Return the given expected field, if any
   /// @param key the key associated to the field
@@ -30,8 +32,38 @@ class LayoutSpecification {
   /// @return the fields
   const std::map<std::string, ExpectedField>& Fields() const;
 
+  /// @brief Return the fields making up the ordering constraints of the layout specification
+  /// @return the ordering constraints
+  const std::vector<FieldOrderingConstraint>& OrderingConstraints() const;
+
+  /// @brief Adds an expected field to the layout specification
+  /// @param key the key associated to the field
+  /// @param field the field to add
+  void AddExpectedField(const std::string& key, const ExpectedField& field);
+
+  /// @brief Modifies an expected field in the layout specification
+  /// @param key the key associated to the field
+  /// @param mutator the mutator function to apply to the field
+  void ModifyExpectedField(const std::string& key,
+                           const std::function<void(ExpectedField&)> mutator);
+
+  /// @brief Removes an expected field from the layout specification
+  /// @param key the key associated to the field
+  void RemoveExpectedField(const std::string& key);
+
+  /// @brief Adds an ordering constraint between two fields
+  /// @param constraint the ordering constraint to add
+  void AddOrderingConstraint(FieldOrderingConstraint constraint);
+
+  /// @brief Removes an ordering constraint between two fields
+  /// @param beforeKey the key of the field that should come before
+  /// @param afterKey the key of the field that should come after
+  void RemoveOrderingConstraint(const std::string& beforeKey, const std::string& afterKey);
+
  private:
   /// @brief the map of all expected fields that make up the layout specification
-  std::map<std::string, ExpectedField> expectedFields;
+  std::map<std::string, ExpectedField> ExpectedFields_;
+  /// @brief the list of ordering constraints between fields
+  std::vector<FieldOrderingConstraint> OrderingConstraints_;
 };
 }  // namespace datalint::layout

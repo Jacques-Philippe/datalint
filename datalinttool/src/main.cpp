@@ -1,9 +1,13 @@
 #include <datalint/ApplicationDescriptor/ApplicationDescriptor.h>
 #include <datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h>
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
+#include <datalint/Error/ErrorCollector.h>
+#include <datalint/Error/ErrorLog.h>
 #include <datalint/FileParser/CsvFileParser.h>
+#include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutPatch.h>
 #include <datalint/LayoutSpecification/LayoutSpecificationBuilder.h>
+#include <datalint/LayoutSpecification/LayoutSpecificationValidator.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
 
@@ -16,6 +20,13 @@ int main(int argc, char** argv) {
     std::cerr << "Usage: datalinttool <input_file_path>\n";
     return 1;
   }
+  datalint::error::ErrorCollector errorCollector;
+  auto printErrors = [&errorCollector]() {
+    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
+      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n";
+    }
+  };
+
   const std::string inputFilePath = argv[1];
   const std::filesystem::path inputPath(inputFilePath);
   // it's assumed that in the consuming project, we know the file type
@@ -32,8 +43,10 @@ int main(int argc, char** argv) {
   if (!result.Success()) {
     std::cerr << "Failed to resolve application descriptor:\n";
     for (const auto& error : result.Errors) {
-      std::cerr << " - " << error.ToString() << "\n";
+      errorCollector.AddErrorLog(
+          datalint::error::ErrorLog("Application Descriptor Resolution Error", error.ToString()));
     }
+    printErrors();
     return 1;
   }
 
@@ -52,24 +65,24 @@ int main(int argc, char** argv) {
   LayoutSpecificationBuilder builder;
   const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
-  const LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  layoutSpec.AddOrderingConstraint(FieldOrderingConstraint{
+      "ApplicationName",
+      "ApplicationVersion"});  // ApplicationName must come before ApplicationVersion
 
-  // 1. The consuming application is responsible for providing
-  // - the manner in which we conclude which name and version number to use from
-  // the input file
-  // - the manner in which we parse the input file to a dictionary of key value
-  // pairs
-  // 2. Parse the input file, gathering
-  // - name
-  // - version number
-  // - dictionary of key value pairs
-  // 3. Given name and version number, build layout expectation
-  // 4. Given layout expectation and dictionary of key value pairs, observe that
-  // expected keys are present
-  // 5. Given name and version number, build validation rules
-  // 6. Given validation rules and dictionary of key value pairs, observe that
-  // expected keys have valid values
-  // 7. Report results of observations to user
+  // 5. Validate the layout specification against the raw data
+  LayoutSpecificationValidator validator{UnexpectedFieldStrictness::Strict};
+  const bool isValid = validator.Validate(layoutSpec, rawData, errorCollector);
+
+  if (!isValid) {
+    std::cerr << "Validation failed:\n";
+    printErrors();
+    return 1;
+  }
+
+  // 6. Build validation rules
+  // 7. Given validation rules and raw data, observe that rules are validated
+  // 8. Report results of observations to user
   std::cout << "datalinttool executed successfully!\n";
   return 0;
 }
