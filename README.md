@@ -54,9 +54,9 @@ when it's converted to RawData
     1. ~~Define version and version range types~~
     1. ~~Define layout patch~~
 1. ~~Define concrete example application layout patch~~
-1. Move Add/Remove function definitions from LayoutSpecificationBuilder to LayoutSpecification
-1. Update unit tests so LayoutSpecification add/remove is properly tested
-1. remove friend qualification to LayoutSpecificationBuilder from LayoutSpecification
+1. ~~Move Add/Remove function definitions from LayoutSpecificationBuilder to LayoutSpecification~~
+1. ~~Update unit tests so LayoutSpecification add/remove is properly tested~~
+1. ~~remove friend qualification to LayoutSpecificationBuilder from LayoutSpecification~~
 1. Define interface for rules patches
 1. Define concrete example application rules patch
 1. Test functionality in `datalinttool`
