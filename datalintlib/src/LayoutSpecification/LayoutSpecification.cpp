@@ -2,6 +2,7 @@
 #include <datalint/LayoutSpecification/FieldOrderingConstraint.h>
 #include <datalint/LayoutSpecification/LayoutSpecification.h>
 
+#include <algorithm>
 #include <map>
 #include <optional>
 #include <string>
@@ -55,12 +56,14 @@ void LayoutSpecification::RemoveExpectedField(const std::string& key) {
 }
 
 void LayoutSpecification::AddOrderingConstraint(FieldOrderingConstraint constraint) {
-  // check if the constraint already exists
-  for (const auto& existingConstraint : OrderingConstraints_) {
-    if (existingConstraint == constraint) {
-      throw std::logic_error("AddOrderingConstraint failed: constraint already exists: " +
-                             constraint.BeforeKey + " -> " + constraint.AfterKey);
-    }
+  auto& constraints = OrderingConstraints_;
+  bool exists =
+      std::any_of(constraints.begin(), constraints.end(), [&](const FieldOrderingConstraint& c) {
+        return c.BeforeKey == constraint.BeforeKey && c.AfterKey == constraint.AfterKey;
+      });
+  if (exists) {
+    throw std::logic_error("AddFieldOrdering failed: constraint already exists: " +
+                           constraint.BeforeKey + " -> " + constraint.AfterKey);
   }
 
   OrderingConstraints_.push_back(std::move(constraint));

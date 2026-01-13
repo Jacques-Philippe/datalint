@@ -2,7 +2,6 @@
 
 #include <datalint/Error/ErrorLog.h>
 
-#include <memory>
 #include <vector>
 
 namespace datalint::error {
@@ -14,11 +13,11 @@ class ErrorCollector {
   ErrorCollector() : errorLogs_() {}
 
   /// @brief Method to add an error log
-  /// @param errorLog A shared pointer to the ErrorLog instance to add
-  void AddErrorLog(ErrorLog errorLog) { errorLogs_.push_back(errorLog); }
+  /// @param errorLog the error log to add
+  void AddErrorLog(const ErrorLog& errorLog) { errorLogs_.push_back(errorLog); }
 
   /// @brief Method to retrieve all error logs
-  /// @return A vector of pointers to ErrorLog instances
+  /// @return A vector of ErrorLog instances
   const std::vector<ErrorLog>& GetErrorLogs() const { return errorLogs_; }
 
   /// @brief Method to retrieve whether any errors have been collected

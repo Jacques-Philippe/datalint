@@ -43,12 +43,12 @@ class LayoutSpecificationBuilder {
   /// @param op the remove field operation to apply
   void ApplyOperation(LayoutSpecification& specification, const RemoveField& op) const;
 
-  /// @brief Helper function to apply a AddFieldOrdering operation to the orderings vector
+  /// @brief Helper function to apply a AddFieldOrdering operation to the layout specification
   /// @param specification the layout specification to modify
   /// @param op the add field ordering operation to apply
   void ApplyOperation(LayoutSpecification& specification, const AddFieldOrdering& op) const;
 
-  /// @brief Helper function to apply a RemoveFieldOrdering operation to the orderings vector
+  /// @brief Helper function to apply a RemoveFieldOrdering operation to the layout specification
   /// @param specification the layout specification to modify
   /// @param op the remove field ordering operation to apply
   void ApplyOperation(LayoutSpecification& specification, const RemoveFieldOrdering& op) const;

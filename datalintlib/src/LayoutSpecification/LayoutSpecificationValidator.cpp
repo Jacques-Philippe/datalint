@@ -8,7 +8,7 @@
 namespace datalint::layout {
 
 LayoutSpecificationValidator::LayoutSpecificationValidator(UnexpectedFieldStrictness strictness)
-    : Strictness_(strictness) {};
+    : Strictness_(strictness) {}
 
 UnexpectedFieldStrictness LayoutSpecificationValidator::Strictness() const {
   return Strictness_;
