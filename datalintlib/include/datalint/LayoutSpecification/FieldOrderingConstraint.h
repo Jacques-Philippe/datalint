@@ -9,5 +9,12 @@ struct FieldOrderingConstraint {
   std::string BeforeKey;
   /// @brief The key of the field that must come after
   std::string AfterKey;
+
+  /// @brief Equality operator for comparing constraints
+  /// @param other The other constraint to compare with
+  /// @return true if both constraints are equal, false otherwise
+  bool operator==(const FieldOrderingConstraint& other) const {
+    return BeforeKey == other.BeforeKey && AfterKey == other.AfterKey;
+  }
 };
 }  // namespace datalint::layout
