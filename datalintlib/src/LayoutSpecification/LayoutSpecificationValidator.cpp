@@ -17,6 +17,7 @@ UnexpectedFieldStrictness LayoutSpecificationValidator::Strictness() const {
 bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpec,
                                             const datalint::RawData& rawData,
                                             datalint::error::ErrorCollector& errorCollector) {
+  const std::size_t errorCountBefore = errorCollector.ErrorCount();
   // 1. Validate expected fields
   for (const auto& [key, expectedField] : layoutSpec.Fields()) {
     auto matches = rawData.GetFieldsByKey(key);
@@ -82,7 +83,8 @@ bool LayoutSpecificationValidator::Validate(const LayoutSpecification& layoutSpe
     }
   }
 
-  return !errorCollector.HasErrors();
+  // Return true if no new errors were added
+  return errorCollector.ErrorCount() == errorCountBefore;
 }
 
 }  // namespace datalint::layout

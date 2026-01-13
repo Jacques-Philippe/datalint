@@ -30,3 +30,34 @@ TEST(ErrorCollectorTest, CanAddAndRetrieveErrorLogs) {
   EXPECT_EQ(errorLogs[1].Subject(), "Error Subject 2");
   EXPECT_EQ(errorLogs[1].Body(), "This is the body of error log 2.");
 }
+
+/// @brief Tests that the error collector's HasErrors method works correctly.
+TEST(ErrorCollectorTest, HasErrorsWorksCorrectly) {
+  // Create an error collector
+  datalint::error::ErrorCollector errorCollector;
+  // Initially, there should be no errors
+  EXPECT_FALSE(errorCollector.HasErrors());
+  // Add an error log
+  datalint::error::ErrorLog errorLog("Error Subject", "This is the body of the error log.");
+  errorCollector.AddErrorLog(errorLog);
+  // Now, there should be errors
+  EXPECT_TRUE(errorCollector.HasErrors());
+}
+
+/// @brief Tests that the error collector's HasErrors method works correctly.
+TEST(ErrorCollectorTest, ErrorCountWorksCorrectly) {
+  // Create an error collector
+  datalint::error::ErrorCollector errorCollector;
+  // Initially, there should be no errors
+  EXPECT_EQ(errorCollector.ErrorCount(), 0);
+  // Add an error log
+  datalint::error::ErrorLog errorLog("Error Subject", "This is the body of the error log.");
+  errorCollector.AddErrorLog(errorLog);
+  // Now, there should be errors
+  EXPECT_EQ(errorCollector.ErrorCount(), 1);
+  // Add an error log
+  datalint::error::ErrorLog errorLog2("New Error Subject", "This is the body of a new error log.");
+  errorCollector.AddErrorLog(errorLog2);
+  // Now, there should be errors
+  EXPECT_EQ(errorCollector.ErrorCount(), 2);
+}

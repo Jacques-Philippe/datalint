@@ -24,6 +24,10 @@ class ErrorCollector {
   /// @return true if there are any collected errors, false otherwise
   bool HasErrors() const { return !errorLogs_.empty(); }
 
+  /// @brief Retrieve the number of collected error logs
+  /// @return the number of error logs
+  std::size_t ErrorCount() const { return errorLogs_.size(); }
+
  private:
   /// @brief The collection of error logs
   std::vector<ErrorLog> errorLogs_;
