@@ -6,7 +6,7 @@
 
 namespace datalint {
 
-/// @brief A key-value pair representing a raw field from input data.
+/// @brief A key-value pair representing a raw field read from input data.
 struct RawField {
   /// @brief The key of the field.
   std::string Key;
