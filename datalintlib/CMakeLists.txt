@@ -30,6 +30,10 @@ add_library(datalintlib
     include/datalint/LayoutSpecification/LayoutSpecificationValidator.h
     include/datalint/LayoutSpecification/LayoutPatchOperations.h
 
+    include/datalint/RuleSpecification/RuleContext.h
+    include/datalint/RuleSpecification/IValueSelector.h
+    include/datalint/RuleSpecification/ValueAtIndexSelector.h
+
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h

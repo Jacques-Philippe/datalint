@@ -29,6 +29,8 @@ add_executable(datalintlib_tests
     src/LayoutSpecification/LayoutPatchOperationsTests.cpp
     src/LayoutSpecification/LayoutSpecificationValidatorTests.cpp
 
+    src/RuleSpecification/ValueAtIndexSelectorTests.cpp
+
     src/RawDataTests.cpp
 
     src/Version/VersionTests.cpp

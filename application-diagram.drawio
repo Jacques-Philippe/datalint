@@ -609,7 +609,7 @@
           <mxGeometry y="70" width="490" height="80" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-141" value="RuleContext&lt;div&gt;Responsible for containing the context known to each rule&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="4280" y="40" width="490" height="150" as="geometry" />
+          <mxGeometry x="4830" y="30" width="490" height="150" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-142" value="&lt;div&gt;+&amp;nbsp;const ParsedField&amp;amp; Field;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-141">
           <mxGeometry y="70" width="490" height="40" as="geometry" />
