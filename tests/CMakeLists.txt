@@ -32,6 +32,8 @@ add_executable(datalintlib_tests
     src/RuleSpecification/ValueAtIndexSelectorTests.cpp
     src/RuleSpecification/AllValuesSelectorTests.cpp
 
+    src/StringUtilsTests.cpp
+
     src/RawDataTests.cpp
 
     src/Version/VersionTests.cpp
