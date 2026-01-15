@@ -34,6 +34,7 @@ add_executable(datalintlib_tests
     src/RuleSpecification/IntegerInRangeRuletests.cpp
     src/RuleSpecification/AddFieldPatchRuleOperationTests.cpp
     src/RuleSpecification/RemoveFieldPatchRuleOperationTests.cpp
+    src/RuleSpecification/RulePatchTests.cpp
 
     src/StringUtilsTests.cpp
 

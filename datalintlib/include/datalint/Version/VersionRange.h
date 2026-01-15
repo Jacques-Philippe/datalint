@@ -59,6 +59,12 @@ class VersionRange {
     return VersionRange(min, max);
   }
 
+  friend bool operator==(const VersionRange& lhs, const VersionRange& rhs) {
+    return lhs.Min_ == rhs.Min_ && lhs.Max_ == rhs.Max_;
+  }
+
+  friend bool operator!=(const VersionRange& lhs, const VersionRange& rhs) { return !(lhs == rhs); }
+
  private:
   /// @brief The lower bound of the range, if any
   std::optional<Version> Min_;

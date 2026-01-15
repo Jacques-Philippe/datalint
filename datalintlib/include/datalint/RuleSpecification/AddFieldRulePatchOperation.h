@@ -5,7 +5,7 @@
 namespace datalint::rules {
 class AddFieldRulePatchOperation final : public IRulePatchOperation {
  public:
-  explicit AddFieldRulePatchOperation(FieldRule rule) : Rule_(std::move(rule)) {}
+  explicit AddFieldRulePatchOperation(FieldRule&& rule) : Rule_(std::move(rule)) {}
 
   void Apply(std::vector<FieldRule>& rules) const override { rules.push_back(CloneRule(Rule_)); }
 
