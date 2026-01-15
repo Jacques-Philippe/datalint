@@ -67,6 +67,9 @@ Please find an example usage of this in main.cpp
 1. ~~Update unit tests so LayoutSpecification add/remove is properly tested~~
 1. ~~remove friend qualification to LayoutSpecificationBuilder from LayoutSpecification~~
 1. Define interface for rules patches
+    1. ~~Define Field parser~~
+    1. ~~Define value selector~~
+    1. Define value rule
 1. Define concrete example application rules patch
 1. Test functionality in `datalinttool`
 1. Create project pipelines with Github Actions
