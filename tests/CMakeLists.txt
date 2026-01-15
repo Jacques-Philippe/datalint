@@ -30,6 +30,7 @@ add_executable(datalintlib_tests
     src/LayoutSpecification/LayoutSpecificationValidatorTests.cpp
 
     src/RuleSpecification/ValueAtIndexSelectorTests.cpp
+    src/RuleSpecification/AllValuesSelectorTests.cpp
 
     src/RawDataTests.cpp
 
