@@ -20,6 +20,7 @@ add_executable(datalintlib_tests
     src/Error/ErrorCollectorTests.cpp
 
     src/FieldParser/CsvFieldParserTests.cpp
+    src/FieldParser/ParsedDataBuilderTests.cpp
 
     src/LayoutSpecification/ExpectedFieldTests.cpp
     src/LayoutSpecification/LayoutSpecificationTests.cpp

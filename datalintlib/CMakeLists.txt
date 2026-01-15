@@ -14,6 +14,8 @@ add_library(datalintlib
     include/datalint/FieldParser/ParsedField.h
     include/datalint/FieldParser/IFieldParser.h
     include/datalint/FieldParser/CsvFieldParser.h
+    include/datalint/FieldParser/ParsedData.h
+    include/datalint/FieldParser/ParsedDataBuilder.h
 
     include/datalint/FileParser/IFileParser.h
     include/datalint/FileParser/CsvFileParser.h
@@ -40,6 +42,7 @@ add_library(datalintlib
     src/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.cpp
 
     src/FieldParser/CsvFieldParser.cpp
+    src/FieldParser/ParsedDataBuilder.cpp
 
     src/FileParser/CsvFileParser.cpp
 
