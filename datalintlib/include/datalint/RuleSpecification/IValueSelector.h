@@ -16,5 +16,7 @@ class IValueSelector {
   /// @return The selected raw value
   virtual std::vector<const datalint::fieldparser::RawValue*> Select(
       const datalint::fieldparser::ParsedField& field) const = 0;
+
+  virtual std::unique_ptr<IValueSelector> Clone() const = 0;
 };
 }  // namespace datalint::rules

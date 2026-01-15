@@ -24,5 +24,11 @@ class AllValuesSelector : public IValueSelector {
     }
     return result;
   }
+
+  /// @brief Clone function to create a deep copy of the selector
+  std::unique_ptr<IValueSelector> Clone() const override {
+    // Simply allocate a new AllValuesSelector since it has no internal state
+    return std::make_unique<AllValuesSelector>(*this);
+  }
 };
 }  // namespace datalint::rules

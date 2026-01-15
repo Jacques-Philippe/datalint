@@ -25,6 +25,12 @@ class ValueAtIndexSelector final : public IValueSelector {
     return {&field.Values[index_]};
   }
 
+  /// @brief Clone function to create a deep copy of the selector
+  std::unique_ptr<IValueSelector> Clone() const override {
+    // Create a new selector with the same value
+    return std::make_unique<ValueAtIndexSelector>(index_);
+  }
+
  private:
   /// @brief The index of the value to select
   std::size_t index_;

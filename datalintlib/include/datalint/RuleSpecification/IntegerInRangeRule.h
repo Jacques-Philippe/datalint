@@ -24,6 +24,12 @@ class IntegerInRangeRule final : public IValueRule {
     }
   }
 
+  /// @brief Clone function for use in patching / RuleSpecificationBuilder
+  std::unique_ptr<IValueRule> Clone() const override {
+    // Simply create a new instance with the same min and max
+    return std::make_unique<IntegerInRangeRule>(Min_, Max_);
+  }
+
  private:
   int Min_;
   int Max_;

@@ -15,5 +15,7 @@ class IValueRule {
   /// @param errorCollector the error collector
   virtual void Evaluate(const RuleContext& ctx,
                         datalint::error::ErrorCollector& errorCollector) const = 0;
+
+  virtual std::unique_ptr<IValueRule> Clone() const = 0;
 };
 }  // namespace datalint::rules
