@@ -59,6 +59,7 @@ add_library(datalintlib
     src/LayoutSpecification/LayoutSpecificationValidator.cpp
 
     src/RawData.cpp
+    src/StringUtils.cpp
 )
 
 target_include_directories(datalintlib
