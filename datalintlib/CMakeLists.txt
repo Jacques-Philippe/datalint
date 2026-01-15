@@ -39,6 +39,9 @@ add_library(datalintlib
     include/datalint/RuleSpecification/IRulePatchOperation.h
     include/datalint/RuleSpecification/AddFieldRulePatchOperation.h
     include/datalint/RuleSpecification/RemoveFieldRulePatchOperation.h
+    include/datalint/RuleSpecification/RulePatch.h
+    include/datalint/RuleSpecification/RuleSpecification.h
+    include/datalint/RuleSpecification/RuleSpecificationBuilder.h
 
     include/datalint/RawData.h
     include/datalint/RawField.h
