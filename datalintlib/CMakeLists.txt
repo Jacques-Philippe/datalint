@@ -33,6 +33,7 @@ add_library(datalintlib
     include/datalint/RuleSpecification/RuleContext.h
     include/datalint/RuleSpecification/IValueSelector.h
     include/datalint/RuleSpecification/ValueAtIndexSelector.h
+    include/datalint/RuleSpecification/AllValuesSelector.h
 
     include/datalint/RawData.h
     include/datalint/RawField.h

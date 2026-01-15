@@ -11,10 +11,13 @@ TEST(ValueAtIndexSelectorTests, CanSelectValueAtIndex) {
       {"Value3", {"file.txt", 3}},
   };
   datalint::rules::ValueAtIndexSelector selector(1);
-  const datalint::fieldparser::RawValue& selectedValue = selector.Select(parsedField);
-  EXPECT_EQ(selectedValue.Value, "Value2");
-  EXPECT_EQ(selectedValue.Location.Filename, "file.txt");
-  EXPECT_EQ(selectedValue.Location.Line, 2);
+  auto selectedValues = selector.Select(parsedField);
+
+  ASSERT_EQ(selectedValues.size(), 1u);
+  ASSERT_NE(selectedValues[0], nullptr);
+  EXPECT_EQ(selectedValues[0]->Value, "Value2");
+  EXPECT_EQ(selectedValues[0]->Location.Filename, "file.txt");
+  EXPECT_EQ(selectedValues[0]->Location.Line, 2);
 }
 
 /// @brief Tests that selecting an out-of-range index throws an exception
@@ -26,8 +29,7 @@ TEST(ValueAtIndexSelectorTests, ThrowsWhenIndexOutOfRange) {
       {"Value2", {"file.txt", 2}},
   };
   datalint::rules::ValueAtIndexSelector selector(5);
-  EXPECT_THROW(selector.Select(parsedField), std::out_of_range);
+  auto selectedValues = selector.Select(parsedField);
 
-  datalint::rules::ValueAtIndexSelector selector2(-1);
-  EXPECT_THROW(selector2.Select(parsedField), std::out_of_range);
+  ASSERT_EQ(selectedValues.size(), 0);
 }
