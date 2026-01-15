@@ -6,6 +6,7 @@
 
 namespace datalint::rules {
 class RemoveFieldRulePatchOperation final : public IRulePatchOperation {
+ public:
   using Predicate = std::function<bool(const FieldRule&)>;
 
   explicit RemoveFieldRulePatchOperation(Predicate pred) : pred_(std::move(pred)) {}
