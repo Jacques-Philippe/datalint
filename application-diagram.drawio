@@ -461,7 +461,7 @@
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-78" value="IFieldParser&lt;div&gt;Interface responsible for providing functionality for parsing a single RawValue entry into a parsed field&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="3750" y="350" width="410" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-79" value="+ virtual ParsedField ParseField(const RawValue&amp;amp; value) = 0;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-78">
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-79" value="+ virtual ParsedField ParseField(const RawField&amp;amp; field) = 0;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-78">
           <mxGeometry y="70" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-83" value="ParsedField&lt;div&gt;Responsible for defining the shape of a parsed data field&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -503,7 +503,7 @@
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-98" value="CsvFieldParser : IFieldParser&lt;div&gt;Responsible for taking the values exposed in the RawField&#39;s Value, given it&#39;s a CSV, and converting it to a parsed value&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="3750" y="520" width="410" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-99" value="+ ParsedField ParseField(const RawValue&amp;amp; field) override const;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-98">
+        <mxCell id="OCAhNH6qDFIgZ2tFuoDw-99" value="+ ParsedField ParseField(const RawField&amp;amp; field) override const;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="OCAhNH6qDFIgZ2tFuoDw-98">
           <mxGeometry y="70" width="410" height="40" as="geometry" />
         </mxCell>
         <mxCell id="OCAhNH6qDFIgZ2tFuoDw-100" value="ParsedDataBuilder&lt;div&gt;Responsible for using the provided field parser to parse each field in raw data to parsed fields&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=70;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">

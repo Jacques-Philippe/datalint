@@ -1,15 +1,24 @@
 add_library(datalintlib
-    include/datalint/FileParser/IFileParser.h
-    include/datalint/FileParser/CsvFileParser.h
-    include/datalint/FileParser/datalint_input_namespace.h
+
     include/datalint/ApplicationDescriptor/ApplicationDescriptor.h
     include/datalint/ApplicationDescriptor/IApplicationDescriptorResolver.h
     include/datalint/ApplicationDescriptor/ResolveResult.h
     include/datalint/ApplicationDescriptor/ResolveError.h
     include/datalint/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.h
+
     include/datalint/Error/ErrorLog.h
     include/datalint/Error/ErrorCollector.h
     include/datalint/Error/datalint_error_namespace.h
+
+    include/datalint/FieldParser/RawValue.h
+    include/datalint/FieldParser/ParsedField.h
+    include/datalint/FieldParser/IFieldParser.h
+    include/datalint/FieldParser/CsvFieldParser.h
+
+    include/datalint/FileParser/IFileParser.h
+    include/datalint/FileParser/CsvFileParser.h
+    include/datalint/FileParser/datalint_input_namespace.h
+
     include/datalint/LayoutSpecification/ExpectedField.h
     include/datalint/LayoutSpecification/FieldOrderingConstraint.h
     include/datalint/LayoutSpecification/UnexpectedFieldStrictness.h
@@ -18,18 +27,26 @@ add_library(datalintlib
     include/datalint/LayoutSpecification/LayoutPatch.h
     include/datalint/LayoutSpecification/LayoutSpecificationValidator.h
     include/datalint/LayoutSpecification/LayoutPatchOperations.h
-    include/datalint/Version/Version.h
-    include/datalint/Version/VersionRange.h
+
     include/datalint/RawData.h
     include/datalint/RawField.h
     include/datalint/SourceLocation.h
+
+    include/datalint/Version/Version.h
+    include/datalint/Version/VersionRange.h
+
     include/datalint/datalint_namespace.h
 
-    src/FileParser/CsvFileParser.cpp
     src/ApplicationDescriptor/DefaultCsvApplicationDescriptorResolver.cpp
+
+    src/FieldParser/CsvFieldParser.cpp
+
+    src/FileParser/CsvFileParser.cpp
+
     src/LayoutSpecification/LayoutSpecification.cpp
     src/LayoutSpecification/LayoutSpecificationBuilder.cpp
     src/LayoutSpecification/LayoutSpecificationValidator.cpp
+
     src/RawData.cpp
 )
 
