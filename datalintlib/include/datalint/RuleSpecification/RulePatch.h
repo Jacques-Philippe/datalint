@@ -8,6 +8,7 @@
 #include <vector>
 
 namespace datalint::rules {
+/// @brief Class defining the structure for a versioned patch to our rules structure
 class RulePatch {
  public:
   /// @brief Constructor

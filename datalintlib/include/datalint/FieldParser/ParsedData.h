@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace datalint::fieldparser {
+/// @brief Class to contain all fields parsed from raw data
 class ParsedData {
  public:
   /// @brief Constructor that initializes ParsedData with a vector of ParsedField.

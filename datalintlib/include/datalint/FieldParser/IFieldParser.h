@@ -9,6 +9,7 @@ namespace datalint::fieldparser {
 /// @brief Interface for defining the parser of field values.
 class IFieldParser {
  public:
+  /// @brief Virtual destructor
   virtual ~IFieldParser() = default;
 
   /// @brief Parses a raw field value into its constituent raw values.

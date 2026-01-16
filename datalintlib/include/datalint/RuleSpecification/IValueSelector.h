@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace datalint::rules {
-/// @brief Interface for selecting a raw value from a parsed field.
+/// @brief Interface for selecting a set of raw values from a given parsed field.
 class IValueSelector {
  public:
   /// @brief Virtual destructor
@@ -17,6 +17,8 @@ class IValueSelector {
   virtual std::vector<const datalint::fieldparser::RawValue*> Select(
       const datalint::fieldparser::ParsedField& field) const = 0;
 
+  /// @brief Clone function
+  /// @return a clone of the value selector
   virtual std::unique_ptr<IValueSelector> Clone() const = 0;
 };
 }  // namespace datalint::rules

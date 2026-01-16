@@ -11,11 +11,11 @@ class ValueAtIndexSelector final : public IValueSelector {
   /// @brief Virtual destructor
   virtual ~ValueAtIndexSelector() = default;
   /// @brief Constructor
+  /// @param index the index at which we want to select our value
   ValueAtIndexSelector(std::size_t index) : index_(index) {}
   /// @brief Select function to select a raw value from a parsed field
   /// @param field the field from which we select the raw value
   /// @return The selected raw value
-  /// @throws std::out_of_range if the index is out of range for the field's values
   std::vector<const datalint::fieldparser::RawValue*> Select(
       const datalint::fieldparser::ParsedField& field) const override {
     if (index_ >= field.Values.size()) {

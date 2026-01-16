@@ -4,7 +4,7 @@
 #include <datalint/RuleSpecification/RuleContext.h>
 
 namespace datalint::rules {
-/// @brief Class responsible for specifying a rule to apply to a value
+/// @brief Interface responsible for specifying a rule to apply to a value
 class IValueRule {
  public:
   /// @brief Virtual destructor
@@ -16,6 +16,8 @@ class IValueRule {
   virtual void Evaluate(const RuleContext& ctx,
                         datalint::error::ErrorCollector& errorCollector) const = 0;
 
+  /// @brief Clone function
+  /// @return a clone of the rule
   virtual std::unique_ptr<IValueRule> Clone() const = 0;
 };
 }  // namespace datalint::rules
