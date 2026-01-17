@@ -28,6 +28,7 @@ TEST(TryParseIntTests, RejectsInvalidInput) {
   int value = 123;  // sentinel
 
   EXPECT_FALSE(TryParseInt("", value));
+  EXPECT_EQ(value, 123) << "Value should be unchanged as a result of the failed parse operation";
   EXPECT_FALSE(TryParseInt(" ", value));
   EXPECT_FALSE(TryParseInt("abc", value));
   EXPECT_FALSE(TryParseInt("12abc", value));
