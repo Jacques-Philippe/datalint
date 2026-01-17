@@ -133,4 +133,5 @@ TEST_F(RemoveFieldRulePatchOperationTests, RemoveRuleBySelectorType) {
   patch.Apply(rules);
 
   EXPECT_EQ(rules.size(), 1);  // all but one rule were AllValuesSelector
+  EXPECT_EQ(rules[0].FieldKey, "key3");
 }
