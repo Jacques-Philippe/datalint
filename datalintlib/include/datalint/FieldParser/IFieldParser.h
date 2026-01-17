@@ -3,8 +3,6 @@
 #include <datalint/FieldParser/ParsedField.h>
 #include <datalint/RawField.h>
 
-#include <string>
-
 namespace datalint::fieldparser {
 /// @brief Interface for defining the parser of field values.
 class IFieldParser {
