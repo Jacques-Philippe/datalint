@@ -43,3 +43,20 @@ TEST(CsvFileParserTest, CanInitializeWithFields) {
   int result = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
 }
+
+/// @brief Tests that the csv file parser handles empty string value
+TEST(CsvFileParserTest, HandlesEmptyStringValue) {
+  // Create a temporary CSV file for testing
+  const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("HandlesEmptyStringValue");
+  {
+    std::ofstream outFile(tempCsvFile);
+    outFile << "\n";
+  }
+  datalint::input::CsvFileParser parser;
+  const datalint::RawData rawData = parser.Parse(tempCsvFile);
+  const auto& fields = rawData.Fields();
+  ASSERT_EQ(fields.size(), 0);
+
+  int result = std::remove(tempCsvFile.c_str());
+  ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
+}

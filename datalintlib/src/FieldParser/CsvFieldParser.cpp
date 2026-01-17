@@ -16,11 +16,6 @@ ParsedField CsvFieldParser::ParseFieldValue(const RawField& rawFieldValue) const
       currentValue += c;
     }
   }
-  // Add the last value if any
-  if (!currentValue.empty()) {
-    parsedField.Values.push_back(RawValue{currentValue, rawFieldValue.Location});
-  }
-
   // Always add the last value (may be empty after trailing comma)
   parsedField.Values.push_back(RawValue{currentValue, rawFieldValue.Location});
 
