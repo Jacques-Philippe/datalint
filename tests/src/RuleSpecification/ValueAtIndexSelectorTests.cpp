@@ -20,8 +20,8 @@ TEST(ValueAtIndexSelectorTests, CanSelectValueAtIndex) {
   EXPECT_EQ(selectedValues[0]->Location.Line, 2);
 }
 
-/// @brief Tests that selecting an out-of-range index throws an exception
-TEST(ValueAtIndexSelectorTests, ThrowsWhenIndexOutOfRange) {
+/// @brief Tests that selecting an out-of-range index returns an empty vector
+TEST(ValueAtIndexSelectorTests, ReturnsEmptyVectorWhenOutOfRange) {
   datalint::fieldparser::ParsedField parsedField;
   parsedField.Key = "TestKey";
   parsedField.Values = {
