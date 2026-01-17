@@ -89,6 +89,7 @@ TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateAppli
   int removeResult = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(removeResult, 0);  // optional check that deletion of temporary file succeeded
 }
+
 /// @brief Tests that an error is received for duplicate application version fields in the raw data.
 TEST(DefaultCsvApplicationDescriptorResolverTest, ReturnsErrorWhenDuplicateApplicationVersion) {
   // Create a temporary CSV file for testing

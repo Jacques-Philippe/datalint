@@ -8,10 +8,16 @@
 using namespace datalint::rules;
 using namespace datalint;
 
+/// @brief Test fixture
 class TestAddRuleOperation final : public IRulePatchOperation {
  public:
+  /// @brief Constructor
+  /// @param key the key associated to the field rule to add to the rules
   explicit TestAddRuleOperation(std::string key) : key_(std::move(key)) {}
 
+  /// @brief Apply function to apply the given rule patch operation to the list of rules. Adds a
+  /// field rule with the given key to the list of rules.
+  /// @param rules the list of rules to modify
   void Apply(std::vector<FieldRule>& rules) const override {
     rules.push_back(FieldRule{key_,
                               nullptr,  // rule not needed for this test
@@ -19,14 +25,22 @@ class TestAddRuleOperation final : public IRulePatchOperation {
   }
 
  private:
+  /// @brief The key of the field rule to add
   std::string key_;
 };
 
+/// @brief Helper to create an example rule patch
+/// @param name the name of the patch
+/// @param range the version range the patch applies to
+/// @param ops the operations composing the patch
+/// @return the constructed rule patch
 RulePatch MakePatch(std::string name, VersionRange range,
                     std::vector<std::unique_ptr<IRulePatchOperation>> ops) {
   return RulePatch(std::move(name), std::move(range), std::move(ops));
 }
 
+/// @brief Test that given a patch belongs to the versions to apply, it's applied to the rules
+/// specification
 TEST(RuleSpecificationBuilderTests, AppliesPatchWhenVersionMatches) {
   RuleSpecificationBuilder builder;
   Version version{1, 0, 0};
@@ -42,6 +56,8 @@ TEST(RuleSpecificationBuilderTests, AppliesPatchWhenVersionMatches) {
   EXPECT_EQ(spec.Rules()[0].FieldKey, "field1");
 }
 
+/// @brief Test that given a patch does not belong to the versions to apply, it's not applied to the
+/// rules specification
 TEST(RuleSpecificationBuilderTests, SkipsPatchWhenVersionDoesNotMatch) {
   RuleSpecificationBuilder builder;
   Version version{2, 0, 0};
@@ -56,6 +72,8 @@ TEST(RuleSpecificationBuilderTests, SkipsPatchWhenVersionDoesNotMatch) {
   EXPECT_TRUE(spec.Rules().empty());
 }
 
+/// @brief Test that given many patches belong to the versions to apply, they're applied to the
+/// rules specification
 TEST(RuleSpecificationBuilderTests, AppliesMultipleMatchingPatches) {
   RuleSpecificationBuilder builder;
   Version version{1, 0, 0};
@@ -77,6 +95,8 @@ TEST(RuleSpecificationBuilderTests, AppliesMultipleMatchingPatches) {
   EXPECT_EQ(spec.Rules()[1].FieldKey, "field2");
 }
 
+/// @brief Test that given many patches belong to the versions to apply, they are applied in the
+/// order in which they are provided
 TEST(RuleSpecificationBuilderTests, AppliesPatchesInOrder) {
   RuleSpecificationBuilder builder;
   Version version{1, 0, 0};
@@ -98,6 +118,7 @@ TEST(RuleSpecificationBuilderTests, AppliesPatchesInOrder) {
   EXPECT_EQ(spec.Rules()[1].FieldKey, "second");
 }
 
+/// @brief Test that given no patches are provided, the rules specification is empty
 TEST(RuleSpecificationBuilderTests, NoPatchesProducesEmptySpecification) {
   RuleSpecificationBuilder builder;
   Version version{1, 0, 0};

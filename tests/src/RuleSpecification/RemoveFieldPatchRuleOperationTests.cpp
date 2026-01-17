@@ -8,20 +8,30 @@
 using namespace datalint::rules;
 using namespace datalint::fieldparser;
 
+/// @brief Fixture for remove field rule patch tests
 class RemoveFieldRulePatchOperationTests : public ::testing::Test {
  protected:
-  // Helper to create a simple FieldRule
+  /// @brief Helper to create a field rule instance with default rule Integer in range and default
+  /// selector All values
+  /// @param key the key associated to the field rule
+  /// @return the constructed field rule
   FieldRule MakeFieldRule(std::string key) {
     return FieldRule{key, std::make_unique<IntegerInRangeRule>(0, 10),
                      std::make_unique<AllValuesSelector>()};
   }
 
+  /// @brief Helper to create a field rule instance
+  /// @param key the key associated to the field rule
+  /// @param rule the field rule's rule
+  /// @param selector the field rule's selector
+  /// @return the constructed field rule
   FieldRule MakeFieldRule(std::string key, std::unique_ptr<IValueRule> rule,
                           std::unique_ptr<IValueSelector> selector) {
     return FieldRule{key, std::move(rule), std::move(selector)};
   }
 };
 
+/// @brief Test that we're able to remove any field rule by the field rule's key
 TEST_F(RemoveFieldRulePatchOperationTests, RemovesRuleByKey) {
   std::vector<FieldRule> rules;
   rules.push_back(MakeFieldRule("key1"));
@@ -35,6 +45,7 @@ TEST_F(RemoveFieldRulePatchOperationTests, RemovesRuleByKey) {
   EXPECT_EQ(rules[0].FieldKey, "key2");
 }
 
+/// @brief Test that we're able to remove multiple instances of any field rule matching the criteria
 TEST_F(RemoveFieldRulePatchOperationTests, RemovesMultipleMatchingRules) {
   std::vector<FieldRule> rules;
   rules.push_back(MakeFieldRule("remove"));
@@ -49,6 +60,7 @@ TEST_F(RemoveFieldRulePatchOperationTests, RemovesMultipleMatchingRules) {
   EXPECT_EQ(rules[0].FieldKey, "keep");
 }
 
+/// @brief Test that given no field rules match the criteria, there's no change to the rules vector
 TEST_F(RemoveFieldRulePatchOperationTests, NoMatchingRulesLeavesVectorUnchanged) {
   std::vector<FieldRule> rules;
   rules.push_back(MakeFieldRule("key1"));
@@ -64,6 +76,7 @@ TEST_F(RemoveFieldRulePatchOperationTests, NoMatchingRulesLeavesVectorUnchanged)
   EXPECT_EQ(rules[1].FieldKey, "key2");
 }
 
+/// @brief Test that even if the rules vector is empty the patch operation doesn't throw
 TEST_F(RemoveFieldRulePatchOperationTests, EmptyVector) {
   std::vector<FieldRule> rules;
 
@@ -74,6 +87,7 @@ TEST_F(RemoveFieldRulePatchOperationTests, EmptyVector) {
   EXPECT_TRUE(rules.empty());
 }
 
+/// @brief Test that we're able to remove a field rule by value rule type as criteria
 TEST_F(RemoveFieldRulePatchOperationTests, RemoveRuleByValueRuleType) {
   std::vector<FieldRule> rules;
 
@@ -97,6 +111,7 @@ TEST_F(RemoveFieldRulePatchOperationTests, RemoveRuleByValueRuleType) {
   EXPECT_TRUE(rules.empty());  // all rules were IntegerInRangeRule
 }
 
+/// @brief Test that we're able to remove a field rule by selector type as criteria
 TEST_F(RemoveFieldRulePatchOperationTests, RemoveRuleBySelectorType) {
   std::vector<FieldRule> rules;
 
