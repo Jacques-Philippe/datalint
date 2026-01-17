@@ -21,6 +21,9 @@ ParsedField CsvFieldParser::ParseFieldValue(const RawField& rawFieldValue) const
     parsedField.Values.push_back(RawValue{currentValue, rawFieldValue.Location});
   }
 
+  // Always add the last value (may be empty after trailing comma)
+  parsedField.Values.push_back(RawValue{currentValue, rawFieldValue.Location});
+
   return parsedField;
 }
 }  // namespace datalint::fieldparser
