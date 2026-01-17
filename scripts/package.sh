@@ -11,6 +11,6 @@ conan build .
 conan export-pkg . \
     --name=datalintlib \
     --version=0.1.0 \
-    --user=jacques \
+    --user=test \
     --channel=stable \
     --profile:host=profiles/macosx
