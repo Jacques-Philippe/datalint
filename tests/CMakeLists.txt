@@ -11,12 +11,16 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE) # Important for MSVC
 FetchContent_MakeAvailable(googletest)
 
 add_executable(datalintlib_tests
-    src/RawDataTests.cpp
+
     src/CsvFileParserTests.cpp
+
     src/DefaultCsvApplicationDescriptorResolverTests.cpp
 
     src/Error/ErrorLogTests.cpp
     src/Error/ErrorCollectorTests.cpp
+
+    src/FieldParser/CsvFieldParserTests.cpp
+    src/FieldParser/ParsedDataBuilderTests.cpp
 
     src/LayoutSpecification/ExpectedFieldTests.cpp
     src/LayoutSpecification/LayoutSpecificationTests.cpp
@@ -24,6 +28,20 @@ add_executable(datalintlib_tests
     src/LayoutSpecification/LayoutPatchTests.cpp
     src/LayoutSpecification/LayoutPatchOperationsTests.cpp
     src/LayoutSpecification/LayoutSpecificationValidatorTests.cpp
+
+    src/RuleSpecification/FieldRuleTests.cpp
+    src/RuleSpecification/ValueAtIndexSelectorTests.cpp
+    src/RuleSpecification/AllValuesSelectorTests.cpp
+    src/RuleSpecification/IntegerInRangeRuleTests.cpp
+    src/RuleSpecification/AddFieldPatchRuleOperationTests.cpp
+    src/RuleSpecification/RemoveFieldPatchRuleOperationTests.cpp
+    src/RuleSpecification/RulePatchTests.cpp
+    src/RuleSpecification/RuleSpecificationTests.cpp
+    src/RuleSpecification/RuleSpecificationBuilderTests.cpp
+
+    src/StringUtilsTests.cpp
+
+    src/RawDataTests.cpp
 
     src/Version/VersionTests.cpp
     src/Version/VersionRangeTests.cpp

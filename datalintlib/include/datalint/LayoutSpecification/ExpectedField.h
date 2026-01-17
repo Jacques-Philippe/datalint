@@ -13,14 +13,14 @@ class ExpectedField {
  public:
   /// @brief Default Constructor: initializes minCount to 1 and maxCount to unlimited, i.e. "At
   /// least once"
-  ExpectedField() : minCount(1), maxCount(std::nullopt) {}
+  ExpectedField() : MinCount_(1), MaxCount_(std::nullopt) {}
 
   /// @brief Explicit constructor
   /// @param minCount The minimum number of occurrences of this field
   /// @param maxCount The maximum number of occurrences of this field (or std::nullopt for
   /// unlimited)
   ExpectedField(std::size_t minCount, std::optional<std::size_t> maxCount = std::nullopt)
-      : minCount(minCount), maxCount(maxCount) {
+      : MinCount_(minCount), MaxCount_(maxCount) {
     if (maxCount && *maxCount < minCount) {
       throw std::invalid_argument("MaxCount < MinCount");
     }
@@ -30,34 +30,34 @@ class ExpectedField {
   /// @param count The new minimum number of occurrences
   /// @throws std::invalid_argument if the new min count is greater than the current max count
   void SetMinCount(std::size_t count) {
-    if (maxCount && *maxCount < count) {
+    if (MaxCount_ && *MaxCount_ < count) {
       throw std::invalid_argument("MaxCount < MinCount");
     }
-    minCount = count;
+    MinCount_ = count;
   }
 
   /// @brief Sets the maximum number of occurrences of this field
   /// @param count the new maximum number of occurrences (or std::nullopt for unlimited)
   /// @throws std::invalid_argument if the new max count is less than the current min count
   void SetMaxCount(std::optional<std::size_t> count) {
-    if (count && *count < minCount) {
+    if (count && *count < MinCount_) {
       throw std::invalid_argument("MaxCount < MinCount");
     }
-    maxCount = count;
+    MaxCount_ = count;
   }
 
   /// @brief Getter for the minimum number of occurrences of this field
   /// @return The minimum number of occurrences
-  std::size_t MinCount() const { return minCount; }
+  std::size_t MinCount() const { return MinCount_; }
 
   /// @brief Getter for the maximum number of occurrences of this field
   /// @return The maximum number of occurrences
-  const std::optional<std::size_t>& MaxCount() const { return maxCount; }
+  const std::optional<std::size_t>& MaxCount() const { return MaxCount_; }
 
  private:
   /// @brief The minimum number of occurrences of this field
-  std::size_t minCount;
+  std::size_t MinCount_;
   /// @brief The maximum number of occurrences of this field
-  std::optional<std::size_t> maxCount;
+  std::optional<std::size_t> MaxCount_;
 };
 }  // namespace datalint::layout
