@@ -83,3 +83,15 @@ if (MSVC)
 else()
     target_compile_options(datalintlib PRIVATE -Wall -Wextra -Wpedantic)
 endif()
+
+install(TARGETS datalintlib
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        RUNTIME DESTINATION bin
+)
+install(DIRECTORY include/datalint
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.h"
+        PATTERN "gtest" EXCLUDE
+        PATTERN "gmock" EXCLUDE
+)
