@@ -20,7 +20,14 @@ struct FieldRule {
 /// @brief Clone function to return a copy of the incoming rule
 /// @param rule the rule to copy
 /// @return a copy of the rule
+/// @throws logic error for either value rule or selector not initialized
 inline FieldRule CloneRule(const FieldRule& rule) {
+  if (!rule.ValueRule) {
+    throw std::logic_error("FieldRule ValueRule is not initialized");
+  }
+  if (!rule.ValueSelector) {
+    throw std::logic_error("FieldRule ValueSelector is not initialized");
+  }
   return FieldRule{
       rule.FieldKey,
       rule.ValueRule->Clone(),
