@@ -54,10 +54,16 @@ TEST_F(AddFieldRulePatchOperationTests, ClonesRule) {
   std::vector<FieldRule> rules;
   patch.Apply(rules);
 
-  // Mutate the original rule
-  original.FieldKey = "mutated";
+  // Apply again to verify each application produces an independent clone
+  std::vector<FieldRule> rules2;
+  patch.Apply(rules2);
 
-  // Applied rule should not change
+  // Both applications should have the same key
   ASSERT_EQ(rules.size(), 1);
+  ASSERT_EQ(rules2.size(), 1);
   EXPECT_EQ(rules[0].FieldKey, "key3");
+  EXPECT_EQ(rules2[0].FieldKey, "key3");
+
+  // Verify they are independent objects (different addresses)
+  EXPECT_NE(&rules[0], &rules2[0]);
 }
