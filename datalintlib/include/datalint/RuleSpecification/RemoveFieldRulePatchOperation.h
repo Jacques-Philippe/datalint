@@ -14,15 +14,15 @@ class RemoveFieldRulePatchOperation final : public IRulePatchOperation {
 
   /// @brief Constructor
   /// @param pred the predicate that defines how we match to certain values inside of a parsed field
-  explicit RemoveFieldRulePatchOperation(Predicate pred) : pred_(std::move(pred)) {}
+  explicit RemoveFieldRulePatchOperation(Predicate pred) : Pred_(std::move(pred)) {}
 
   /// @brief Concrete implementation of the apply function, allowing us to remove field rules from
   /// our set of all rules, given they meet the predicate criteria
   /// @param rules the rules to modify
-  void Apply(std::vector<FieldRule>& rules) const override { std::erase_if(rules, pred_); }
+  void Apply(std::vector<FieldRule>& rules) const override { std::erase_if(rules, Pred_); }
 
  private:
   /// @brief the predicate that determines whether certain field rules should be removed
-  Predicate pred_;
+  Predicate Pred_;
 };
 }  // namespace datalint::rules
