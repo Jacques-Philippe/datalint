@@ -3,6 +3,8 @@
 #include <datalint/Error/ErrorCollector.h>
 #include <datalint/RuleSpecification/RuleContext.h>
 
+#include <memory>
+
 namespace datalint::rules {
 /// @brief Interface responsible for specifying a rule to apply to a value
 class IValueRule {

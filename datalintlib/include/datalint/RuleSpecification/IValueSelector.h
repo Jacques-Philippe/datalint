@@ -3,6 +3,7 @@
 #include <datalint/FieldParser/ParsedField.h>
 #include <datalint/FieldParser/RawValue.h>
 
+#include <memory>
 #include <vector>
 
 namespace datalint::rules {
