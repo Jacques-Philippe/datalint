@@ -6,7 +6,7 @@
 
 namespace datalint::rules {
 /// @brief Concrete implementation of IValueSelector that selects all values
-class AllValuesSelector : public IValueSelector {
+class AllValuesSelector final : public IValueSelector {
  public:
   /// @brief Virtual destructor
   virtual ~AllValuesSelector() = default;
@@ -18,6 +18,7 @@ class AllValuesSelector : public IValueSelector {
   std::vector<const datalint::fieldparser::RawValue*> Select(
       const datalint::fieldparser::ParsedField& field) const override {
     std::vector<const datalint::fieldparser::RawValue*> result;
+    result.reserve(field.Values.size());
     for (const auto& value : field.Values) {
       result.push_back(&value);
     }
