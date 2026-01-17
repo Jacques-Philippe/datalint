@@ -4,13 +4,15 @@
 #include <datalint/FieldParser/ParsedData.h>
 #include <datalint/RawData.h>
 
+#include <memory>
+
 namespace datalint::fieldparser {
 /// @brief Builder class for constructing ParsedData from RawData.
 class ParsedDataBuilder {
  public:
   /// @brief Constructor that initializes the ParsedDataBuilder with a field parser.
   /// @param fieldparser the field parser to use for parsing raw fields.
-  ParsedDataBuilder(std::unique_ptr<IFieldParser> fieldparser);
+  explicit ParsedDataBuilder(std::unique_ptr<IFieldParser> fieldparser);
 
   /// @brief Builds and returns the ParsedData object.
   /// @return The constructed ParsedData object.
