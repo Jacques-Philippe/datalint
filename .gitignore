@@ -60,3 +60,16 @@ __pycache__/
 
 # pre-commit
 .pre-commit/            # internal pre-commit cache
+
+# Conan 2.x generated files
+conan.lock
+CMakeUserPresets.json
+conan_toolchain.cmake
+conandeps_legacy.cmake
+cmakedeps_macros.cmake
+CMakePresets.json
+conanbuild.sh
+conanbuildenv-*.sh
+conanrun.sh
+conanrunenv-*.sh
+deactivate_*.sh
