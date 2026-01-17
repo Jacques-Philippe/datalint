@@ -29,6 +29,11 @@ class IntegerInRangeRuleTests : public ::testing::Test {
   }
 };
 
+/// @brief Tests that integer in range rule throws for min greater than max
+TEST_F(IntegerInRangeRuleTests, ThrowsForMinGreaterThanMax) {
+  EXPECT_THROW(IntegerInRangeRule rule(10, 1), std::invalid_argument);
+}
+
 /// @brief Test that given an integer in range rule and a rule context made up of an integer in that
 /// range, the rule evaluates successfully and no errors are collected
 TEST_F(IntegerInRangeRuleTests, AcceptsIntegerWithinRange) {

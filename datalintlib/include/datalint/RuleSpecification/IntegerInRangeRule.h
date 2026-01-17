@@ -12,7 +12,13 @@ class IntegerInRangeRule final : public IValueRule {
   /// @brief Constructor
   /// @param min the minimum part of the range (inclusive)
   /// @param max the maximum part of the range (inclusive)
-  IntegerInRangeRule(int min, int max) : Min_(min), Max_(max) {}
+  /// @throws invalid_argument for min greater than max
+  IntegerInRangeRule(int min, int max) : Min_(min), Max_(max) {
+    // Validate that the min is less than the max
+    if (min > max) {
+      throw std::invalid_argument("IntegerInRangeRule: min cannot be greater than max");
+    }
+  }
 
   /// @brief Function determining whether the incoming field value meets the rule expectations
   /// @param ctx the context available to the rule's evaluation
