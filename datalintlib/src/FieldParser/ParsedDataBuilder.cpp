@@ -8,6 +8,7 @@ ParsedDataBuilder::ParsedDataBuilder(std::unique_ptr<IFieldParser> fieldparser)
 
 ParsedData ParsedDataBuilder::Build(const RawData& rawData) const {
   std::vector<ParsedField> parsedFields;
+  parsedFields.reserve(rawData.Fields().size());
   for (const RawField& rawField : rawData.Fields()) {
     ParsedField parsedField = FieldParser_->ParseFieldValue(rawField);
     parsedFields.push_back(std::move(parsedField));
