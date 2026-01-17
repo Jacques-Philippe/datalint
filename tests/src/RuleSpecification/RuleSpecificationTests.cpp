@@ -17,7 +17,7 @@ FieldRule MakeFieldRule(const std::string& key) {
 }
 
 /// @brief Test that the rule specification can be built from a list of field rules
-TEST(RuleSpecificationTest, StoresRules) {
+TEST(RuleSpecificationTests, StoresRules) {
   std::vector<FieldRule> rules;
   rules.push_back(MakeFieldRule("key1"));
   rules.push_back(MakeFieldRule("key2"));
