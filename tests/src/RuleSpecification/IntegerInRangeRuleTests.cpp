@@ -89,7 +89,11 @@ TEST_F(IntegerInRangeRuleTests, AcceptsBoundaryValues) {
   IntegerInRangeRule rule(10, 20);
 
   rule.Evaluate(MakeContext("10"), errorCollector);
-  rule.Evaluate(MakeContext("20"), errorCollector);
+  EXPECT_FALSE(errorCollector.HasErrors()) << "Min boundary (10) should be accepted";
 
-  EXPECT_FALSE(errorCollector.HasErrors());
+  // make sure we reset error collector
+  errorCollector = datalint::error::ErrorCollector{};
+
+  rule.Evaluate(MakeContext("20"), errorCollector);
+  EXPECT_FALSE(errorCollector.HasErrors()) << "Max boundary (20) should be accepted";
 }
