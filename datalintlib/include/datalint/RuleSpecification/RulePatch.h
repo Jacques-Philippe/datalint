@@ -17,11 +17,13 @@ class RulePatch {
   /// @param operations the patch operations to perform on the rules
   RulePatch(std::string name, VersionRange appliesTo,
             std::vector<std::unique_ptr<IRulePatchOperation>> operations)
-      : Name_(name), AppliesTo_(appliesTo), Operations_(std::move(operations)) {}
+      : Name_(std::move(name)),
+        AppliesTo_(std::move(appliesTo)),
+        Operations_(std::move(operations)) {}
 
   /// @brief Getter for the patch name
   /// @return the name of the patch
-  std::string Name() const { return Name_; }
+  const std::string& Name() const { return Name_; }
   /// @brief Getter for the version range the patch applies to
   /// @return the version range the patch applies to
   VersionRange AppliesTo() const { return AppliesTo_; }
