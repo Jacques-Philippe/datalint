@@ -44,7 +44,8 @@ TEST(CsvFileParserTest, CanInitializeWithFields) {
   ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
 }
 
-/// @brief Tests that the csv file parser handles empty string value
+/// @brief Tests that the csv file parser handles empty string value and produces raw data with no
+/// values
 TEST(CsvFileParserTest, HandlesEmptyStringValue) {
   // Create a temporary CSV file for testing
   const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("HandlesEmptyStringValue");
@@ -56,6 +57,91 @@ TEST(CsvFileParserTest, HandlesEmptyStringValue) {
   const datalint::RawData rawData = parser.Parse(tempCsvFile);
   const auto& fields = rawData.Fields();
   ASSERT_EQ(fields.size(), 0);
+
+  int result = std::remove(tempCsvFile.c_str());
+  ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
+}
+
+/// @brief Tests that the csv file parser handles single value string and creates raw data with a
+/// single value with empty string as value
+TEST(CsvFileParserTest, HandlesSingleValue) {
+  // Create a temporary CSV file for testing
+  const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("HandlesSingleValue");
+  {
+    std::ofstream outFile(tempCsvFile);
+    outFile << "HelloWorld\n";
+  }
+  datalint::input::CsvFileParser parser;
+  const datalint::RawData rawData = parser.Parse(tempCsvFile);
+  const auto& fields = rawData.Fields();
+  ASSERT_EQ(fields.size(), 1);
+
+  EXPECT_EQ(fields[0].Key, "HelloWorld");
+  EXPECT_EQ(fields[0].Value, "");
+
+  int result = std::remove(tempCsvFile.c_str());
+  ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
+}
+
+/// @brief Tests that the csv file parser handles a trailing comma; we expect raw data to be made up
+/// of one element with an empty string as value
+TEST(CsvFileParserTest, HandlesTrailingComma) {
+  // Create a temporary CSV file for testing
+  const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("HandlesTrailingComma");
+  {
+    std::ofstream outFile(tempCsvFile);
+    outFile << "HelloWorld,\n";
+  }
+  datalint::input::CsvFileParser parser;
+  const datalint::RawData rawData = parser.Parse(tempCsvFile);
+  const auto& fields = rawData.Fields();
+  ASSERT_EQ(fields.size(), 1);
+
+  EXPECT_EQ(fields[0].Key, "HelloWorld");
+  EXPECT_EQ(fields[0].Value, "");
+
+  int result = std::remove(tempCsvFile.c_str());
+  ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
+}
+
+/// @brief Tests that the csv file parser handles a leading comma; we expect raw data to be made up
+/// of one element with an empty string as key and the rest as value
+TEST(CsvFileParserTest, HandlesLeadingComma) {
+  // Create a temporary CSV file for testing
+  const std::string tempCsvFile = datalint::test::MakeTempCsvFilename("HandlesLeadingComma");
+  {
+    std::ofstream outFile(tempCsvFile);
+    outFile << ",HelloWorld\n";
+  }
+  datalint::input::CsvFileParser parser;
+  const datalint::RawData rawData = parser.Parse(tempCsvFile);
+  const auto& fields = rawData.Fields();
+  ASSERT_EQ(fields.size(), 1);
+
+  EXPECT_EQ(fields[0].Key, "");
+  EXPECT_EQ(fields[0].Value, "HelloWorld");
+
+  int result = std::remove(tempCsvFile.c_str());
+  ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
+}
+
+/// @brief Tests that the csv file parser handles empty values between commas; we expect the key to
+/// be the first element, the value should be whatever comes after
+TEST(CsvFileParserTest, HandlesEmptyValuesBetweenCommas) {
+  // Create a temporary CSV file for testing
+  const std::string tempCsvFile =
+      datalint::test::MakeTempCsvFilename("HandlesEmptyValuesBetweenCommas");
+  {
+    std::ofstream outFile(tempCsvFile);
+    outFile << ",Hello,,World\n";
+  }
+  datalint::input::CsvFileParser parser;
+  const datalint::RawData rawData = parser.Parse(tempCsvFile);
+  const auto& fields = rawData.Fields();
+  ASSERT_EQ(fields.size(), 1);
+
+  EXPECT_EQ(fields[0].Key, "");
+  EXPECT_EQ(fields[0].Value, "Hello,,World");
 
   int result = std::remove(tempCsvFile.c_str());
   ASSERT_EQ(result, 0);  // optional check that deletion of temporary file succeeded
