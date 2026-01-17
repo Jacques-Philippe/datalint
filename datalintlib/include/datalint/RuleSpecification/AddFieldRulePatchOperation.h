@@ -1,6 +1,9 @@
 #pragma once
 
+#include <datalint/RuleSpecification/FieldRule.h>
 #include <datalint/RuleSpecification/IRulePatchOperation.h>
+
+#include <vector>
 
 namespace datalint::rules {
 /// @brief Concrete class of rule patch operation for adding a field to a rule patch
