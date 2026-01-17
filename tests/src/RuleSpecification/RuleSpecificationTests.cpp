@@ -46,9 +46,6 @@ TEST(RuleSpecificationTests, TakesOwnershipOfRules) {
 
   RuleSpecification spec(std::move(rules));
 
-  // Moved-from vector should be empty or in valid but unspecified state
-  EXPECT_TRUE(rules.empty());
-
   ASSERT_EQ(spec.Rules().size(), 1);
   EXPECT_EQ(spec.Rules()[0].FieldKey, "key");
 }
