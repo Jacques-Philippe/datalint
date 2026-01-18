@@ -22,8 +22,8 @@ class DatalintLibConan(ConanFile):
         "fPIC": True,
     }
     exports_sources = (
-        "datalintlib/include/*",
-        "datalintlib/src/*",
+        "datalintlib/include/**",
+        "datalintlib/src/**",
         "datalintlib/CMakeLists.txt",
     )
     generators = "CMakeDeps"
