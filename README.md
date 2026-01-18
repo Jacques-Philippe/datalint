@@ -81,5 +81,5 @@ Please find an example usage of this in main.cpp
 1. ~~Add conan to project, be able to output local conan package as a static library~~
 1. Define concrete example application rules patch
 1. Test functionality in `datalinttool`
-1. ~~Create project pipelines with Github Actions~~
+1. ~~Create project pipelines with GitHub Actions~~
 1. Migrate example project `datalinttool` to another repo
