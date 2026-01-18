@@ -78,7 +78,7 @@ Please find an example usage of this in main.cpp
     1. ~~Define rule patch operations~~
     1. ~~Define rule specification~~
     1. ~~Define rule specification builder~~
-1. Add conan to project, be able to output local conan package as a static library
+1. ~~Add conan to project, be able to output local conan package as a static library~~
 1. Define concrete example application rules patch
 1. Test functionality in `datalinttool`
 1. ~~Create project pipelines with Github Actions~~

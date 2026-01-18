@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -e
+set -e
 
 # install dependencies
 conan install . --profile=profiles/macosx
