@@ -41,7 +41,7 @@ class DatalintLibConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(build_script_folder="datalintlib")
         cmake.build()
 
     def package(self):
