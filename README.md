@@ -35,6 +35,18 @@ The user is responsible for consuming the `datalint` library to
     ```bash
     brew install conan
     ```
+1. Build the project
+    ```bash
+    . ./scripts/build.sh # On mac
+    ```
+1. Run tests
+    ```bash
+    . ./scripts/test.sh # On mac
+    ```
+1. Create conan package
+    ```bash
+    . ./scripts/package.sh # On mac
+    ```
 
 ## CSV Parser
 A note on the CSV parser. Input files are parsed according to the rules of their format. Validation operates on parsed field values, not raw textual representation. So in other words, the following CSV row
