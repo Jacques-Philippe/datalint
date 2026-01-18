@@ -21,15 +21,31 @@ The user is responsible for consuming the `datalint` library to
 ## Developer Get Started
 1. Clone the repo
 1. Install the requirements for the python virtual environment
-   ```
+   ```bash
    python -m venv .venv
    . .venv/Scripts/Activate # Windows
    source .venv/bin/activate # MacOSX
    pip install -r requirements.txt
    ```
 1. Activate pre-commit hooks
-    ```
+    ```bash
     python -m pre_commit install
+    ```
+1. Install conan
+    ```bash
+    brew install conan
+    ```
+1. Build the project
+    ```bash
+    . ./scripts/build.sh # On mac
+    ```
+1. Run tests
+    ```bash
+    . ./scripts/test.sh # On mac
+    ```
+1. Create conan package
+    ```bash
+    . ./scripts/package.sh # On mac
     ```
 
 ## CSV Parser
@@ -74,7 +90,8 @@ Please find an example usage of this in main.cpp
     1. ~~Define rule patch operations~~
     1. ~~Define rule specification~~
     1. ~~Define rule specification builder~~
+1. ~~Add conan to project, be able to output local conan package as a static library~~
 1. Define concrete example application rules patch
 1. Test functionality in `datalinttool`
-1. Create project pipelines with Github Actions
+1. ~~Create project pipelines with GitHub Actions~~
 1. Migrate example project `datalinttool` to another repo
