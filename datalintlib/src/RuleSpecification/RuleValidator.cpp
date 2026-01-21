@@ -30,15 +30,16 @@ bool RuleValidator::ValidateFieldRule(const FieldRule& rule,
     matchedAnyField = true;
 
     const auto selectedValues = rule.ValueSelector->Select(field);
+    const auto errorCountBefore = errorCollector.ErrorCount();
 
     for (const auto& value : selectedValues) {
       RuleContext ctx{field, *value};
 
       rule.ValueRule->Evaluate(ctx, errorCollector);
+    }
 
-      if (errorCollector.HasErrors()) {
-        success = false;
-      }
+    if (errorCollector.ErrorCount() > errorCountBefore) {
+      success = false;
     }
   }
 
