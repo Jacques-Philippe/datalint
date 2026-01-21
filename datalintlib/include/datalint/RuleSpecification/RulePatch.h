@@ -21,6 +21,14 @@ class RulePatch {
         AppliesTo_(std::move(appliesTo)),
         Operations_(std::move(operations)) {}
 
+  // Delete copy constructor/assignment explicitly to avoid confusion
+  RulePatch(const RulePatch&) = delete;
+  RulePatch& operator=(const RulePatch&) = delete;
+
+  // Default move constructor/assignment
+  RulePatch(RulePatch&&) = default;
+  RulePatch& operator=(RulePatch&&) = default;
+
   /// @brief Getter for the patch name
   /// @return the name of the patch
   const std::string& Name() const { return Name_; }

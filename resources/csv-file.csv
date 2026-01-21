@@ -22,3 +22,4 @@ key_extra,val,extra,Row with extra columns (third column should be ignored by si
 "complex ""key"", with comma","value","Complex key with embedded quotes and comma"
 "key-with-newlines","line1\nline2","Explicit escaped newline sequence (literal backslash+n)"
 trailing_comma,value_with_comma,This field contains,a,comma but not quoted
+key10,-50,whatever

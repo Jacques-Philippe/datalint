@@ -41,6 +41,7 @@ add_library(datalintlib
     include/datalint/RuleSpecification/RemoveFieldRulePatchOperation.h
     include/datalint/RuleSpecification/RulePatch.h
     include/datalint/RuleSpecification/RuleSpecification.h
+    include/datalint/RuleSpecification/RuleValidator.h
     include/datalint/RuleSpecification/RuleSpecificationBuilder.h
 
     include/datalint/RawData.h
@@ -63,6 +64,8 @@ add_library(datalintlib
     src/LayoutSpecification/LayoutSpecification.cpp
     src/LayoutSpecification/LayoutSpecificationBuilder.cpp
     src/LayoutSpecification/LayoutSpecificationValidator.cpp
+
+    src/RuleSpecification/RuleValidator.cpp
 
     src/RawData.cpp
     src/StringUtils.cpp
