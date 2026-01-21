@@ -127,8 +127,6 @@ int main(int argc, char** argv) {
     std::cerr << "Validation failed:\n";
     printErrors();
     return 1;
-  } else {
-    // output success message to file
   }
 
   std::cout << "datalinttool executed successfully!\n";
