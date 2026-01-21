@@ -19,6 +19,8 @@ add_executable(datalintlib_tests
     src/Error/ErrorLogTests.cpp
     src/Error/ErrorCollectorTests.cpp
 
+    src/ErrorProcessor/FileOutputErrorProcessorTests.cpp
+
     src/FieldParser/CsvFieldParserTests.cpp
     src/FieldParser/ParsedDataBuilderTests.cpp
 

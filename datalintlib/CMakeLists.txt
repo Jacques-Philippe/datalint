@@ -10,6 +10,9 @@ add_library(datalintlib
     include/datalint/Error/ErrorCollector.h
     include/datalint/Error/datalint_error_namespace.h
 
+    include/datalint/ErrorProcessor/IErrorProcessor.h
+    include/datalint/ErrorProcessor/FileOutputErrorProcessor.h
+
     include/datalint/FieldParser/RawValue.h
     include/datalint/FieldParser/ParsedField.h
     include/datalint/FieldParser/IFieldParser.h
@@ -60,6 +63,8 @@ add_library(datalintlib
     src/FieldParser/ParsedDataBuilder.cpp
 
     src/FileParser/CsvFileParser.cpp
+
+    src/ErrorProcessor/FileOutputErrorProcessor.cpp
 
     src/LayoutSpecification/LayoutSpecification.cpp
     src/LayoutSpecification/LayoutSpecificationBuilder.cpp

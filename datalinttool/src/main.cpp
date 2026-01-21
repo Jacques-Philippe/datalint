@@ -3,6 +3,7 @@
 #include <datalint/ApplicationDescriptor/ResolveResult.h>
 #include <datalint/Error/ErrorCollector.h>
 #include <datalint/Error/ErrorLog.h>
+#include <datalint/ErrorProcessor/FileOutputErrorProcessor.h>
 #include <datalint/FieldParser/CsvFieldParser.h>
 #include <datalint/FieldParser/IFieldParser.h>
 #include <datalint/FieldParser/ParsedDataBuilder.h>
@@ -22,6 +23,7 @@
 #include <datalint/RuleSpecification/RuleValidator.h>
 #include <datalint/RuleSpecification/ValueAtIndexSelector.h>
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 
@@ -32,9 +34,13 @@ int main(int argc, char** argv) {
     return 1;
   }
   datalint::error::ErrorCollector errorCollector;
-  auto printErrors = [&errorCollector]() {
-    for (const auto& errorLog : errorCollector.GetErrorLogs()) {
-      std::cerr << "Error: " << errorLog.Subject() << "\n" << errorLog.Body() << "\n\n";
+  datalint::error_processor::FileOutputErrorProcessor errorProcessor{
+      std::filesystem::path{"output.txt"}};
+  auto printErrors = [&errorCollector, &errorProcessor]() {
+    try {
+      errorProcessor.Process(errorCollector.GetErrorLogs());
+    } catch (const std::runtime_error& e) {
+      std::cerr << "Failed to write error output: " << e.what() << '\n';
     }
   };
 
@@ -125,8 +131,6 @@ int main(int argc, char** argv) {
     std::cerr << "Validation failed:\n";
     printErrors();
     return 1;
-  } else {
-    // output success message to file
   }
 
   std::cout << "datalinttool executed successfully!\n";
