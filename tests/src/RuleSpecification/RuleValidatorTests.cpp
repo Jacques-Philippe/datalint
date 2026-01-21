@@ -16,11 +16,14 @@ using namespace datalint::rules;
 using namespace datalint::fieldparser;
 using namespace datalint::error;
 
+/// @brief Fixture to test Rule Validator
 class RuleValidatorTest : public ::testing::Test {
  protected:
+  /// @brief the rule validator instance
   RuleValidator validator_;
 };
 
+/// @brief Test that an empty rule specification can pass successfully
 TEST_F(RuleValidatorTest, EmptyRuleSpecificationPasses) {
   RuleSpecification spec({});
   ParsedData data({});
@@ -30,6 +33,7 @@ TEST_F(RuleValidatorTest, EmptyRuleSpecificationPasses) {
   EXPECT_EQ(collector.GetErrorLogs().size(), 0);
 }
 
+/// @brief Test that a valid rule passes successfully
 TEST_F(RuleValidatorTest, ValidRulePasses) {
   // Create a field with value "5" at index 0
   ParsedField field{"key10", {RawValue{"5", {}}}};
@@ -48,6 +52,7 @@ TEST_F(RuleValidatorTest, ValidRulePasses) {
   EXPECT_EQ(collector.GetErrorLogs().size(), 0);
 }
 
+/// @brief Test that an invalid rule fails
 TEST_F(RuleValidatorTest, InvalidRuleFails) {
   // Create a field with value "15" at index 0
   ParsedField field{"key10", {RawValue{"15", {}}}};
@@ -67,6 +72,7 @@ TEST_F(RuleValidatorTest, InvalidRuleFails) {
   EXPECT_EQ(collector.GetErrorLogs()[0].Subject(), "Incorrect value");
 }
 
+/// @brief Test that a rule for a missing field results in an error
 TEST_F(RuleValidatorTest, MissingFieldFails) {
   // Data has no "key10" field
   ParsedData data({});
@@ -87,6 +93,7 @@ TEST_F(RuleValidatorTest, MissingFieldFails) {
   EXPECT_EQ(collector.GetErrorLogs()[0].Body(), "key10");
 }
 
+/// @brief Tests a failure with an integer in range rule checking against a non-integer
 TEST_F(RuleValidatorTest, NonIntegerValueFails) {
   // Create a field with non-integer value
   ParsedField field{"key10", {RawValue{"notanumber", {}}}};
@@ -105,6 +112,8 @@ TEST_F(RuleValidatorTest, NonIntegerValueFails) {
   EXPECT_EQ(collector.GetErrorLogs()[0].Subject(), "Incorrect value type");
 }
 
+/// @brief Tests that we're able to define multiple rules and that if one fails it's handled as
+/// expected
 TEST_F(RuleValidatorTest, MultipleRulesOneFails) {
   ParsedField field1{"key10", {RawValue{"5", {}}}};
   ParsedField field2{"key11", {RawValue{"20", {}}}};
