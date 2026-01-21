@@ -64,6 +64,7 @@ int main(int argc, char** argv) {
                                  std::vector<LayoutPatchOperation>{
                                      AddField{"key1", ExpectedField{1, std::nullopt}},
                                      AddField{"key2", ExpectedField{1, std::nullopt}},
+                                     AddField{"key10", ExpectedField{1, std::nullopt}},
                                      AddField{"ApplicationName", ExpectedField{1, std::nullopt}},
                                      AddField{"ApplicationVersion", ExpectedField{1, std::nullopt}},
                                  });
@@ -88,9 +89,10 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  // 6. Build the rule specification
   using namespace datalint::rules;
 
-  FieldRule key1Rule{"key1", std::make_unique<IntegerInRangeRule>(0, 10),
+  FieldRule key1Rule{"key10", std::make_unique<IntegerInRangeRule>(0, 10),
                      std::make_unique<ValueAtIndexSelector>(0)};
 
   auto addKey1Operation = std::make_unique<AddFieldRulePatchOperation>(std::move(key1Rule));
@@ -101,10 +103,12 @@ int main(int argc, char** argv) {
   RulePatch patch("example-rule-patch", datalint::VersionRange::All(), std::move(ops));
 
   std::vector<RulePatch> rulePatches;
-  rulePatches.push_back(std::move(patch));  // MUST move
+  rulePatches.push_back(std::move(patch));
 
   RuleSpecificationBuilder ruleSpecBuilder;
   RuleSpecification ruleSpec = ruleSpecBuilder.Build(descriptor.Version(), rulePatches);
+
+  // 7. Validate the built rule specification
 
   std::cout << "datalinttool executed successfully!\n";
   return 0;
