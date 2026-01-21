@@ -10,6 +10,13 @@
 #include <datalint/LayoutSpecification/LayoutSpecificationValidator.h>
 #include <datalint/RawData.h>
 #include <datalint/RawField.h>
+#include <datalint/RuleSpecification/AddFieldRulePatchOperation.h>
+#include <datalint/RuleSpecification/IRulePatchOperation.h>
+#include <datalint/RuleSpecification/IntegerInRangeRule.h>
+#include <datalint/RuleSpecification/RulePatch.h>
+#include <datalint/RuleSpecification/RuleSpecification.h>
+#include <datalint/RuleSpecification/RuleSpecificationBuilder.h>
+#include <datalint/RuleSpecification/ValueAtIndexSelector.h>
 
 #include <fstream>
 #include <iostream>
@@ -53,19 +60,20 @@ int main(int argc, char** argv) {
   using namespace datalint::layout;
 
   // 3. Build expected layout patches
-  const LayoutPatch patch("patch1", datalint::VersionRange::All(),
-                          std::vector<LayoutPatchOperation>{
-                              AddField{"key1", ExpectedField{1, std::nullopt}},
-                              AddField{"key2", ExpectedField{1, std::nullopt}},
-                              AddField{"ApplicationName", ExpectedField{1, std::nullopt}},
-                              AddField{"ApplicationVersion", ExpectedField{1, std::nullopt}},
-                          });
+  const LayoutPatch layoutPatch1("patch1", datalint::VersionRange::All(),
+                                 std::vector<LayoutPatchOperation>{
+                                     AddField{"key1", ExpectedField{1, std::nullopt}},
+                                     AddField{"key2", ExpectedField{1, std::nullopt}},
+                                     AddField{"ApplicationName", ExpectedField{1, std::nullopt}},
+                                     AddField{"ApplicationVersion", ExpectedField{1, std::nullopt}},
+                                 });
 
-  std::vector<LayoutPatch> patches = {patch};
-  LayoutSpecificationBuilder builder;
+  std::vector<LayoutPatch> layoutPatches = {layoutPatch1};
+  LayoutSpecificationBuilder layoutSpecificationBuilder;
   const auto descriptor = result.Descriptor.value();
   // 4. Build layout specification for the resolved application descriptor version
-  LayoutSpecification layoutSpec = builder.Build(descriptor.Version(), patches);
+  LayoutSpecification layoutSpec =
+      layoutSpecificationBuilder.Build(descriptor.Version(), layoutPatches);
   layoutSpec.AddOrderingConstraint(FieldOrderingConstraint{
       "ApplicationName",
       "ApplicationVersion"});  // ApplicationName must come before ApplicationVersion
@@ -80,9 +88,24 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  // 6. Build validation rules
-  // 7. Given validation rules and raw data, observe that rules are validated
-  // 8. Report results of observations to user
+  using namespace datalint::rules;
+
+  FieldRule key1Rule{"key1", std::make_unique<IntegerInRangeRule>(0, 10),
+                     std::make_unique<ValueAtIndexSelector>(0)};
+
+  auto addKey1Operation = std::make_unique<AddFieldRulePatchOperation>(std::move(key1Rule));
+
+  std::vector<std::unique_ptr<IRulePatchOperation>> ops;
+  ops.push_back(std::move(addKey1Operation));
+
+  RulePatch patch("example-rule-patch", datalint::VersionRange::All(), std::move(ops));
+
+  std::vector<RulePatch> rulePatches;
+  rulePatches.push_back(std::move(patch));  // MUST move
+
+  RuleSpecificationBuilder ruleSpecBuilder;
+  RuleSpecification ruleSpec = ruleSpecBuilder.Build(descriptor.Version(), rulePatches);
+
   std::cout << "datalinttool executed successfully!\n";
   return 0;
 }
