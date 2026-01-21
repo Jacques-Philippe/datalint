@@ -97,10 +97,10 @@ int main(int argc, char** argv) {
   // 6. Build the rule specification
   using namespace datalint::rules;
 
-  FieldRule key1Rule{"key10", std::make_unique<IntegerInRangeRule>(0, 10),
-                     std::make_unique<ValueAtIndexSelector>(0)};
+  FieldRule key10Rule{"key10", std::make_unique<IntegerInRangeRule>(0, 10),
+                      std::make_unique<ValueAtIndexSelector>(0)};
 
-  auto addKey1Operation = std::make_unique<AddFieldRulePatchOperation>(std::move(key1Rule));
+  auto addKey1Operation = std::make_unique<AddFieldRulePatchOperation>(std::move(key10Rule));
 
   std::vector<std::unique_ptr<IRulePatchOperation>> ops;
   ops.push_back(std::move(addKey1Operation));
