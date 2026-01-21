@@ -1,4 +1,3 @@
-// #include <datalint/RuleSpecification/RuleSpecification.h>
 #include <datalint/RuleSpecification/RuleValidator.h>
 
 namespace datalint::rules {
