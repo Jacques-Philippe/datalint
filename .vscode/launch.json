@@ -8,7 +8,7 @@
             "name": "Run datalinttool (Debug)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/datalinttool/datalinttool",
+            "program": "${workspaceFolder}/build-debug/datalinttool/datalinttool",
             "args": [
                 "${workspaceFolder}/resources/csv-file.csv"
             ],
@@ -19,7 +19,7 @@
             "name": "Run datalintlib_tests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
+            "program": "${workspaceFolder}/build-debug/tests/datalintlib_tests",
             "args": [],
             "cwd": "${workspaceFolder}",
             "MIMode": "lldb",
@@ -30,7 +30,7 @@
             "name": "Run datalintlib_tests (filter)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/tests/datalintlib_tests",
+            "program": "${workspaceFolder}/build-debug/tests/datalintlib_tests",
             "args": [
                 "--gtest_filter=CsvFileParserTest.*"
             ],
