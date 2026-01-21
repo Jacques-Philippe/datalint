@@ -37,7 +37,11 @@ int main(int argc, char** argv) {
   datalint::error_processor::FileOutputErrorProcessor errorProcessor{
       std::filesystem::path{"output.txt"}};
   auto printErrors = [&errorCollector, &errorProcessor]() {
-    errorProcessor.Process(errorCollector.GetErrorLogs());
+    try {
+      errorProcessor.Process(errorCollector.GetErrorLogs());
+    } catch (const std::runtime_error& e) {
+      std::cerr << "Failed to write error output: " << e.what() << '\n';
+    }
   };
 
   const std::string inputFilePath = argv[1];
